@@ -1,11 +1,11 @@
 import "./App.css";
 import BuscaInfo from "./components/BuscaInfo";
-import Palco from "./components/Palco";
+import Banner from "./components/Banner";
 function App() {
   return (
     <div className="App">
       <BuscaInfo />
-      <Palco />
+      <Banner />
     </div>
   );
 }

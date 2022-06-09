@@ -1,5 +1,5 @@
 .container-slide {
-  width: 90vw;
+  width: 94vw;
   height: 60vh;
   margin: 20px auto;
 }
@@ -8,13 +8,6 @@
   height: 100%;
   width: 100%;
   background-color: skyblue;
-}
-
-.buttons-slide {
-  padding-top: 40px;
-  display: flex;
-  justify-content: end;
-  gap: 20px;
 }
 
 .baixar--banner {

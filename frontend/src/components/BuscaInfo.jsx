@@ -44,6 +44,10 @@ function BuscaInfo() {
                   <div className="image-content">
                     <img src={i.img} alt="" />
                   </div>
+                  <div className="buttons-slide">
+                    <button type="submit">Aplicar</button>
+                    <button type="submit">Limpar</button>
+                  </div>
                 </div>
               ))}
             </div>

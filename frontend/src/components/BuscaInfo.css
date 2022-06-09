@@ -21,11 +21,17 @@
 
 .main {
   margin-top: 60px;
-  display: flex;
 }
 
 .image-content img {
   display: block;
   max-width: 100%;
   height: 400px;
+}
+
+.buttons-slide {
+  padding-top: 40px;
+  display: flex;
+  justify-content: end;
+  gap: 20px;
 }
