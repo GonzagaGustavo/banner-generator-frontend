@@ -6,10 +6,12 @@ import NewBanner from "./NewBanner";
 function BuscaInfo() {
   const [text, setText] = useState("");
   const [dados, setDados] = useState([]);
+  const [e, setE] = useState(false);
   function buscar() {
     api.post("/", { id: text }).then((res) => {
       console.log(res.data);
-      setDados([res.data]);
+      setDados(res.data);
+      setE(true);
     });
   }
 
@@ -29,14 +31,23 @@ function BuscaInfo() {
           </div>
           <NewBanner />
         </div>
+
         <div className="main">
-          <div className="text--content">
-            <h2>{dados.map((i) => `Preço: ${i.price}`)}</h2>
-            <h3>{dados.map((i) => `Parcelas: ${i.installment.months}`)}</h3>
-            <h3>
-              {dados.map((i) => `Valor das Parcelas: ${i.installment.amount}`)}
-            </h3>
-          </div>
+          {e ? (
+            <div className="text--content">
+              {dados.map((i) => (
+                <div key={i}>
+                  <h1>Titulo: {i.name}</h1>
+                  <h2>Preço: {i.price}</h2>
+                  <p>Parcelas: {i.p_value}</p>
+                  <p>Quantidade de Parcelas: {i.p_mounth}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div>Faca sua busca</div>
+          )}
+
           <div className="image-content">
             <img src={dados.map((i) => i.image_link)} alt="" />
           </div>
