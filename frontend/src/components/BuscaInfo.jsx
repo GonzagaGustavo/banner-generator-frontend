@@ -41,16 +41,15 @@ function BuscaInfo() {
                   <h2>Preço: {i.price}</h2>
                   <p>Parcelas: {i.p_value}</p>
                   <p>Quantidade de Parcelas: {i.p_mounth}</p>
+                  <div className="image-content">
+                    <img src={i.img} alt="" />
+                  </div>
                 </div>
               ))}
             </div>
           ) : (
             <div>Faca sua busca</div>
           )}
-
-          <div className="image-content">
-            <img src={dados.map((i) => i.image_link)} alt="" />
-          </div>
         </div>
       </div>
     </>
