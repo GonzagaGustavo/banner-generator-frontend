@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import api from "../services/api";
-import { Context } from "../services/Context";
 import "./BuscaInfo.css";
 import NewBanner from "./NewBanner";
 
@@ -8,23 +7,12 @@ function BuscaInfo() {
   const [text, setText] = useState("");
   const [dados, setDados] = useState([]);
   const [e, setE] = useState(false);
-  const { img } = useContext(Context)
-
   function buscar() {
     api.post("/", { id: text }).then((res) => {
       console.log(res.data);
       setDados(res.data);
       setE(true);
     });
-  }
-
-  function createImg(i) {
-    api.post("/generate", {
-      i: i,
-      backImage: img,
-    }).then(res => {
-
-    })
   }
 
   return (
@@ -57,7 +45,7 @@ function BuscaInfo() {
                     <img src={i.img} alt="" />
                   </div>
                   <div className="buttons-slide">
-                    <button type="submit" onClick={() => createImg(i)}>Aplicar</button>
+                    <button type="submit">Aplicar</button>
                     <button type="submit">Limpar</button>
                   </div>
                 </div>
