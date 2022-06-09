@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import "./NewBanner.css";
+import { Context } from "../services/Context";
 
 function NewBanner() {
+  const { setImg } = useContext(Context);
+
   const [selectedFile, setSelectedFile] = React.useState(null);
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("selectedFile", selectedFile);
+    setImg(formData);
     try {
       const response = axios({
         method: "post",
