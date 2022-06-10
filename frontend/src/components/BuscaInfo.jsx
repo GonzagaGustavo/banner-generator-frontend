@@ -1,19 +1,8 @@
 import React, { useState } from "react";
 import api from "../services/api";
 import "./BuscaInfo.css";
-import NewBanner from "./NewBanner";
 
 function BuscaInfo() {
-  const [text, setText] = useState("");
-  const [dados, setDados] = useState([]);
-  const [e, setE] = useState(false);
-  function buscar() {
-    api.post("/", { id: text }).then((res) => {
-      console.log(res.data);
-      setDados(res.data);
-      setE(true);
-    });
-  }
 
   return (
     <>
@@ -29,7 +18,6 @@ function BuscaInfo() {
             />
             <button onClick={buscar}>Buscar</button>
           </div>
-          <NewBanner />
         </div>
 
         <div className="main">

@@ -3,25 +3,6 @@ import api from '../services/api'
 import "./NewBanner.css";
 
 function NewBanner() {
-  const [selectedFile, setSelectedFile] = React.useState(null);
-
-function upload() {
-  const formData = new FormData()
-  formData.append("image", selectedFile)
-  console.log(selectedFile)
-
-  const headers = {
-    'headers': {
-      'Content-Type': 'application/json'
-    }
-  }
-  api.post("/upload", formData, headers)
-}
-
-  const handleFileSelect = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
-
   return (
     <>
       <div className="files">
