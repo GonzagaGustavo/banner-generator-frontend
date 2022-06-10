@@ -26,10 +26,6 @@ function upload() {
   api.post("/upload", formData, headers)
 }
 
-  const handleFileSelect = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
-
   function buscar() {
     api.post("/", { id: text }).then((res) => {
       console.log(res.data);
@@ -40,9 +36,9 @@ function upload() {
 
   return (
     <div className="App">
-      <Header handleFileSelect={handleFileSelect} buscar={buscar} setText={setText} text={text} />
+      <Header setSelectedFile={setSelectedFile} buscar={buscar} setText={setText} text={text} />
       <Main dados={dados} e={e} />
-      <Banner />
+      <Banner selectedFile={selectedFile} />
     </div>
   );
 }
