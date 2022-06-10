@@ -1,32 +1,4 @@
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 10vh;
-    background-color: aqua;
-}
-input,
-textarea {
-  display: flex;
-  border: 1px solid #ccc;
-  padding: 2%;
-  border-radius: var(--radius);
-  background: #eee;
-  transition: 0.2s;
-}
-.ib {
-    display: flex;
-}
-.infos {
-    display: flex;
-    width: 100%;
-}
-.main {
-    height: 30vh;
-}
-img {
-
-}
-.banner {
-    height: 60vh;
+.app-container {
+  max-width: 1000px;
+  margin: 0 auto;
 }

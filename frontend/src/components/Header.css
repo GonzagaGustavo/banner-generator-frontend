@@ -1,0 +1,28 @@
+.header {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+
+  /* height: 20vh; */
+}
+
+input {
+  border: 1px solid #ccc;
+  padding: 2%;
+  border-radius: var(--radius);
+  background: #eee;
+  transition: 0.2s;
+}
+
+.ib {
+  display: flex;
+  gap: 10px;
+}
+
+/* Upload */
+
+input[type="file"] {
+  display: none;
+}

@@ -1,0 +1,15 @@
+.infos {
+  display: flex;
+}
+
+.infos h1 {
+  font-size: 21px;
+}
+
+.infos p {
+  font-size: 18px;
+}
+
+.infos img {
+  height: 200px;
+}
