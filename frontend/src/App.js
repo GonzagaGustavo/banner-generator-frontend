@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import BuscaInfo from "./components/BuscaInfo";
-import Banner from "./components/Banner";
-import NewBanner from "./NewBanner";
+import Header from "./components/Header";
 import api from "./services/api";
 
 function App() {
@@ -40,9 +38,7 @@ function upload() {
 
   return (
     <div className="App">
-      <NewBanner />
-      <BuscaInfo />
-      <Banner />
+      <Header />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Banner() {
+function Header() {
   return (
     <div>
         
@@ -8,4 +8,4 @@ function Banner() {
   )
 }
 
-export default Banner
+export default Header
