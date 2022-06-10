@@ -14,6 +14,7 @@ html {
   --color-dark: #018;
   --radius: 0.2rem;
   --font-w: 400;
+  min-height: 100vh;
 }
 
 body {
@@ -40,7 +41,7 @@ h2,
 h3,
 p,
 ul {
-  margin: 1rem 0;
+  margin: 0;
 }
 
 ul {
@@ -58,10 +59,10 @@ label {
 
 input,
 textarea {
-  display: block;
+  display: flex;
   border: 1px solid #ccc;
   width: 100%;
-  padding: 0.8rem;
+  padding: 8px;
   border-radius: var(--radius);
   background: #eee;
   transition: 0.2s;
@@ -82,7 +83,7 @@ button {
   transition: 0.1s;
   background: var(--color);
   color: var(--color-dark);
-  padding: 0.8rem 1.6rem;
+  padding: 6px 12px;
   color: #eee;
 }
 

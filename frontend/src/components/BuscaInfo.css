@@ -12,7 +12,7 @@
 }
 
 .header {
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 15px;
   display: flex;
   justify-content: space-between;
@@ -20,7 +20,7 @@
 }
 
 .main {
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 .image-content img {
@@ -34,4 +34,23 @@
   display: flex;
   justify-content: end;
   gap: 20px;
+}
+
+.text--content {
+  display: flex;
+}
+
+.text--content h1 {
+  font-size: 1.3rem;
+}
+
+.text--content h2 {
+  font-size: 1.2rem;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.text--content p {
+  font-size: 0.875rem;
+  padding: 4px 0;
 }

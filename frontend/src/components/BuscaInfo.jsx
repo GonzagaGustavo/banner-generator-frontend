@@ -37,7 +37,7 @@ function BuscaInfo() {
             <div className="text--content">
               {dados.map((i) => (
                 <div key={i}>
-                  <h1>Titulo: {i.name}</h1>
+                  <h1>Produto: {i.name}</h1>
                   <h2>Preço: {i.price}</h2>
                   <p>Parcelas: {i.p_value}</p>
                   <p>Quantidade de Parcelas: {i.p_mounth}</p>
@@ -52,7 +52,7 @@ function BuscaInfo() {
               ))}
             </div>
           ) : (
-            <div>Faca sua busca</div>
+            <div>Faça sua busca</div>
           )}
         </div>
       </div>
