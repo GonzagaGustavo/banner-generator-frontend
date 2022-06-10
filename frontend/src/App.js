@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
+import Banner from "./components/Banner";
 import Header from "./components/Header";
+import Main from "./components/Main";
 import api from "./services/api";
 
 function App() {
@@ -9,7 +11,7 @@ const [selectedFile, setSelectedFile] = React.useState(null);
 const [text, setText] = useState("");
   const [dados, setDados] = useState([]);
   const [e, setE] = useState(false);
-
+console.log(text)
 //Funções
 function upload() {
   const formData = new FormData()
@@ -38,7 +40,9 @@ function upload() {
 
   return (
     <div className="App">
-      <Header />
+      <Header handleFileSelect={handleFileSelect} buscar={buscar} setText={setText} text={text} />
+      <Main dados={dados} e={e} />
+      <Banner />
     </div>
   );
 }
