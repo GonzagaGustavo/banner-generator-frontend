@@ -1,19 +1,17 @@
 .header {
-  margin-bottom: 20px;
+  margin: 20px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 10vh;
-
-  /* height: 20vh; */
 }
 
-input {
+.inputInfo {
+  border-radius: 0.2rem;
   border: 1px solid #ccc;
-  padding: 2%;
-  border-radius: var(--radius);
   background: #eee;
   transition: 0.2s;
+  padding: 10px;
 }
 
 .ib {

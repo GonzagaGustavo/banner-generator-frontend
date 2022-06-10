@@ -1,13 +1,20 @@
+.main {
+  margin-bottom: 60px;
+}
+
 .infos {
   display: flex;
+  align-items: center;
 }
 
-.infos h1 {
-  font-size: 21px;
+.infos #name {
+  font-size: 32px;
+  font-weight: 700;
 }
 
-.infos p {
+.infos li {
   font-size: 18px;
+  font-weight: 400;
 }
 
 .infos img {

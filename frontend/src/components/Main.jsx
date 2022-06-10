@@ -10,12 +10,12 @@ function Main({ dados, e }) {
           <>
             {dados.map((i) => (
               <>
-                <div>
-                  <h1>Produto: {i.name}</h1>
-                  <h2>Preço: {i.price}</h2>
-                  <p>Parcela: {i.p_mounth}</p>
-                  <p>Valor da parcela: {i.p_value}</p>
-                </div>
+                <ul>
+                  <li id="name">{i.name}</li>
+                  <li>Preço: {i.price}</li>
+                  <li>Parcela: {i.p_mounth}</li>
+                  <li>Valor da parcela: {i.p_value}</li>
+                </ul>
                 <div>
                   <img src={i.img} alt="" />
                 </div>

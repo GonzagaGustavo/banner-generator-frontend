@@ -1,5 +1,13 @@
 .banner {
-  height: 100px;
-  width: 400px;
+  height: 300px;
+  width: 100%;
   background-color: orangered;
+  border-radius: 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 60px;
 }

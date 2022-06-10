@@ -8,7 +8,7 @@ function Header({ handleFileSelect, buscar, setText, text }) {
       <div className="ib">
         <input
           type="number"
-          className="input"
+          className="inputInfo"
           placeholder="Digite o SKU"
           onChange={(e) => setText(e.target.value)}
           value={text}
@@ -17,7 +17,13 @@ function Header({ handleFileSelect, buscar, setText, text }) {
       </div>
       <div className="files">
         <label for="file">Enviar arquivo</label>
-        <input type="file" onChange={handleFileSelect} className="input-file" name="file" id="file" />
+        <input
+          type="file"
+          onChange={handleFileSelect}
+          className="input-file"
+          name="file"
+          id="file"
+        />
       </div>
     </div>
   );
