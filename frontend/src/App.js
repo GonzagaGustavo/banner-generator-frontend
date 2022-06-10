@@ -47,7 +47,7 @@ function App() {
         text={text}
       />
       <Main dados={dados} e={e} />
-      <Banner />
+      <Banner selectedFile={selectedFile} />
     </div>
   );
 }

@@ -16,8 +16,8 @@ function Header({ handleFileSelect, buscar, setText, text }) {
         <Button onclick={buscar}>Buscar</Button>
       </div>
       <div className="files">
-        <label for="arquivo">Enviar arquivo</label>
-        <input type="file" onChange={handleFileSelect} className="input-file" />
+        <label for="file">Enviar arquivo</label>
+        <input type="file" onChange={handleFileSelect} className="input-file" name="file" id="file" />
       </div>
     </div>
   );
