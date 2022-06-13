@@ -5,7 +5,7 @@ function Banner({ selectedFile }) {
   return (
     <div className="banner">
       {selectedFile ? (
-        <img src={URL.createObjectURL(selectedFile)} alt="" />
+        <img className="preview" src={URL.createObjectURL(selectedFile)} alt="" />
       ) : (
         <p>Faça o upload de uma Imagem</p>
       )}

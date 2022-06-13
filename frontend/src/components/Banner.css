@@ -1,5 +1,6 @@
 .banner {
-  height: 300px;
+  height: 430px;
+  max-width: 1000px;
   width: 100%;
   background-color: orangered;
   border-radius: 0.2rem;
@@ -9,5 +10,8 @@
   color: #fff;
   font-size: 1.3rem;
   font-weight: 400;
-  margin-bottom: 60px;
+}
+.preview {
+  height: 100%;
+  width: 100%;
 }
