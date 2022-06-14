@@ -29,7 +29,7 @@ function Main({ dados, e, aplicar }) {
           </>
         ) : (
           <>
-            <p>Faça sua busca.</p>
+            
           </>
         )}
       </div>
