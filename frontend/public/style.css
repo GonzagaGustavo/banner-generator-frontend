@@ -6,7 +6,8 @@
 
 body {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
-  min-height: calc(100vh - 100px);
+  /* min-height: calc(100vh - 100px); */
+  height: 100vh;
 }
 
 html {
@@ -57,7 +58,7 @@ label {
   transition: 0.1s;
   background: var(--color);
   color: var(--color-dark);
-  padding: 6px 16px;
+  padding: 5px 10px;
   color: #eee;
   font-size: 1.2rem;
 }

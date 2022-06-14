@@ -1,22 +1,27 @@
-.main {
-  margin-bottom: 60px;
-}
-
 .infos {
   display: flex;
   align-items: center;
 }
 
 .infos #name {
-  font-size: 32px;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 
 .infos li {
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 400;
 }
 
 .infos img {
   height: 200px;
+}
+
+.button-banner {
+  display: flex;
+  gap: 10px;
+}
+
+.button-banner button {
+  justify-self: end;
 }

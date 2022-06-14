@@ -1,9 +1,8 @@
 .header {
-  margin: 20px 0;
+  /* margin: 20px 0; */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 10vh;
 }
 
 .inputInfo {
@@ -11,7 +10,7 @@
   border: 1px solid #ccc;
   background: #eee;
   transition: 0.2s;
-  padding: 10px;
+  padding: 5px 10px;
 }
 
 .ib {
