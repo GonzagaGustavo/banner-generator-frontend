@@ -19,6 +19,11 @@ function Main({ dados, e }) {
                 <div>
                   <img src={i.img} alt="" />
                 </div>
+                <div className="buttons-banner">
+                  <button>Baixar Banner</button>
+                  <button>Aplicar</button>
+                  <button>Apagar</button>
+                </div>
               </>
             ))}
           </>

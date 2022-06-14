@@ -17,11 +17,11 @@
   height: 200px;
 }
 
-.button-banner {
+.buttons-banner {
   display: flex;
   gap: 10px;
 }
 
-.button-banner button {
+.buttons-banner button {
   justify-self: end;
 }
