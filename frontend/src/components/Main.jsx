@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Main.css";
 
-function Main({ dados, e }) {
+function Main({ dados, e, aplicar }) {
   return (
     <div className="main">
       <div className="infos">
@@ -21,7 +21,7 @@ function Main({ dados, e }) {
                 </div>
                 <div className="buttons-banner">
                   <button>Baixar Banner</button>
-                  <button>Aplicar</button>
+                  <button onClick={aplicar}>Aplicar</button>
                   <button>Apagar</button>
                 </div>
               </>

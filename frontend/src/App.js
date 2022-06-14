@@ -13,17 +13,19 @@ function App() {
   const [e, setE] = useState(false);
   console.log(text);
   //Funções
-  function upload() {
+  async function aplicar() {
     const formData = new FormData();
     formData.append("image", selectedFile);
-    console.log(selectedFile);
-
     const headers = {
       headers: {
         "Content-Type": "application/json",
       },
     };
-    api.post("/upload", formData, headers);
+    await api.post("/upload", formData, headers).then(res => {
+      alert(res.data)
+    })
+
+    api.post("/createBanner", dados)
   }
 
   const handleFileSelect = (event) => {
@@ -46,7 +48,7 @@ function App() {
         setText={setText}
         text={text}
       />
-      <Main dados={dados} e={e} />
+      <Main dados={dados} e={e} aplicar={aplicar} />
       <Banner selectedFile={selectedFile} />
     </div>
   );
