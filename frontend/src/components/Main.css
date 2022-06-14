@@ -1,6 +1,7 @@
 .infos {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .infos #name {
@@ -19,9 +20,10 @@
 
 .buttons-banner {
   display: flex;
+  align-self: end;
   gap: 10px;
 }
 
 .buttons-banner button {
-  justify-self: end;
+  margin-bottom: 30px;
 }
