@@ -20,7 +20,7 @@ function Main({ dados, e, aplicar }) {
                   <img src={i.img} alt="" />
                 </div>
                 <div className="buttons-banner">
-                  <button>Baixar Banner</button>
+                    <button>Baixar Banner</button>
                   <button onClick={aplicar}>Aplicar</button>
                   <button>Apagar</button>
                 </div>

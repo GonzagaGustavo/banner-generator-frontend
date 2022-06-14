@@ -25,7 +25,11 @@ function App() {
       alert(res.data)
     })
 
-    api.post("/createBanner", dados)
+    api.post("/createBanner", dados).then(res => {
+      console.log(res.data)
+      document.querySelector(".preview").src = res.data
+      
+    })
   }
 
   const handleFileSelect = (event) => {
