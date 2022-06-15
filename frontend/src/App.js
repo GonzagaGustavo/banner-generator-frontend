@@ -39,6 +39,10 @@ function App() {
       setE(true);
     });
   }
+function apagar() {
+  api.get("/apagar")
+}
+
 
   return (
     <div className="App app-container">
@@ -48,7 +52,7 @@ function App() {
         text={text}
         setSelectedFile={setSelectedFile}
       />
-      <Main dados={dados} e={e} aplicar={aplicar} />
+      <Main dados={dados} e={e} aplicar={aplicar} apagar={apagar} />
       <Banner selectedFile={selectedFile} />
     </div>
   );
