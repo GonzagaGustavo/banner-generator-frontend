@@ -43,7 +43,6 @@ function App() {
   return (
     <div className="App app-container">
       <Header
-        handleFileSelect={handleFileSelect}
         buscar={buscar}
         setText={setText}
         text={text}
