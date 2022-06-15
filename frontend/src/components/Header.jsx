@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button";
 import "./Header.css";
 
-function Header({ handleFileSelect, buscar, setText, text }) {
+function Header({ setSelectedFile, buscar, setText, text }) {
   return (
     <div className="header">
       <div className="ib">
@@ -19,7 +19,7 @@ function Header({ handleFileSelect, buscar, setText, text }) {
         <label for="file">Carregar Imagem</label>
         <input
           type="file"
-          onChange={handleFileSelect}
+          onChange={(e) => setSelectedFile(e.target.files[0])}
           className="input-file"
           name="file"
           id="file"
