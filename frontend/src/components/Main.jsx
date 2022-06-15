@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./Main.css";
 
 function Main({ dados, e, aplicar }) {
@@ -20,7 +19,7 @@ function Main({ dados, e, aplicar }) {
                   <img src={i.img} alt="" />
                 </div>
                 <div className="buttons-banner">
-                    <button>Baixar Banner</button>
+                  <button>Baixar</button>
                   <button onClick={aplicar}>Aplicar</button>
                   <button>Apagar</button>
                 </div>
