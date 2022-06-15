@@ -32,10 +32,6 @@ function App() {
     })
   }
 
-  const handleFileSelect = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
-
   function buscar() {
     api.post("/", { id: text }).then((res) => {
       console.log(res.data);
@@ -51,6 +47,7 @@ function App() {
         buscar={buscar}
         setText={setText}
         text={text}
+        setSelectedFile={setSelectedFile}
       />
       <Main dados={dados} e={e} aplicar={aplicar} />
       <Banner selectedFile={selectedFile} />
