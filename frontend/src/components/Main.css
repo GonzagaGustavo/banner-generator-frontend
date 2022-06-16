@@ -27,6 +27,12 @@
   padding-bottom: 8px;
 }
 
+.infos li:last-child {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  border-bottom: 0px;
+}
+
 .infos img {
   height: 150px;
 }
