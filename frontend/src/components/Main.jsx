@@ -11,9 +11,15 @@ function Main({ dados, e, aplicar, apagar }) {
               <>
                 <ul>
                   <li id="name">{i.name}</li>
-                  <li>Preço: {i.price}</li>
-                  <li>Parcela: {i.p_mounth}</li>
-                  <li>Valor da parcela: {i.p_value}</li>
+                  <li>
+                    <span>Preço:</span> {i.price}
+                  </li>
+                  <li>
+                    <span>Parcela:</span> {i.p_mounth}
+                  </li>
+                  <li>
+                    <span>Valor da parcela:</span> {i.p_value}
+                  </li>
                 </ul>
                 <div className="imgProduto">
                   <img src={i.img} alt="" />

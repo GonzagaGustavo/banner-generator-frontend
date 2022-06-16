@@ -28,6 +28,10 @@
   padding-bottom: 8px;
 }
 
+.infos li span {
+  font-weight: 500;
+}
+
 .infos li:last-child {
   margin-bottom: 0px;
   padding-bottom: 0px;
