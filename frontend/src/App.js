@@ -21,7 +21,9 @@ function App() {
         "Content-Type": "application/json",
       },
     };
-    await api.post("/upload", formData, headers).then(res => {
+    const extensao = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'].find(formatoAceito => formatoAceito == selectedFile.type)
+    if(extensao) {
+      await api.post("/upload", formData, headers).then(res => {
       alert(res.data)
     })
 
@@ -30,6 +32,9 @@ function App() {
       document.querySelector(".preview").src = res.data
       
     })
+    } else {
+      alert("Formato de imagem não aceito!")
+    }
   }
 
   function buscar() {
