@@ -19,17 +19,18 @@ function Main({ dados, e, aplicar, apagar }) {
                   <img src={i.img} alt="" />
                 </div>
                 <div className="buttons-banner">
-                  <button>Baixar</button>
-                  <button onClick={aplicar}>Aplicar</button>
-                  <button onClick={apagar}>Apagar</button>
+                  <button onClick={aplicar} style={{ background: "#4c8b64" }}>
+                    Aplicar
+                  </button>
+                  <button onClick={apagar} style={{ background: "#d41c1d" }}>
+                    Apagar
+                  </button>
                 </div>
               </>
             ))}
           </>
         ) : (
-          <>
-            
-          </>
+          <></>
         )}
       </div>
     </div>
