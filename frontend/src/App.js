@@ -22,15 +22,20 @@ function App() {
         "Content-Type": "application/json",
       },
     };
-    await api.post("/upload", formData, headers).then((res) => {
+    const extensao = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'].find(formatoAceito => formatoAceito === selectedFile.type)
+    if(extensao) {
+      await api.post("/upload", formData, headers).then((res) => {
       alert(res.data);
     });
 
     api.post("/createBanner", dados).then((res) => {
-      console.log(res.data);
-      document.querySelector(".preview").src = res.data;
       setDownload(res.data);
+      document.querySelector(".preview").src = res.data
+
     });
+    } else {
+      alert("Formato de imagem não aceito!")
+    }
   }
 
   async function downloadImage(imageSrc) {
@@ -40,9 +45,7 @@ function App() {
 
     const link = document.createElement("a");
     link.href = imageURL;
-    link.download = document.querySelector(".preview").getAttribute("src");
-    console.log(link.download);
-    console.log(link.click());
+    link.download = imageSrc;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
