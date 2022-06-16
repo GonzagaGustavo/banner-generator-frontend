@@ -6,4 +6,8 @@
 .App {
   height: 100%;
   width: 100%;
+  border: 2px solid #eeeeee;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 20px auto;
 }
