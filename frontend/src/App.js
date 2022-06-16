@@ -40,7 +40,9 @@ function App() {
     });
   }
 function apagar() {
-  api.get("/apagar")
+  api.get("/apagar").then(res => {
+    alert(res.data)
+  })
 }
 
 
