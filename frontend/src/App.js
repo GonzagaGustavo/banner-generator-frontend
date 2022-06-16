@@ -11,6 +11,7 @@ function App() {
   const [text, setText] = useState("");
   const [dados, setDados] = useState([]);
   const [e, setE] = useState(false);
+  const [download, setDownload] = React.useState(null);
   console.log(text);
   //Funções
   async function aplicar() {
@@ -21,15 +22,30 @@ function App() {
         "Content-Type": "application/json",
       },
     };
-    await api.post("/upload", formData, headers).then(res => {
-      alert(res.data)
-    })
+    await api.post("/upload", formData, headers).then((res) => {
+      alert(res.data);
+    });
 
-    api.post("/createBanner", dados).then(res => {
-      console.log(res.data)
-      document.querySelector(".preview").src = res.data
-      
-    })
+    api.post("/createBanner", dados).then((res) => {
+      console.log(res.data);
+      document.querySelector(".preview").src = res.data;
+      setDownload(res.data);
+    });
+  }
+
+  async function downloadImage(imageSrc) {
+    const image = await fetch(imageSrc);
+    const imageBlog = await image.blob();
+    const imageURL = URL.createObjectURL(imageBlog);
+
+    const link = document.createElement("a");
+    link.href = imageURL;
+    link.download = document.querySelector(".preview").getAttribute("src");
+    console.log(link.download);
+    console.log(link.click());
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   function buscar() {
@@ -39,12 +55,11 @@ function App() {
       setE(true);
     });
   }
-function apagar() {
-  api.get("/apagar").then(res => {
-    alert(res.data)
-  })
-}
-
+  function apagar() {
+    api.get("/apagar").then((res) => {
+      alert(res.data);
+    });
+  }
 
   return (
     <div className="App app-container">
@@ -54,7 +69,14 @@ function apagar() {
         text={text}
         setSelectedFile={setSelectedFile}
       />
-      <Main dados={dados} e={e} aplicar={aplicar} apagar={apagar} />
+      <Main
+        dados={dados}
+        e={e}
+        aplicar={aplicar}
+        apagar={apagar}
+        download={download}
+        downloadImage={downloadImage}
+      />
       <Banner selectedFile={selectedFile} />
     </div>
   );

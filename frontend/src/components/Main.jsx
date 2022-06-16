@@ -1,7 +1,7 @@
 import React from "react";
 import "./Main.css";
 
-function Main({ dados, e, aplicar, apagar }) {
+function Main({ dados, e, aplicar, apagar, downloadImage, download }) {
   return (
     <div className="main">
       <div className="infos">
@@ -25,6 +25,16 @@ function Main({ dados, e, aplicar, apagar }) {
                   <img src={i.img} alt="" />
                 </div>
                 <div className="buttons-banner">
+                  {download ? (
+                    <button onClick={() => downloadImage(download)}>
+                      Baixar
+                    </button>
+                  ) : (
+                    <button disabled onClick={() => downloadImage(download)}>
+                      Baixar
+                    </button>
+                  )}
+
                   <button onClick={aplicar} style={{ background: "#4c8b64" }}>
                     Aplicar
                   </button>
