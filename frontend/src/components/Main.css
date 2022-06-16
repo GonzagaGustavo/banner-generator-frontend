@@ -37,6 +37,12 @@
   height: 150px;
 }
 
+.imgProduto {
+  box-shadow: 0 2px 6px 1px rgb(0 0 0 / 14%);
+  padding: 14px 40px;
+  border-radius: 4px;
+}
+
 .buttons-banner {
   display: flex;
   align-self: end;

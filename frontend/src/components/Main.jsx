@@ -15,7 +15,7 @@ function Main({ dados, e, aplicar, apagar }) {
                   <li>Parcela: {i.p_mounth}</li>
                   <li>Valor da parcela: {i.p_value}</li>
                 </ul>
-                <div>
+                <div className="imgProduto">
                   <img src={i.img} alt="" />
                 </div>
                 <div className="buttons-banner">
