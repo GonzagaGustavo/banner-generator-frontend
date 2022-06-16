@@ -21,7 +21,7 @@ function App() {
         "Content-Type": "application/json",
       },
     };
-    const extensao = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'].find(formatoAceito => formatoAceito == selectedFile.type)
+    const extensao = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'].find(formatoAceito => formatoAceito === selectedFile.type)
     if(extensao) {
       await api.post("/upload", formData, headers).then(res => {
       alert(res.data)
