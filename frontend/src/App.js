@@ -14,6 +14,9 @@ function App() {
   const [download, setDownload] = React.useState(null);
   console.log(text);
   //Funções
+  function a(p) {
+    document.querySelector(".preview").src = p
+  }
   async function aplicar() {
     const formData = new FormData();
     formData.append("image", selectedFile);
@@ -22,19 +25,24 @@ function App() {
         "Content-Type": "application/json",
       },
     };
-    const extensao = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'].find(formatoAceito => formatoAceito === selectedFile.type)
-    if(extensao) {
+    const extensao = [
+      "image/png",
+      "image/jpg",
+      "image/jpeg",
+      "image/webp",
+    ].find((formatoAceito) => formatoAceito === selectedFile.type);
+    if (extensao) {
       await api.post("/upload", formData, headers).then((res) => {
-      alert(res.data);
-    });
+        alert(res.data);
+      });
 
-    api.post("/createBanner", dados).then((res) => {
-      setDownload(res.data);
-      document.querySelector(".preview").src = res.data
-
-    });
+      api.post("/createBanner", dados).then((res) => {
+        a(res.data)
+        setDownload(res.data);
+        
+      });
     } else {
-      alert("Formato de imagem não aceito!")
+      alert("Formato de imagem não aceito!");
     }
   }
 
