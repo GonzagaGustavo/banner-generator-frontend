@@ -1,8 +1,7 @@
 import React, { useState } from "react";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import "./App.css";
-import Banner from "./components/Banner";
-import Header from "./components/Header";
-import Main from "./components/Main";
+import Home from "./components/Home";
 import api from "./services/api";
 
 function App() {
@@ -15,7 +14,7 @@ function App() {
   console.log(text);
   //Funções
   function a(p) {
-    document.querySelector(".preview").src = p
+    document.querySelector(".preview").src = p;
   }
   async function aplicar() {
     const formData = new FormData();
@@ -37,9 +36,8 @@ function App() {
       });
 
       api.post("/createBanner", dados).then((res) => {
-        a(res.data)
+        a(res.data);
         setDownload(res.data);
-        
       });
     } else {
       alert("Formato de imagem não aceito!");
@@ -73,23 +71,14 @@ function App() {
   }
 
   return (
-    <div className="App app-container">
-      <Header
-        buscar={buscar}
-        setText={setText}
-        text={text}
-        setSelectedFile={setSelectedFile}
-      />
-      <Main
-        dados={dados}
-        e={e}
-        aplicar={aplicar}
-        apagar={apagar}
-        download={download}
-        downloadImage={downloadImage}
-      />
-      <Banner selectedFile={selectedFile} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={<Home buscar={buscar} setText={setText} text={text} setSelectedFile={setSelectedFile} dados={dados} e={e} aplicar={aplicar} apagar={apagar} download={download} downloadImage={downloadImage} selectedFile={selectedFile} />}
+        ></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
