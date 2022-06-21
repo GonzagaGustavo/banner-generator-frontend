@@ -64,7 +64,11 @@ function App() {
   function buscar() {
     if (index) {
       if (selectedXML) {
-        api.post("");
+        api.post("/buscarAqv", { file: index, id: text }).then(res => {
+          setDados(res.data)
+          setE(true)
+          console.log(res.data)
+        })
       } else {
         console.log(index);
         api.post("/", { id: text, link: linkXML }).then((res) => {
@@ -92,6 +96,7 @@ function App() {
         },
       };
       await api.post("/baixarXML", formXml, headers).then((res) => {
+        console.log(res.data)
         setIndex(res.data);
       });
     } else {
