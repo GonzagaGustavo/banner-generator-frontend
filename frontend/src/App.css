@@ -1,6 +1,5 @@
 .app-container {
   max-width: 1000px;
-  margin: 0 auto;
 }
 
 .App {
@@ -9,5 +8,6 @@
   box-shadow: 0 2px 6px 1px rgb(0 0 0 / 0.14);
   border-radius: 4px;
   padding: 20px;
-  margin: 20px auto;
+  margin: auto;
+  margin-top: 0px;
 }

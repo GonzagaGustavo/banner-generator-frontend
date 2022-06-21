@@ -1,21 +1,23 @@
 import React, { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Banner from "./components/Banner";
-import Header from "./components/Header";
-import Main from "./components/Main";
+import Home from "./components/Home";
 import api from "./services/api";
 
 function App() {
   //Estados
+  const [index, setIndex] = useState(null)
+  const [selectedXML, setSelectedXML] = useState(null);
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [text, setText] = useState("");
   const [dados, setDados] = useState([]);
   const [e, setE] = useState(false);
   const [download, setDownload] = React.useState(null);
+  const [linkXML, setLinkXML] = useState(null);
   console.log(text);
   //Funções
   function a(p) {
-    document.querySelector(".preview").src = p
+    document.querySelector(".preview").src = p;
   }
   async function aplicar() {
     const formData = new FormData();
@@ -37,9 +39,8 @@ function App() {
       });
 
       api.post("/createBanner", dados).then((res) => {
-        a(res.data)
+        a(res.data);
         setDownload(res.data);
-        
       });
     } else {
       alert("Formato de imagem não aceito!");
@@ -60,36 +61,74 @@ function App() {
   }
 
   function buscar() {
-    api.post("/", { id: text }).then((res) => {
+    if(index) {
+      if(selectedXML) {
+        api.post("")
+      } else {
+        console.log(index)
+        api.post("/", { id: text, link: linkXML }).then((res) => {
       console.log(res.data);
       setDados(res.data);
       setE(true);
     });
+      }
+    } else {
+      alert("Adicione um XML")
+    }
   }
   function apagar() {
     api.get("/apagar").then((res) => {
       alert(res.data);
     });
   }
-
+ async function sendXML() {
+    if (selectedXML) {
+      const formXml = new FormData();
+      formXml.append("XML", selectedXML);
+      const headers = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      await api.post("/baixarXML", formXml, headers).then(res => {
+        setIndex(res.data)
+      })
+    } else {
+      if(linkXML) {
+        setIndex(linkXML)
+      } else {
+        alert("Adicione um XML")
+      }
+    }
+  }
   return (
-    <div className="App app-container">
-      <Header
-        buscar={buscar}
-        setText={setText}
-        text={text}
-        setSelectedFile={setSelectedFile}
-      />
-      <Main
-        dados={dados}
-        e={e}
-        aplicar={aplicar}
-        apagar={apagar}
-        download={download}
-        downloadImage={downloadImage}
-      />
-      <Banner selectedFile={selectedFile} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+            sendXML={sendXML}
+              buscar={buscar}
+              setText={setText}
+              text={text}
+              setSelectedFile={setSelectedFile}
+              dados={dados}
+              e={e}
+              aplicar={aplicar}
+              apagar={apagar}
+              download={download}
+              downloadImage={downloadImage}
+              selectedFile={selectedFile}
+              selectedXML={selectedXML}
+              setSelectedXML={setSelectedXML}
+              linkXML={linkXML}
+              setLinkXML={setLinkXML}
+            />
+          }
+        ></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
