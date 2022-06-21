@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home";
+import Login from "./components/Login";
 import api from "./services/api";
 
 function App() {
   //Estados
-  const [index, setIndex] = useState(null)
+  const [index, setIndex] = useState(null);
   const [selectedXML, setSelectedXML] = useState(null);
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [text, setText] = useState("");
@@ -61,19 +62,19 @@ function App() {
   }
 
   function buscar() {
-    if(index) {
-      if(selectedXML) {
-        api.post("")
+    if (index) {
+      if (selectedXML) {
+        api.post("");
       } else {
-        console.log(index)
+        console.log(index);
         api.post("/", { id: text, link: linkXML }).then((res) => {
-      console.log(res.data);
-      setDados(res.data);
-      setE(true);
-    });
+          console.log(res.data);
+          setDados(res.data);
+          setE(true);
+        });
       }
     } else {
-      alert("Adicione um XML")
+      alert("Adicione um XML");
     }
   }
   function apagar() {
@@ -81,7 +82,7 @@ function App() {
       alert(res.data);
     });
   }
- async function sendXML() {
+  async function sendXML() {
     if (selectedXML) {
       const formXml = new FormData();
       formXml.append("XML", selectedXML);
@@ -90,14 +91,14 @@ function App() {
           "Content-Type": "application/json",
         },
       };
-      await api.post("/baixarXML", formXml, headers).then(res => {
-        setIndex(res.data)
-      })
+      await api.post("/baixarXML", formXml, headers).then((res) => {
+        setIndex(res.data);
+      });
     } else {
-      if(linkXML) {
-        setIndex(linkXML)
+      if (linkXML) {
+        setIndex(linkXML);
       } else {
-        alert("Adicione um XML")
+        alert("Adicione um XML");
       }
     }
   }
@@ -105,10 +106,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/"
+          path="/painel"
           element={
             <Home
-            sendXML={sendXML}
+              sendXML={sendXML}
               buscar={buscar}
               setText={setText}
               text={text}
@@ -127,6 +128,7 @@ function App() {
             />
           }
         ></Route>
+        <Route path="/" element={<Login />}></Route>
       </Routes>
     </BrowserRouter>
   );
