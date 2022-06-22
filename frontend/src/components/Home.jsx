@@ -44,26 +44,26 @@ function Home({
         )}
         <span style={{ margin: "1%" }}>ou</span>
         {selectedXML ? (
-          <label for="file">{selectedXML.name}</label>
+          <label htmlFor="xml">{selectedXML.name}</label>
         ) : (
-          <label for="file">Carregar XML</label>
+          <label htmlFor="xml">Carregar XML</label>
         )}
         {linkXML ? (
           <input
             type="file"
             onChange={(e) => setSelectedXML(e.target.files[0])}
+            name="xml"
+            id="xml"
             className="input-file"
-            name="file"
-            id="file"
             disabled
           />
         ) : (
           <input
             type="file"
             onChange={(e) => setSelectedXML(e.target.files[0])}
+            name="xml"
+            id="xml"
             className="input-file"
-            name="file"
-            id="file"
           />
         )}
         <button style={{marginLeft: '2%', backgroundColor: 'rgb(76, 139, 100)'}} onClick={sendXML}>Adicionar</button>

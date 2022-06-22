@@ -38,7 +38,7 @@ function App() {
     ].find((formatoAceito) => formatoAceito === selectedFile.type);
     if (extensao) {
       await api.post("/upload", formData, headers).then((res) => {
-        toast.success(res.data)
+        toast.success(res.data);
       });
 
       api.post("/createBanner", dados).then((res) => {
@@ -46,7 +46,7 @@ function App() {
         setDownload(res.data);
       });
     } else {
-      toast.warn("Formato de imagem não aceito!")
+      toast.warn("Formato de imagem não aceito!");
     }
   }
 
@@ -80,12 +80,12 @@ function App() {
         });
       }
     } else {
-      toast.info("Adicione um XML")
+      toast.info("Adicione um XML");
     }
   }
   function apagar() {
     api.get("/apagar").then((res) => {
-      toast.success(res.data)
+      toast.success(res.data);
     });
   }
   async function sendXML() {
@@ -102,20 +102,18 @@ function App() {
         .then((res) => {
           console.log(res.data);
           setIndex(res.data);
+          toast.success("XML adicionado!")
         })
         .catch((err) => {
-          if (err) {
             console.log(err);
-          } else {
-            toast.success("XML adicionado!")
-          }
+            toast.warn("Ocorreu um erro!")
         });
     } else {
       if (linkXML) {
         setIndex(linkXML);
-        toast.success("XML adicionado!")
+        toast.success("XML adicionado!");
       } else {
-        toast.info("Adicione um XML")
+        toast.info("Adicione um XML");
       }
     }
   }
@@ -131,6 +129,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        theme="colored"
       />
       <Routes>
         <Route
