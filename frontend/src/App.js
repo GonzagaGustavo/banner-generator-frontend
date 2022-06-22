@@ -97,7 +97,11 @@ function App() {
           "Content-Type": "application/json",
         },
       };
-      await api
+      const extensao = [
+        "text/xml"
+      ].find((formatoAceito) => formatoAceito === selectedXML.type);
+      if(extensao) {
+        await api
         .post("/baixarXML", formXml, headers)
         .then((res) => {
           console.log(res.data);
@@ -108,6 +112,9 @@ function App() {
             console.log(err);
             toast.warn("Ocorreu um erro!")
         });
+      } else {
+        toast.warn("Esse arquivo não é um XML!")
+      }
     } else {
       if (linkXML) {
         setIndex(linkXML);
