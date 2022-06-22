@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import api from "./services/api";
@@ -36,7 +38,7 @@ function App() {
     ].find((formatoAceito) => formatoAceito === selectedFile.type);
     if (extensao) {
       await api.post("/upload", formData, headers).then((res) => {
-        alert(res.data);
+        toast.success(res.data)
       });
 
       api.post("/createBanner", dados).then((res) => {
@@ -44,7 +46,7 @@ function App() {
         setDownload(res.data);
       });
     } else {
-      alert("Formato de imagem não aceito!");
+      toast.warn("Formato de imagem não aceito!")
     }
   }
 
@@ -64,11 +66,11 @@ function App() {
   function buscar() {
     if (index) {
       if (selectedXML) {
-        api.post("/buscarAqv", { file: index, id: text }).then(res => {
-          setDados(res.data)
-          setE(true)
-          console.log(res.data)
-        })
+        api.post("/buscarAqv", { file: index, id: text }).then((res) => {
+          setDados(res.data);
+          setE(true);
+          console.log(res.data);
+        });
       } else {
         console.log(index);
         api.post("/", { id: text, link: linkXML }).then((res) => {
@@ -78,12 +80,12 @@ function App() {
         });
       }
     } else {
-      alert("Adicione um XML");
+      toast.info("Adicione um XML")
     }
   }
   function apagar() {
     api.get("/apagar").then((res) => {
-      alert(res.data);
+      toast.success(res.data)
     });
   }
   async function sendXML() {
@@ -95,20 +97,41 @@ function App() {
           "Content-Type": "application/json",
         },
       };
-      await api.post("/baixarXML", formXml, headers).then((res) => {
-        console.log(res.data)
-        setIndex(res.data);
-      });
+      await api
+        .post("/baixarXML", formXml, headers)
+        .then((res) => {
+          console.log(res.data);
+          setIndex(res.data);
+        })
+        .catch((err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            toast.success("XML adicionado!")
+          }
+        });
     } else {
       if (linkXML) {
         setIndex(linkXML);
+        toast.success("XML adicionado!")
       } else {
-        alert("Adicione um XML");
+        toast.info("Adicione um XML")
       }
     }
   }
   return (
     <BrowserRouter>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Routes>
         <Route
           path="/painel"
