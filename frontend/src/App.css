@@ -19,5 +19,24 @@ header {
 .counts {
   margin: 1%;
   text-align: center;
+  
+}
+.users-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   box-shadow: 0 2px 6px 1px rgb(0 0 0 / 14%);
+  background-color: rgb(238, 238, 238);
+  width: 90%;
+  padding: 1%;
+}
+.flex-wrap {
+  display: flex;
+  justify-content: center;
+}
+.btn-div {
+  height: 100%;
+  width: 40%;
+  display: flex;
+  justify-content: right;
 }
