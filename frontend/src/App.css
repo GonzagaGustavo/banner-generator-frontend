@@ -11,3 +11,13 @@
   margin: auto;
   margin-top: 0px;
 }
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1%;
+}
+.counts {
+  margin: 1%;
+  text-align: center;
+  box-shadow: 0 2px 6px 1px rgb(0 0 0 / 14%);
+}
