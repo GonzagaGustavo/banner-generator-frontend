@@ -51,7 +51,6 @@ li {
 }
 
 button,
-label,
 .carregarImg {
   cursor: pointer;
   border: none;
@@ -71,8 +70,6 @@ textarea:focus {
   background: white;
   box-shadow: 0 0 0 3px var(--color-light);
 }
-label:focus,
-label:hover,
 .carregarImg:focus,
 .carregarImg:hover,
 button:hover,

@@ -19,7 +19,7 @@ function Home({
   setSelectedXML,
   linkXML,
   setLinkXML,
-  sendXML
+  sendXML,
 }) {
   return (
     <div className="App app-container">
@@ -39,14 +39,18 @@ function Home({
             className="inputInfo"
             style={{ marginBottom: "5%" }}
             value={linkXML}
-            onChange={e => setLinkXML(e.target.value)}
+            onChange={(e) => setLinkXML(e.target.value)}
           />
         )}
         <span style={{ margin: "1%" }}>ou</span>
         {selectedXML ? (
-          <label htmlFor="xml">{selectedXML.name}</label>
+          <label className="carregarImg" htmlFor="xml">
+            {selectedXML.name}
+          </label>
         ) : (
-          <label htmlFor="xml">Carregar XML</label>
+          <label className="carregarImg" htmlFor="xml">
+            Carregar XML
+          </label>
         )}
         {linkXML ? (
           <input
@@ -66,7 +70,12 @@ function Home({
             className="input-file"
           />
         )}
-        <button style={{marginLeft: '2%', backgroundColor: 'rgb(76, 139, 100)'}} onClick={sendXML}>Adicionar</button>
+        <button
+          style={{ marginLeft: "2%", backgroundColor: "rgb(76, 139, 100)" }}
+          onClick={sendXML}
+        >
+          Adicionar
+        </button>
       </div>
       <Header
         buscar={buscar}
