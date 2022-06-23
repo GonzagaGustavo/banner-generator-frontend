@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import api from "./services/api";
 import Admin from "./components/Admin";
 import CreateUser from "./components/CreateUser";
+import EditUser from "./components/EditUser";
 
 function App() {
   //Estados
@@ -167,6 +168,7 @@ function App() {
         <Route path="/" element={<Login />}></Route>
         <Route path="/admin" element={<Admin />} ></Route>
         <Route path="/admin/create" element={<CreateUser />}></Route>
+        <Route path="/admin/edit/:id" element={<EditUser />}></Route>
       </Routes>
     </BrowserRouter>
   );

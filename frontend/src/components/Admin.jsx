@@ -40,7 +40,7 @@ function delet(id) {
             <p>{info.email}</p>
           </div>
           <div className="btn-div">
-            <FiEdit style={{width: '10%' , height: '100%'}} />
+            <a href={`/admin/edit/${info.id}`} style={{width: '10%' , height: '100%'}}><FiEdit style={{height: '100%', width: '100%'}}  /></a>
             <MdDelete style={{color: 'red',width: '10%' , height: '100%'}} onClick={() => delet(info.id)} />
           </div>
           </div>
