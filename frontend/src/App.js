@@ -4,10 +4,10 @@ import { toast, ToastContainer } from "react-toastify";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./components/Home";
-import Login from "./Views/SignIn/Login";
+import Login from "./Views/Login/Login";
 import api from "./services/api";
 import Admin from "./components/Admin";
-import CreateUser from "./Views/SignUp/CreateUser";
+import CreateUser from "./Views/Registro/CreateUser";
 import EditUser from "./components/EditUser";
 import Header from "./Views/Painel/Header/index";
 
