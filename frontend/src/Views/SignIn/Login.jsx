@@ -1,8 +1,9 @@
 import React from "react";
-import api from "../services/api";
+import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { toast } from "react-toastify";
+import Input from "../../components/Inputs/Inputs";
 
 function Login() {
   const [userNameReg, setUserNameReg] = React.useState("");
@@ -24,26 +25,11 @@ function Login() {
   }
 
   return (
-    <div className="form">
-      <div style={{ padding: "20px" }}>
-        <h1>Faça seu Login</h1>
-        <label htmlFor="email">E-mail</label>
-        <input
-          type="email"
-          id="email"
-          required
-          onChange={(e) => setUserNameReg(e.target.value)}
-        />
-        <label htmlFor="">Senha</label>
-        <input
-          type="password"
-          id="senha"
-          onChange={(e) => setPassReg(e.target.value)}
-        />
-        <button type="submit" onClick={() => buscar()}>
-          Entrar
-        </button>
-      </div>
+    <div className="container-login">
+      <form className="form-login">
+        <Input />
+        <button onClick={(e) => e.target.value}>Logar</button>
+      </form>
     </div>
   );
 }

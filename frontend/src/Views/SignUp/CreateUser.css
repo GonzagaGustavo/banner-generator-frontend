@@ -1,0 +1,22 @@
+@media (max-width: 800px) {
+  .container {
+    max-width: 90vw;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  form {
+    order: 0;
+  }
+  .contentText {
+    order: 1;
+  }
+  .contentText h1 {
+    font-size: 48px;
+    line-height: 1;
+    text-align: center;
+  }
+  input[type="password"],
+  input[type="email"] {
+    width: 100%;
+  }
+}

@@ -4,10 +4,10 @@ import { toast, ToastContainer } from "react-toastify";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./components/Home";
-import Login from "./components/Login";
+import Login from "./Views/SignIn/Login";
 import api from "./services/api";
 import Admin from "./components/Admin";
-import CreateUser from "./components/CreateUser";
+import CreateUser from "./Views/SignUp/CreateUser";
 import EditUser from "./components/EditUser";
 
 function App() {
@@ -100,23 +100,23 @@ function App() {
           "Content-Type": "application/json",
         },
       };
-      const extensao = [
-        "text/xml"
-      ].find((formatoAceito) => formatoAceito === selectedXML.type);
-      if(extensao) {
+      const extensao = ["text/xml"].find(
+        (formatoAceito) => formatoAceito === selectedXML.type
+      );
+      if (extensao) {
         await api
-        .post("/baixarXML", formXml, headers)
-        .then((res) => {
-          console.log(res.data);
-          setIndex(res.data);
-          toast.success("XML adicionado!")
-        })
-        .catch((err) => {
+          .post("/baixarXML", formXml, headers)
+          .then((res) => {
+            console.log(res.data);
+            setIndex(res.data);
+            toast.success("XML adicionado!");
+          })
+          .catch((err) => {
             console.log(err);
-            toast.warn("Ocorreu um erro!")
-        });
+            toast.warn("Ocorreu um erro!");
+          });
       } else {
-        toast.warn("Esse arquivo não é um XML!")
+        toast.warn("Esse arquivo não é um XML!");
       }
     } else {
       if (linkXML) {
@@ -166,7 +166,7 @@ function App() {
           }
         ></Route>
         <Route path="/" element={<Login />}></Route>
-        <Route path="/admin" element={<Admin />} ></Route>
+        <Route path="/admin" element={<Admin />}></Route>
         <Route path="/admin/create" element={<CreateUser />}></Route>
         <Route path="/admin/edit/:id" element={<EditUser />}></Route>
       </Routes>
