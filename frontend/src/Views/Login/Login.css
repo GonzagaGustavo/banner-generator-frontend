@@ -11,7 +11,7 @@ input::placeholder {
   font-size: 1.2rem;
 }
 
-button {
+.button {
   cursor: pointer;
   font: 700 16px/16px "Roboto", sans-serif;
   color: #fff;
