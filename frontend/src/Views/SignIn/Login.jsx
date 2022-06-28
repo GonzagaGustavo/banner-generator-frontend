@@ -3,17 +3,19 @@ import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { toast } from "react-toastify";
-import Input from "../../components/Inputs/Inputs";
+import { useState } from "react";
+import Input from "../../components/Inputs/styles";
 
 function Login() {
-  const [userNameReg, setUserNameReg] = React.useState("");
-  const [passReg, setPassReg] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+
   let navigate = useNavigate();
   function buscar() {
     api
       .post("/login", {
-        email: userNameReg,
-        senha: passReg,
+        email: email,
+        senha: senha,
       })
       .then((res) => {
         if (res.data === true) {
@@ -27,8 +29,19 @@ function Login() {
   return (
     <div className="container-login">
       <form className="form-login">
-        <Input />
-        <button onClick={(e) => e.target.value}>Logar</button>
+        <div>
+          <Input
+            type="email"
+            placeholder="E-mail"
+            onChange={(e) => setEmail(e.target.value)}
+          ></Input>
+          <Input
+            type="password"
+            placeholder="Senha"
+            onChange={(e) => setSenha(e.target.value)}
+          ></Input>
+        </div>
+        <button onClick={buscar}>Logar</button>
       </form>
     </div>
   );
