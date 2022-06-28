@@ -27,3 +27,14 @@ input::placeholder {
   text-transform: uppercase;
   letter-spacing: 0.04rem;
 }
+
+.criar-conta {
+  display: block;
+  color: #252525;
+  padding-top: 20px;
+  font: 400 0.875rem/1 "Roboto", sans-serif;
+}
+.criar-conta a {
+  color: #0095ff;
+  text-decoration: none;
+}

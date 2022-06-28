@@ -48,6 +48,12 @@ function Login() {
         <button className="button" type="submit">
           Logar
         </button>
+        <span className="criar-conta">
+          Ainda não possui uma conta?{" "}
+          <a href="/admin/create" clas>
+            Cadastrar
+          </a>
+        </span>
       </form>
     </div>
   );
