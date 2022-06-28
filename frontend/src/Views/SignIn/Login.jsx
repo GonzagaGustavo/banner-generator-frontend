@@ -1,6 +1,5 @@
 import React from "react";
 import api from "../../services/api";
-import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { toast } from "react-toastify";
 import { useState } from "react";
@@ -11,7 +10,6 @@ function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  let navigate = useNavigate();
   function buscar(e) {
     e.preventDefault()
     api
