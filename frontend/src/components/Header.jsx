@@ -8,7 +8,7 @@ function Header({ setSelectedFile, buscar, setText, text }) {
       <div className="ib">
         <input
           type="number"
-          className="inputInfo"
+          className="inputSku"
           placeholder="Digite o SKU"
           onChange={(e) => setText(e.target.value)}
           value={text}
@@ -16,9 +16,9 @@ function Header({ setSelectedFile, buscar, setText, text }) {
         <Button onclick={buscar}>Buscar</Button>
       </div>
       <div className="files">
-        <label className="carregarImg" for="file">
+        <button className="carregarImg" for="file">
           Carregar Imagem
-        </label>
+        </button>
         <input
           type="file"
           onChange={(e) => setSelectedFile(e.target.files[0])}

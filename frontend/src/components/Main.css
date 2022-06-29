@@ -52,8 +52,12 @@
   display: flex;
   align-self: end;
   gap: 10px;
+  
 }
 
 .buttons-banner button {
   margin-bottom: 30px;
+  
 }
+
+

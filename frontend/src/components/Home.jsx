@@ -48,7 +48,7 @@ function Home({
             {selectedXML.name}
           </label>
         ) : (
-          <label className="carregarImg" htmlFor="xml">
+          <label className="carregarXml" htmlFor="xml">
             Carregar XML
           </label>
         )}
@@ -70,10 +70,7 @@ function Home({
             className="input-file"
           />
         )}
-        <button
-          style={{ marginLeft: "2%", backgroundColor: "rgb(76, 139, 100)" }}
-          onClick={sendXML}
-        >
+        <button className="button-adicionar" onClick={sendXML}>
           Adicionar
         </button>
       </div>
