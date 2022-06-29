@@ -1,34 +1,36 @@
 import React from "react";
 import api from "../../services/api";
-import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import Input from "../../components/Inputs/styles";
+import Cookies from "js-cookie";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  let navigate = useNavigate();
-  function buscar() {
+  function buscar(e) {
+    e.preventDefault();
     api
-      .post("/login", {
+      .post("/users/login", {
         email: email,
         senha: senha,
       })
       .then((res) => {
-        if (res.data === true) {
-          navigate("/painel");
+        if (res.data === false) {
+          toast.warn("Email ou Senha Incorretos!");
         } else {
-          toast.warning("E-mail/Senha incorreta");
+          Cookies.set("token", res.data.token);
+          Cookies.set("id", res.data.id);
+          console.log(res.data);
         }
       });
   }
 
   return (
     <div className="container-login">
-      <form className="form-login">
+      <form className="form-login" onSubmit={(e) => buscar(e)}>
         <div>
           <Input
             type="email"
@@ -41,7 +43,15 @@ function Login() {
             onChange={(e) => setSenha(e.target.value)}
           ></Input>
         </div>
-        <button onClick={buscar}>Logar</button>
+        <button className="button" type="submit">
+          Logar
+        </button>
+        <span className="criar-conta">
+          Ainda não possui uma conta?{" "}
+          <a href="/admin/create" clas>
+            Cadastrar
+          </a>
+        </span>
       </form>
     </div>
   );

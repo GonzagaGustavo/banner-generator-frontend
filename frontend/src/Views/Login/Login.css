@@ -11,7 +11,7 @@ input::placeholder {
   font-size: 1.2rem;
 }
 
-button {
+.button {
   cursor: pointer;
   font: 700 16px/16px "Roboto", sans-serif;
   color: #fff;
@@ -26,4 +26,15 @@ button {
   box-shadow: 0px 2px 3px #aaddff;
   text-transform: uppercase;
   letter-spacing: 0.04rem;
+}
+
+.criar-conta {
+  display: block;
+  color: #252525;
+  padding-top: 20px;
+  font: 400 0.875rem/1 "Roboto", sans-serif;
+}
+.criar-conta a {
+  color: #0095ff;
+  text-decoration: none;
 }

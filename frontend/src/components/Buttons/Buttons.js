@@ -1,10 +1,10 @@
 import React from "react";
 import Button from "./styles";
 
-function Buttons() {
+function Buttons({ onclick }) {
   return (
     <div>
-      <Button>Cadastrar</Button>
+      <Button onClick={onclick}>Cadastrar</Button>
     </div>
   );
 }
