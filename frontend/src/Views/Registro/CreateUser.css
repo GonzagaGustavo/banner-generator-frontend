@@ -20,3 +20,25 @@
     width: 100%;
   }
 }
+
+.inputSenha {
+  display: grid;
+  align-items: center;
+}
+
+.inputSenha #inputPass {
+  grid-area: 1/1;
+}
+
+#btnSenha {
+  grid-area: 1/1;
+  font-size: 26px;
+  line-height: 1;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  justify-self: end;
+  width: 40px;
+  margin-top: -12px;
+}
+

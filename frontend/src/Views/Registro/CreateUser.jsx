@@ -4,6 +4,7 @@ import Buttons from "../../components/Buttons/Buttons";
 import Input from "../../components/Inputs/styles";
 import { useState } from "react";
 import api from "../../services/api";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 function CreateUser() {
   const [nome, setNome] = useState("")
@@ -17,6 +18,14 @@ function create(e) {
     window.location.href = "/"
   })
 }
+
+ // SVG Olhos
+ const [olhos, setOlhos] = React.useState(false);
+
+ function toogleButton() {
+   setOlhos(prevState => !prevState)
+ }
+
 
   return (
     <div className="container">
@@ -35,11 +44,15 @@ function create(e) {
             placeholder="E-mail"
             onChange={(e) => setEmail(e.target.value)}
           ></Input>
-          <Input
-            type="password"
-            placeholder="Senha"
-            onChange={(e) => setSenha(e.target.value)}
-          ></Input>
+          <div className="inputSenha">
+            <Input
+              id="inputPass"
+              type={olhos ? "password" : "text"}
+              placeholder="Senha"
+              onChange={(e) => setSenha(e.target.value)}
+            ></Input><div id="btnSenha" onClick={toogleButton}>
+            { olhos ?  <AiOutlineEye /> : <AiOutlineEyeInvisible />}</div>
+          </div>
         </div>
         <Buttons />
       </form>
