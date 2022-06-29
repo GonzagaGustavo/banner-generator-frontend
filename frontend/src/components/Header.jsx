@@ -15,8 +15,8 @@ function Header({ setSelectedFile, buscar, setText, text }) {
         />
         <Button onclick={buscar}>Buscar</Button>
       </div>
-      <div className="files">
-        <button className="carregarImg" for="file">
+      <div className="files" style={{marginTop: '5%'}}>
+        <button className="carregarImg" for="file" style={{marginTop: '0px'}}>
           Carregar Imagem
         </button>
         <input
