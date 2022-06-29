@@ -1,21 +1,20 @@
-import React, { useState } from "react";
-import { Container, TextContainer } from "./styles";
-import { FaBars } from "react-icons/fa";
-import Sidebar from "../Sidebar";
-import Search from "../Search";
+/* eslint-disable no-unused-vars */
+import React from "react";
+import { Section } from "./styles";
+// import { FaBars } from "react-icons/fa";
+// import Sidebar from "../Sidebar";
+// import Search from "../Search";
+import ProfileOverview from "./Profile";
+import { Box } from "@mui/system";
+import MenuDefault from "../../../Layout/MenuDefault";
 
 const Header = () => {
-  const [sidebar, setSidebar] = useState(false);
-
-  const showSidebar = () => setSidebar(!sidebar);
-
   return (
-    <Container>
-      <TextContainer>Bem Vindo</TextContainer>
-      <Search />
-      <FaBars onClick={showSidebar} />
-      {sidebar && <Sidebar active={setSidebar} />}
-    </Container>
+    <Box style={Section}>
+      <MenuDefault>
+        <ProfileOverview />
+      </MenuDefault>
+    </Box>
   );
 };
 
