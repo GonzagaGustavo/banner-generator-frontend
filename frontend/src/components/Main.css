@@ -52,12 +52,52 @@
   display: flex;
   align-self: end;
   gap: 10px;
-  
+
 }
 
 .buttons-banner button {
   margin-bottom: 30px;
+}
+
+.button-baixar {
+  background-color: #646464;
+  border-radius: 3px;
+  width: 3vw;
+  height: 4vh;
+  color: white;
+  border: transparent;
+}
+.button-baixar:hover {
+  background-color: #aaddff;
+  color: #171923;
+}
+
+.button-aplicar {
+  background-color: #00a86b;
+  border-radius: 3px;
+  width: 3vw;
+  height: 4vh;
+  color: white;
+  border: transparent;
+}
+
+.button-aplicar:hover {
+  background-color: #aaddff;
+  color: #171923;
   
 }
 
+.button-apagar {
+  background-color: #ff6347;
+  border-radius: 3px;
+  width: 3vw;
+  height: 4vh;
+  color: white;
+  border: transparent;
+}
 
+.button-apagar:hover {
+  background-color: #aaddff;
+  color: #171923;
+  
+}

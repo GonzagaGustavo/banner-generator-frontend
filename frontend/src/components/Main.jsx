@@ -26,19 +26,26 @@ function Main({ dados, e, aplicar, apagar, downloadImage, download }) {
                 </div>
                 <div className="buttons-banner">
                   {download ? (
-                    <button onClick={() => downloadImage(download)}>
+                    <button
+                      onClick={() => downloadImage(download)}
+                      className="button-baixar"
+                    >
                       Baixar
                     </button>
                   ) : (
-                    <button disabled onClick={() => downloadImage(download)}>
+                    <button
+                      disabled
+                      onClick={() => downloadImage(download)}
+                      className="button-baixar"
+                    >
                       Baixar
                     </button>
                   )}
 
-                  <button onClick={aplicar} style={{ background: "#4c8b64" }}>
+                  <button onClick={aplicar} className="button-aplicar">
                     Aplicar
                   </button>
-                  <button onClick={apagar} style={{ background: "#d41c1d" }}>
+                  <button onClick={apagar} className="button-apagar">
                     Apagar
                   </button>
                 </div>
