@@ -10,6 +10,8 @@ import Admin from "./components/Admin";
 import CreateUser from "./Views/Registro/CreateUser";
 import EditUser from "./components/EditUser";
 import Header from "./Views/Painel/Header/index";
+import { FaBars } from "react-icons/fa";
+import Sidebar from "./Layout/MenuDefault/Sidebar";
 
 function App() {
   //Estados
@@ -22,7 +24,12 @@ function App() {
   const [download, setDownload] = React.useState(null);
   const [linkXML, setLinkXML] = useState(null);
   console.log(text);
+  const [sidebar, setSidebar] = useState(false);
   //Funções
+ 
+
+  const showSidebar = () => setSidebar(true);
+
   function a(p) {
     document.querySelector(".preview").src = p;
   }
@@ -144,6 +151,11 @@ function App() {
         pauseOnHover
         theme="colored"
       />
+      {sidebar ? (
+          <Sidebar active={setSidebar} />
+        ) : (
+          <FaBars onClick={showSidebar} className="none" />
+        )}
       <Routes>
         <Route
           path="/painel"

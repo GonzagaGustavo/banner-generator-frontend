@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import api from "../../services/api";
 import "./Login.css";
 import { toast } from "react-toastify";
@@ -9,6 +9,10 @@ import Cookies from "js-cookie";
 function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+
+useEffect(() => {
+  document.querySelector(".none").style.display = "none"
+}, [])
 
   function buscar(e) {
     e.preventDefault();

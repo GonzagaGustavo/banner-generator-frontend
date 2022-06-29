@@ -6,17 +6,11 @@ import Search from "./Search";
 import { Box } from "@mui/system";
 
 const MenuDefault = ({ children }) => {
-  const [sidebar, setSidebar] = useState(false);
-
-  const showSidebar = () => setSidebar(!sidebar);
-
   return (
     <Box style={Section}>
       <Container>
         <TextContainer>Bem Vindo</TextContainer>
         <Search />
-        <FaBars onClick={showSidebar} />
-        {sidebar && <Sidebar active={setSidebar} />}
       </Container>
       <Box mt={2} p={1} sx={{ width: "100%", height: "85vh" }}>
         {children}
