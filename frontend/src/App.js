@@ -89,6 +89,8 @@ function App() {
   }
   function apagar() {
     api.get("/apagar").then((res) => {
+      setSelectedXML(null)
+      setIndex(null)
       toast.success(res.data);
     });
   }

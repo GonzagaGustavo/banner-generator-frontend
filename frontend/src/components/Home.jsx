@@ -44,7 +44,7 @@ function Home({
         )}
         <span style={{ margin: "1%" }}>ou</span>
         {selectedXML ? (
-          <label className="carregarImg" htmlFor="xml">
+          <label className="carregarXml" htmlFor="xml">
             {selectedXML.name}
           </label>
         ) : (

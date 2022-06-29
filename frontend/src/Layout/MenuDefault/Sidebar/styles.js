@@ -35,5 +35,5 @@ export const Content = styled.div`
 `;
 
 export const ContentExit = styled.div`
-  margin-top: 480px;
+  margin-top: 65%;
 `;
