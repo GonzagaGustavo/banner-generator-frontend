@@ -1,0 +1,28 @@
+#adm-title {
+    text-align: center;
+}
+#users-content {
+    background-color: white;
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+}
+#text-margin {
+    margin: 2%;
+}
+.users-center {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+#infos-user {
+    padding: 2%;
+    padding-bottom: 0.5%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+#hr {
+    opacity: 0.5;
+}
