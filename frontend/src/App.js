@@ -12,6 +12,7 @@ import EditUser from "./components/EditUser";
 import Header from "./Views/Painel/Header/index";
 import { FaBars } from "react-icons/fa";
 import Sidebar from "./Layout/MenuDefault/Sidebar";
+import Template from "./Views/SuperAdmin/Template";
 
 function App() {
   //Estados
@@ -181,6 +182,7 @@ function App() {
           }
         ></Route>
         <Route path="/" element={<Login />}></Route>
+        <Route path="/data" element={<Template />}></Route>
         <Route path="/admin" element={<Admin />}></Route>
         <Route path="/admin/create" element={<CreateUser />}></Route>
         <Route path="/admin/edit/:id" element={<EditUser />}></Route>
