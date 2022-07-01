@@ -13,6 +13,7 @@ import Header from "./Views/Painel/Header/index";
 import { FaBars } from "react-icons/fa";
 import Sidebar from "./Layout/MenuDefault/Sidebar";
 import Template from "./Views/SuperAdmin/Template";
+import MenuDefault from "./Layout/MenuDefault";
 
 function App() {
   //Estados
@@ -27,7 +28,6 @@ function App() {
   console.log(text);
   const [sidebar, setSidebar] = useState(false);
   //Funções
- 
 
   const showSidebar = () => setSidebar(true);
 
@@ -97,8 +97,8 @@ function App() {
   }
   function apagar() {
     api.get("/apagar").then((res) => {
-      setSelectedXML(null)
-      setIndex(null)
+      setSelectedXML(null);
+      setIndex(null);
       toast.success(res.data);
     });
   }
@@ -153,10 +153,10 @@ function App() {
         theme="colored"
       />
       {sidebar ? (
-          <Sidebar active={setSidebar} />
-        ) : (
-          <FaBars onClick={showSidebar} className="none" />
-        )}
+        <Sidebar active={setSidebar} />
+      ) : (
+        <FaBars onClick={showSidebar} className="none" />
+      )}
       <Routes>
         <Route
           path="/painel"
