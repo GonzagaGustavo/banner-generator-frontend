@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // formik components
 import { Formik, Form } from "formik";
@@ -34,6 +34,7 @@ import form from "./schemas/form";
 import initialValues from "./schemas/initialValues";
 import { Box, Button, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
+import api from "../../../services/api";
 
 function getSteps() {
   return ["Informações do usuário"];
@@ -65,7 +66,7 @@ function NewUser() {
   const submitForm = async (values, actions) => {
     await sleep(1000);
     const { firstName } = values;
-    console.log(firstName);
+    console.log(values);
 
     // eslint-disable-next-line no-alert
     alert(JSON.stringify(values, null, 2));
@@ -85,6 +86,12 @@ function NewUser() {
       actions.setSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    if (id) {
+      api.get("/users").then((res) => {});
+    }
+  }, []);
 
   return (
     <Box py={3} mb={20} sx={{ background: "#ddd", minHeight: "100vh" }}>

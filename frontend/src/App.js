@@ -188,6 +188,7 @@ function App() {
         <Route path="/admin/create" element={<CreateUser />}></Route>
         <Route path="/admin/edit/:id" element={<EditUser />}></Route>
         <Route path="/painel/usuario" element={<Header />}></Route>
+        <Route path="/admin/criacao" element={<NewUser />}></Route>
       </Routes>
     </BrowserRouter>
   );
