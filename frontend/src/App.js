@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Home from "./components/Home";
 import Login from "./Views/Login/Login";
 import api from "./services/api";
-import Admin from "./components/Admin";
 import CreateUser from "./Views/Registro/CreateUser";
 import EditUser from "./components/EditUser";
 import Header from "./Views/Painel/Header/index";
@@ -183,8 +182,7 @@ function App() {
           }
         ></Route>
         <Route path="/" element={<Login />}></Route>
-        <Route path="/data" element={<Template />}></Route>
-        <Route path="/admin" element={<Admin />}></Route>
+        <Route path="/admin" element={<Template />}></Route>
         <Route path="/admin/create" element={<CreateUser />}></Route>
         <Route path="/admin/edit/:id" element={<EditUser />}></Route>
         <Route path="/painel/usuario" element={<Header />}></Route>
