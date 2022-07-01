@@ -25,20 +25,36 @@ import Grid from "@mui/material/Grid";
 
 // NewUser page components
 import FormField from "../FormField/index";
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  Typography,
+} from "@mui/material";
+import { useEffect, useState } from "react";
+import api from "../../../../../services/api";
 
 function UserInfo({ formData }) {
   const { formField, values, errors, touched } = formData;
-  const { firstName, lastName, company, email, password, repeatPassword } =
+  const { firstName, lastName, status, email, password, repeatPassword } =
     formField;
   const {
     firstName: firstNameV,
     lastName: lastNameV,
-    company: companyV,
+    status: statusV,
     email: emailV,
     password: passwordV,
     repeatPassword: repeatPasswordV,
   } = values;
+
+  useEffect(() => {
+    api.get("/users").then((res) => {
+      firstNameV = res.data.name;
+    });
+  }, []);
 
   return (
     <Box>
@@ -52,9 +68,12 @@ function UserInfo({ formData }) {
               type={firstName.type}
               label={firstName.label}
               name={firstName.name}
-              value={firstNameV}
+              value={firstName.value}
               placeholder={firstName.placeholder}
               error={errors.firstName && touched.firstName}
+              onChange={(event) =>
+                formData.set(firstName.name, event.target.value)
+              }
               //success={firstNameV.length > 0 && !errors.firstName}
             />
           </Grid>
@@ -63,31 +82,49 @@ function UserInfo({ formData }) {
               type={lastName.type}
               label={lastName.label}
               name={lastName.name}
-              value={lastNameV}
+              value={lastName.value}
               placeholder={lastName.placeholder}
               error={errors.lastName && touched.lastName}
+              onChange={(event) =>
+                formData.set(lastName.name, event.target.value)
+              }
               //success={lastNameV.length > 0 && !errors.lastName}
             />
           </Grid>
         </Grid>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
-            <FormField
-              type={company.type}
-              label={company.label}
-              name={company.name}
-              value={companyV}
-              placeholder={company.placeholder}
-            />
+            <FormControl>
+              <FormLabel id="demo-row-radio-buttons-group-label">
+                Status
+              </FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="admin"
+                  control={<Radio />}
+                  label="Admin"
+                />
+                <FormControlLabel
+                  value="free"
+                  control={<Radio />}
+                  label="Free"
+                />
+              </RadioGroup>
+            </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
               type={email.type}
               label={email.label}
               name={email.name}
-              value={emailV}
+              value={email.value}
               placeholder={email.placeholder}
               error={errors.email && touched.email}
+              onChange={(event) => formData.set(email.name, event.target.value)}
               //success={emailV.length > 0 && !errors.email}
             />
           </Grid>
@@ -98,11 +135,14 @@ function UserInfo({ formData }) {
               type={password.type}
               label={password.label}
               name={password.name}
-              value={passwordV}
+              value={password.value}
               placeholder={password.placeholder}
               error={errors.password && touched.password}
               //success={passwordV.length > 0 && !errors.password}
               inputProps={{ autoComplete: "" }}
+              onChange={(event) =>
+                formData.set(password.name, event.target.value)
+              }
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -110,11 +150,14 @@ function UserInfo({ formData }) {
               type={repeatPassword.type}
               label={repeatPassword.label}
               name={repeatPassword.name}
-              value={repeatPasswordV}
+              value={repeatPassword.value}
               placeholder={repeatPassword.placeholder}
               error={errors.repeatPassword && touched.repeatPassword}
               //success={repeatPasswordV.length > 0 && !errors.repeatPassword}
               inputProps={{ autoComplete: "" }}
+              onChange={(event) =>
+                formData.set(repeatPassword.name, event.target.value)
+              }
             />
           </Grid>
         </Grid>

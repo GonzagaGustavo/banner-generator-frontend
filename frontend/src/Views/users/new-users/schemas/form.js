@@ -28,10 +28,11 @@ const form = {
       type: "text",
       errorMsg: "O último nome é obrigatório.",
     },
-    company: {
-      name: "company",
-      label: "Empresa",
+    status: {
+      name: "status",
+      label: "Status do Usuário",
       type: "text",
+      errorMsg: "Status do usuário é obrigatório !",
     },
     email: {
       name: "email",
