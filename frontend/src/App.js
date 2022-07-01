@@ -11,10 +11,10 @@ import CreateUser from "./Views/Registro/CreateUser";
 import EditUser from "./components/EditUser";
 import Header from "./Views/Painel/Header/index";
 import { FaBars } from "react-icons/fa";
-import Sidebar from "./Layout/MenuDefault/Sidebar";
 import Template from "./Views/SuperAdmin/Template";
 import MenuDefault from "./Layout/MenuDefault";
 import NewUser from "./Views/users/new-users";
+import Sidebar from "./Views/Painel/Sidebar/Sidebar";
 
 function App() {
   //Estados
@@ -28,6 +28,7 @@ function App() {
   const [linkXML, setLinkXML] = useState(null);
   console.log(text);
   const [sidebar, setSidebar] = useState(false);
+
   //Funções
 
   const showSidebar = () => setSidebar(true);
@@ -153,11 +154,7 @@ function App() {
         pauseOnHover
         theme="colored"
       />
-      {sidebar ? (
-        <Sidebar active={setSidebar} />
-      ) : (
-        <FaBars onClick={showSidebar} className="none" />
-      )}
+      <Sidebar />
       <Routes>
         <Route
           path="/painel"

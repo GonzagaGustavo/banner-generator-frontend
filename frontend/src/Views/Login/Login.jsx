@@ -11,10 +11,6 @@ function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-useEffect(() => {
-  document.querySelector(".none").style.display = "none"
-}, [])
-
   function buscar(e) {
     e.preventDefault();
     api
@@ -37,7 +33,7 @@ useEffect(() => {
   const [olhos, setOlhos] = React.useState(false);
 
   function toogleButton() {
-    setOlhos(prevState => !prevState)
+    setOlhos((prevState) => !prevState);
   }
 
   return (
@@ -50,15 +46,15 @@ useEffect(() => {
             onChange={(e) => setEmail(e.target.value)}
           ></Input>
           <div className="input-senha">
-          <Input
-            id="input-pass"
-            type={olhos ? "password" : "text"}
-            placeholder="Senha"
-            onChange={(e) => setSenha(e.target.value)}
-          ></Input>
-          <div id="btnRegistro" onClick={toogleButton}>
-            { olhos ?  <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-          </div>
+            <Input
+              id="input-pass"
+              type={olhos ? "password" : "text"}
+              placeholder="Senha"
+              onChange={(e) => setSenha(e.target.value)}
+            ></Input>
+            <div id="btnRegistro" onClick={toogleButton}>
+              {olhos ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+            </div>
           </div>
         </div>
         <button className="button" type="submit">
