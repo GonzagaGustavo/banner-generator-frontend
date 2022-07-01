@@ -29,8 +29,7 @@ function App() {
   const [sidebar, setSidebar] = useState(false);
 
   //Funções
-
-  const showSidebar = () => setSidebar(true);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   function a(p) {
     document.querySelector(".preview").src = p;
@@ -153,38 +152,49 @@ function App() {
         pauseOnHover
         theme="colored"
       />
-      <Sidebar />
-      <Routes>
-        <Route
-          path="/painel"
-          element={
-            <Home
-              sendXML={sendXML}
-              buscar={buscar}
-              setText={setText}
-              text={text}
-              setSelectedFile={setSelectedFile}
-              dados={dados}
-              e={e}
-              aplicar={aplicar}
-              apagar={apagar}
-              download={download}
-              downloadImage={downloadImage}
-              selectedFile={selectedFile}
-              selectedXML={selectedXML}
-              setSelectedXML={setSelectedXML}
-              linkXML={linkXML}
-              setLinkXML={setLinkXML}
-            />
-          }
-        ></Route>
-        <Route path="/" element={<Login />}></Route>
-        <Route path="/admin" element={<Template />}></Route>
-        <Route path="/admin/create" element={<CreateUser />}></Route>
-        <Route path="/admin/edit/:id" element={<EditUser />}></Route>
-        <Route path="/painel/usuario" element={<Header />}></Route>
-        <Route path="/admin/criacao" element={<NewUser />}></Route>
-      </Routes>
+      <div className="container-painel">
+        <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+        <span
+          style={{
+            padding: "20px",
+            width: "100%",
+            marginLeft: isOpen ? "20vw" : "5vw",
+            transition: "all 0.5s",
+          }}
+        >
+          <Routes>
+            <Route
+              path="/painel"
+              element={
+                <Home
+                  sendXML={sendXML}
+                  buscar={buscar}
+                  setText={setText}
+                  text={text}
+                  setSelectedFile={setSelectedFile}
+                  dados={dados}
+                  e={e}
+                  aplicar={aplicar}
+                  apagar={apagar}
+                  download={download}
+                  downloadImage={downloadImage}
+                  selectedFile={selectedFile}
+                  selectedXML={selectedXML}
+                  setSelectedXML={setSelectedXML}
+                  linkXML={linkXML}
+                  setLinkXML={setLinkXML}
+                />
+              }
+            ></Route>
+            <Route path="/" element={<Login />}></Route>
+            <Route path="/admin" element={<Template />}></Route>
+            <Route path="/admin/create" element={<CreateUser />}></Route>
+            <Route path="/admin/edit/:id" element={<EditUser />}></Route>
+            <Route path="/painel/usuario" element={<Header />}></Route>
+            <Route path="/admin/criacao" element={<NewUser />}></Route>
+          </Routes>
+        </span>
+      </div>
     </BrowserRouter>
   );
 }

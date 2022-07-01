@@ -1,5 +1,9 @@
-.app-container {
+/* .app-container {
   max-width: 1000px;
+} */
+
+.container-painel {
+  display: flex;
 }
 
 .App {
@@ -19,7 +23,6 @@ header {
 .counts {
   margin: 1%;
   text-align: center;
-  
 }
 .users-container {
   display: flex;

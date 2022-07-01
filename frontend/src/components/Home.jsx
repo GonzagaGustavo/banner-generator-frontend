@@ -22,7 +22,7 @@ function Home({
   sendXML,
 }) {
   return (
-    <div className="App app-container">
+    <div>
       <div>
         {selectedXML ? (
           <input

@@ -5,6 +5,7 @@
   background: #000;
   color: #fff;
   height: 100vh;
+  position: fixed;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -30,9 +31,10 @@
 }
 .link {
   display: flex;
+  align-items: center;
   gap: 10px;
   color: #fff;
-  padding: 10px 15px;
+  padding: 15px 30px;
   text-decoration: none;
 }
 .link:hover {
