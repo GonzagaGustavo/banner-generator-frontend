@@ -14,6 +14,7 @@ import { FaBars } from "react-icons/fa";
 import Sidebar from "./Layout/MenuDefault/Sidebar";
 import Template from "./Views/SuperAdmin/Template";
 import MenuDefault from "./Layout/MenuDefault";
+import NewUser from "./Views/users/new-users";
 
 function App() {
   //Estados
