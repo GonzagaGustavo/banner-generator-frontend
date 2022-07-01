@@ -4,6 +4,7 @@ import "./style.css";
 import MUIDataTable from 'mui-datatables'
 import api from "../../services/api";
 import Cookies from "js-cookie";
+import { toast } from 'react-toastify'
 
 function Template() {
 const [data, setData] = useState([]);
@@ -24,6 +25,7 @@ useEffect(() => {
       setPermition(false);
     }
   }, []);
+
 
 const collouns = [
     {
@@ -57,6 +59,12 @@ const collouns = [
 ]
 const options = {
     filterType: 'checkbox',
+    onRowsDelete: (rowsDeleted, dataRows) => {
+      const ids = rowsDeleted.data.map(d => data[d.dataIndex].id)
+      api.post("/users/delete", {ids: ids}).then(res => {
+        toast.success(res.data)
+      })
+    }
   };
 
   return (
