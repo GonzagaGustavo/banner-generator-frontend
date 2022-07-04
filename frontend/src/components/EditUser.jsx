@@ -7,8 +7,7 @@ function EditUser() {
 
   return (
     <div>
-      {params.id}
-      <NewUser />
+      <NewUser id={params.id} />
     </div>
   );
 }

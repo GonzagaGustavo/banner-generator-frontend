@@ -13,8 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useEffect, useState } from "react";
-
+import { useDebugValue, useEffect, useState } from "react";
 // formik components
 import { Formik, Form } from "formik";
 
@@ -32,9 +31,9 @@ import UserInfo from "./components/UserInfo";
 import validations from "./schemas/validations";
 import form from "./schemas/form";
 import initialValues from "./schemas/initialValues";
-import { Box, Button, Typography } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import api from "../../../services/api";
+import { toast } from 'react-toastify'
 
 function getSteps() {
   return ["Informações do usuário"];
@@ -49,14 +48,32 @@ function getStepContent(stepIndex, formData) {
   }
 }
 
-function NewUser() {
+function NewUser({ id }) {
   const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
   const { formId, formField } = form;
   const currentValidation = validations[activeStep];
   const isLastStep = activeStep === steps.length - 1;
-  const { id } = useParams();
+  const [userData, setUserData] = useState(null);
 
+  useEffect(() => {
+    const a = async () => {
+      if (id) {
+        const { nome, role, email, can_create } = formField;
+        await api.post("/users/getUser", { id: id }).then((res) => {
+          setUserData({
+            [nome.name]: `${res.data.nome}`,
+            [role.name]: `${res.data.role}`,
+            [email.name]: `${res.data.email}`,
+            [can_create.name]: `${res.data.can_create}`,
+          });
+        });
+      }
+    };
+    a();
+  }, []);
+  console.log(userData);
+  console.log(initialValues);
   const sleep = (ms) =>
     new Promise((resolve) => {
       setTimeout(resolve, ms);
@@ -65,11 +82,12 @@ function NewUser() {
 
   const submitForm = async (values, actions) => {
     await sleep(1000);
-    const { firstName } = values;
-    console.log(values);
+    console.log(values, {id: id});
 
     // eslint-disable-next-line no-alert
-    alert(JSON.stringify(values, null, 2));
+    api.post("/users/edit", {values: values, id: id}).then(res => {
+      toast.success(res.data)
+    })
 
     actions.setSubmitting(false);
     actions.resetForm();
@@ -87,12 +105,6 @@ function NewUser() {
     }
   };
 
-  useEffect(() => {
-    if (id) {
-      api.get("/users").then((res) => {});
-    }
-  }, []);
-
   return (
     <Box py={3} mb={20} sx={{ background: "#ddd", minHeight: "100vh" }}>
       <Grid
@@ -102,59 +114,63 @@ function NewUser() {
         sx={{ height: "100%", mt: 8 }}
       >
         <Grid item xs={12} lg={8}>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={currentValidation}
-            onSubmit={handleSubmit}
-          >
-            {({ values, errors, touched, isSubmitting }) => (
-              <Form id={formId} autoComplete="off">
-                <Card sx={{ height: "100%" }}>
-                  <Box mx={2}>
-                    <Typography variant="h4" align="center">
-                      {id ? "Edição de usuários" : "Criação de Usuários"}
-                    </Typography>
-                  </Box>
-                  <Box p={3}>
-                    <Box>
-                      {getStepContent(activeStep, {
-                        values,
-                        touched,
-                        formField,
-                        errors,
-                      })}
-                      <Box
-                        mt={2}
-                        width="100%"
-                        display="flex"
-                        justifyContent="space-between"
-                      >
-                        {activeStep === 0 ? (
-                          <Box />
-                        ) : (
-                          <Button
-                            variant="gradient"
-                            color="light"
-                            onClick={handleBack}
-                          >
-                            back
-                          </Button>
-                        )}
-                        <Button
-                          disabled={isSubmitting}
-                          type="submit"
-                          variant="contained"
-                          color="primary"
+          {userData ? (
+            <Formik
+              initialValues={userData ? userData : initialValues}
+              validationSchema={currentValidation}
+              onSubmit={handleSubmit}
+            >
+              {({ values, errors, touched, isSubmitting, setFieldValue }) => (
+                <Form id={formId} autoComplete="off">
+                  <Card sx={{ height: "100%" }}>
+                    <Box mx={2}>
+                      <Typography variant="h4" align="center">
+                        {id ? "Edição de usuários" : "Criação de Usuários"}
+                      </Typography>
+                    </Box>
+                    <Box p={3}>
+                      <Box>
+                        {getStepContent(activeStep, {
+                          values,
+                          touched,
+                          formField,
+                          errors,
+                          setFieldValue,
+                        })}
+                        <Box
+                          mt={2}
+                          width="100%"
+                          display="flex"
+                          justifyContent="space-between"
                         >
-                          {isLastStep ? "Enviar" : "Próximo"}
-                        </Button>
+                          {activeStep === 0 ? (
+                            <Box />
+                          ) : (
+                            <Button
+                              variant="gradient"
+                              color="light"
+                              onClick={handleBack}
+                            >
+                              back
+                            </Button>
+                          )}
+                          <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                          >
+                            {isLastStep ? "Enviar" : "Próximo"}
+                          </Button>
+                        </Box>
                       </Box>
                     </Box>
-                  </Box>
-                </Card>
-              </Form>
-            )}
-          </Formik>
+                  </Card>
+                </Form>
+              )}
+            </Formik>
+          ) : (
+            <CircularProgress color="inherit" />
+          )}
         </Grid>
       </Grid>
     </Box>

@@ -38,23 +38,19 @@ import { useEffect, useState } from "react";
 import api from "../../../../../services/api";
 
 function UserInfo({ formData }) {
-  const { formField, values, errors, touched } = formData;
-  const { firstName, lastName, status, email, password, repeatPassword } =
+  const { formField, values, errors, touched, setFieldValue } = formData;
+  const { nome, role, email, can_create } =
     formField;
   const {
-    firstName: firstNameV,
-    lastName: lastNameV,
-    status: statusV,
+    nome: nomeV,
+    role: roleV,
     email: emailV,
-    password: passwordV,
-    repeatPassword: repeatPasswordV,
+    can_create: can_createV,
   } = values;
 
-  useEffect(() => {
-    api.get("/users").then((res) => {
-      firstNameV = res.data.name;
-    });
-  }, []);
+const handleRole = (e) => {
+  setFieldValue(role.name, e.target.value)
+}
 
   return (
     <Box>
@@ -65,29 +61,24 @@ function UserInfo({ formData }) {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <FormField
-              type={firstName.type}
-              label={firstName.label}
-              name={firstName.name}
-              value={firstName.value}
-              placeholder={firstName.placeholder}
-              error={errors.firstName && touched.firstName}
-              onChange={(event) =>
-                formData.set(firstName.name, event.target.value)
-              }
+              type={nome.type}
+              label={nome.label}
+              name={nome.name}
+              value={nomeV}
+              placeholder={nome.placeholder}
+              error={errors.nome && touched.nome}
+              
               //success={firstNameV.length > 0 && !errors.firstName}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
-              type={lastName.type}
-              label={lastName.label}
-              name={lastName.name}
-              value={lastName.value}
-              placeholder={lastName.placeholder}
-              error={errors.lastName && touched.lastName}
-              onChange={(event) =>
-                formData.set(lastName.name, event.target.value)
-              }
+              type={can_create.type}
+              label={can_create.label}
+              name={can_create.name}
+              value={can_createV}
+              placeholder={can_create.placeholder}
+              error={errors.can_create && touched.can_create}
               //success={lastNameV.length > 0 && !errors.lastName}
             />
           </Grid>
@@ -96,20 +87,21 @@ function UserInfo({ formData }) {
           <Grid item xs={12} sm={6}>
             <FormControl>
               <FormLabel id="demo-row-radio-buttons-group-label">
-                Status
+                Nivel da conta
               </FormLabel>
               <RadioGroup
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
+                onChange={handleRole}
               >
                 <FormControlLabel
-                  value="admin"
+                  value={2}
                   control={<Radio />}
-                  label="Admin"
+                  label="Membro"
                 />
                 <FormControlLabel
-                  value="free"
+                  value={1}
                   control={<Radio />}
                   label="Free"
                 />
@@ -121,43 +113,10 @@ function UserInfo({ formData }) {
               type={email.type}
               label={email.label}
               name={email.name}
-              value={email.value}
+              value={emailV}
               placeholder={email.placeholder}
               error={errors.email && touched.email}
-              onChange={(event) => formData.set(email.name, event.target.value)}
               //success={emailV.length > 0 && !errors.email}
-            />
-          </Grid>
-        </Grid>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <FormField
-              type={password.type}
-              label={password.label}
-              name={password.name}
-              value={password.value}
-              placeholder={password.placeholder}
-              error={errors.password && touched.password}
-              //success={passwordV.length > 0 && !errors.password}
-              inputProps={{ autoComplete: "" }}
-              onChange={(event) =>
-                formData.set(password.name, event.target.value)
-              }
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormField
-              type={repeatPassword.type}
-              label={repeatPassword.label}
-              name={repeatPassword.name}
-              value={repeatPassword.value}
-              placeholder={repeatPassword.placeholder}
-              error={errors.repeatPassword && touched.repeatPassword}
-              //success={repeatPasswordV.length > 0 && !errors.repeatPassword}
-              inputProps={{ autoComplete: "" }}
-              onChange={(event) =>
-                formData.set(repeatPassword.name, event.target.value)
-              }
             />
           </Grid>
         </Grid>
