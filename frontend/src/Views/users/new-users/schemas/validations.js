@@ -18,42 +18,19 @@ import checkout from "./form";
 
 const {
   formField: {
-    firstName,
-    lastName,
-    status,
+    nome,
+    role,
     email,
-    password,
-    repeatPassword,
-    address1,
-    city,
-    zip,
-    twitter,
+    can_create
   },
 } = checkout;
 
 const validations = [
   Yup.object().shape({
-    [firstName.name]: Yup.string().required(firstName.errorMsg),
-    [lastName.name]: Yup.string().required(lastName.errorMsg),
+    [nome.name]: Yup.string().required(nome.errorMsg),
+    [role.name]: Yup.string().required(role.errorMsg),
     [email.name]: Yup.string().required(email.errorMsg).email(email.invalidMsg),
-    [status.name]: Yup.string().required(status.errorMsg),
-    [password.name]: Yup.string()
-      .required(password.errorMsg)
-      .min(6, password.invalidMsg),
-    [password.name]: Yup.string()
-      .required(password.errorMsg)
-      .min(6, password.invalidMsg),
-    [repeatPassword.name]: Yup.string()
-      .required(repeatPassword.errorMsg)
-      .oneOf([Yup.ref("password"), null], repeatPassword.invalidMsg),
-  }),
-  Yup.object().shape({
-    [address1.name]: Yup.string().required(address1.errorMsg),
-    [city.name]: Yup.string().required(city.errorMsg),
-    [zip.name]: Yup.string().required(zip.errorMsg).min(6, zip.invalidMsg),
-  }),
-  Yup.object().shape({
-    [twitter.name]: Yup.string().required(twitter.errorMsg),
+    [can_create.name]: Yup.number().required(can_create.errorMsg),
   }),
 ];
 
