@@ -7,34 +7,35 @@ import api from "../../services/api";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 function CreateUser() {
-  const [nome, setNome] = useState("")
+  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-function create(e) {
-  e.preventDefault()
-  api.post("/users/create", {nome: nome, email: email, senha: senha}).then(res => {
-    alert(res.data)
-    window.location.href = "/"
-  })
-}
+  function create(e) {
+    e.preventDefault();
+    api
+      .post("/users/create", { nome: nome, email: email, senha: senha })
+      .then((res) => {
+        alert(res.data);
+        window.location.href = "/";
+      });
+  }
 
- // SVG Olhos
- const [olhos, setOlhos] = React.useState(false);
+  // SVG Olhos
+  const [olhos, setOlhos] = React.useState(true);
 
- function toogleButton() {
-   setOlhos(prevState => !prevState)
- }
-
+  function toogleButton() {
+    setOlhos((prevState) => !prevState);
+  }
 
   return (
-    <div className="container">
+    <div className="container-createuser">
       <div className="contentText">
         <h1>Crie banners em alguns cliques!</h1>
       </div>
-      <form onSubmit={e => create(e)}>
+      <form onSubmit={(e) => create(e)}>
         <div>
-        <Input
+          <Input
             type="text"
             placeholder="Nome"
             onChange={(e) => setNome(e.target.value)}
@@ -50,8 +51,10 @@ function create(e) {
               type={olhos ? "password" : "text"}
               placeholder="Senha"
               onChange={(e) => setSenha(e.target.value)}
-            ></Input><div id="btnSenha" onClick={toogleButton}>
-            { olhos ?  <AiOutlineEye /> : <AiOutlineEyeInvisible />}</div>
+            ></Input>
+            <div id="btnSenha" onClick={toogleButton}>
+              {olhos ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+            </div>
           </div>
         </div>
         <Buttons />

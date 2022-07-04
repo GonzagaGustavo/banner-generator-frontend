@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Router,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,6 +22,7 @@ import NewUser from "./Views/users/new-users";
 import Sidebar from "./Views/Painel/Sidebar/Sidebar";
 
 function App() {
+  const location = useLocation();
   //Estados
   const [index, setIndex] = useState(null);
   const [selectedXML, setSelectedXML] = useState(null);
@@ -139,7 +146,7 @@ function App() {
     }
   }
   return (
-    <BrowserRouter>
+    <>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -153,7 +160,9 @@ function App() {
         theme="colored"
       />
       <div className="container-painel">
-        <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+        {location.pathname !== "/" && location.pathname !== "/admin/create" ? (
+          <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+        ) : null}
         <span
           style={{
             padding: "20px",
@@ -195,7 +204,7 @@ function App() {
           </Routes>
         </span>
       </div>
-    </BrowserRouter>
+    </>
   );
 }
 

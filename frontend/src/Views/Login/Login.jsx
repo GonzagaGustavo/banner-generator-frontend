@@ -30,7 +30,7 @@ function Login() {
   }
 
   // SVG Olhos
-  const [olhos, setOlhos] = React.useState(false);
+  const [olhos, setOlhos] = React.useState(true);
 
   function toogleButton() {
     setOlhos((prevState) => !prevState);
