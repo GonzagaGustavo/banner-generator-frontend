@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import {
-  BrowserRouter,
   Route,
-  Router,
   Routes,
   useLocation,
 } from "react-router-dom";
@@ -15,9 +13,7 @@ import api from "./services/api";
 import CreateUser from "./Views/Registro/CreateUser";
 import EditUser from "./components/EditUser";
 import Header from "./Views/Painel/Header/index";
-import { FaBars } from "react-icons/fa";
 import Template from "./Views/SuperAdmin/Template";
-import MenuDefault from "./Layout/MenuDefault";
 import NewUser from "./Views/users/new-users";
 import Sidebar from "./Views/Painel/Sidebar/Sidebar";
 import Cookies from "js-cookie";
@@ -34,7 +30,6 @@ function App() {
   const [download, setDownload] = React.useState(null);
   const [linkXML, setLinkXML] = useState(null);
   console.log(text);
-  const [sidebar, setSidebar] = useState(false);
 
   //Funções
   const [isOpen, setIsOpen] = React.useState(false);
