@@ -1,4 +1,7 @@
-import React from "react";
+import Cookies from "js-cookie";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import api from "../services/api";
 import Banner from "./Banner";
 import Header from "./Header";
 import Main from "./Main";
@@ -21,6 +24,23 @@ function Home({
   setLinkXML,
   sendXML,
 }) {
+const [can_create, setCan_create] = useState(null)
+
+useEffect(() => {
+  const token = Cookies.get("token")
+  if(token) {
+    
+    api.post("/users/checkRole", { token: token }).then(res => {
+      if(res.data == 1) {
+        
+        api.post("/users/getCan_Create", { token: token }).then(res => {
+          setCan_create(res.data[0].can_create)
+        })
+      }
+    })
+  }
+}, [])
+
   return (
     <div>
       <div>
@@ -87,6 +107,7 @@ function Home({
         apagar={apagar}
         download={download}
         downloadImage={downloadImage}
+        can_create={can_create}
       />
       <Banner selectedFile={selectedFile} />
     </div>

@@ -164,7 +164,13 @@ function App() {
       />
       <div className="container-painel">
         {location.pathname !== "/" && location.pathname !== "/admin/create" ? (
-          <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+          <>
+            {token ? (
+             <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} /> 
+            ) : (
+              <></>
+            )}
+          </>
         ) : null}
         <span
           style={{
@@ -234,6 +240,39 @@ function App() {
                   ></Route>
                 </Routes>
               )}
+          {token ? (
+            <Routes>
+              <Route path="/admin/edit/:id" element={<EditUser />}></Route>
+              <Route path="/painel/usuario" element={<Header />}></Route>
+              <Route path="/admin/criacao" element={<NewUser />}></Route>
+              <Route path="/admin" element={<Template />}></Route>
+              <Route
+                path="/painel"
+                element={
+                  <Home
+                    sendXML={sendXML}
+                    buscar={buscar}
+                    setText={setText}
+                    text={text}
+                    setSelectedFile={setSelectedFile}
+                    dados={dados}
+                    e={e}
+                    aplicar={aplicar}
+                    apagar={apagar}
+                    download={download}
+                    downloadImage={downloadImage}
+                    selectedFile={selectedFile}
+                    selectedXML={selectedXML}
+                    setSelectedXML={setSelectedXML}
+                    linkXML={linkXML}
+                    setLinkXML={setLinkXML}
+                  />
+                }
+              ></Route>
+            </Routes>
+          ) : (
+            <div>Você não tem permição para acessar esta pagina!</div>
+          )}
         </span>
       </div>
     </>

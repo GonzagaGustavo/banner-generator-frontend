@@ -1,7 +1,7 @@
 import React from "react";
 import "./Main.css";
 
-function Main({ dados, e, aplicar, apagar, downloadImage, download }) {
+function Main({ dados, e, aplicar, apagar, downloadImage, download, can_create }) {
   return (
     <div className="main">
       <div className="infos">
@@ -56,6 +56,11 @@ function Main({ dados, e, aplicar, apagar, downloadImage, download }) {
           <></>
         )}
       </div>
+      {can_create ? (
+        <p style={{textAlign: 'center', margin: '0.7%'}}>Quantidade de banner que ainda pode criar: <span style={{fontWeight: 'bold'}}>{can_create}</span></p>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

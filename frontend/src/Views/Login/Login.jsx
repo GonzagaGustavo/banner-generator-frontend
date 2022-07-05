@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import api from "../../services/api";
 import "./Login.css";
 import { toast } from "react-toastify";
@@ -6,10 +6,12 @@ import { useState } from "react";
 import Input from "../../components/Inputs/styles";
 import Cookies from "js-cookie";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const navigate = useNavigate()
 
   function buscar(e) {
     e.preventDefault();
@@ -24,7 +26,7 @@ function Login() {
         } else {
           Cookies.set("token", res.data.token);
           Cookies.set("id", res.data.id);
-          console.log(res.data);
+          navigate("/painel")
         }
       });
   }

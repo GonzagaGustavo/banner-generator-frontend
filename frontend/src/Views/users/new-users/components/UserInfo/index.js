@@ -37,7 +37,7 @@ import {
 import { useEffect, useState } from "react";
 import api from "../../../../../services/api";
 
-function UserInfo({ formData }) {
+function UserInfo({ formData, roleDB }) {
   const { formField, values, errors, touched, setFieldValue } = formData;
   const { nome, role, email, can_create } =
     formField;
@@ -105,6 +105,15 @@ const handleRole = (e) => {
                   control={<Radio />}
                   label="Free"
                 />
+                {roleDB == 4 ? (
+                  <FormControlLabel
+                  value={3}
+                  control={<Radio />}
+                  label="Admin"
+                />
+                ) : (
+                  <></>
+                )}
               </RadioGroup>
             </FormControl>
           </Grid>

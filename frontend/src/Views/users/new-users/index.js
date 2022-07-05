@@ -39,16 +39,16 @@ function getSteps() {
   return ["Informações do usuário"];
 }
 
-function getStepContent(stepIndex, formData) {
+function getStepContent(stepIndex, formData, roleDB) {
   switch (stepIndex) {
     case 0:
-      return <UserInfo formData={formData} />;
+      return <UserInfo formData={formData} roleDB={roleDB} />;
     default:
       return null;
   }
 }
 
-function NewUser({ id }) {
+function NewUser({ id, roleDB }) {
   const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
   const { formId, formField } = form;
@@ -82,12 +82,13 @@ function NewUser({ id }) {
 
   const submitForm = async (values, actions) => {
     await sleep(1000);
-    console.log(values, {id: id});
-
-    // eslint-disable-next-line no-alert
-    api.post("/users/edit", {values: values, id: id}).then(res => {
+    if(id) {
+      api.post("/users/edit", {values: values, id: id}).then(res => {
       toast.success(res.data)
     })
+    } else {
+
+    }
 
     actions.setSubmitting(false);
     actions.resetForm();
@@ -114,7 +115,9 @@ function NewUser({ id }) {
         sx={{ height: "100%", mt: 8 }}
       >
         <Grid item xs={12} lg={8}>
-          {userData ? (
+          {id ? (
+            <>
+            {userData ? (
             <Formik
               initialValues={userData ? userData : initialValues}
               validationSchema={currentValidation}
@@ -136,7 +139,7 @@ function NewUser({ id }) {
                           formField,
                           errors,
                           setFieldValue,
-                        })}
+                        }, roleDB)}
                         <Box
                           mt={2}
                           width="100%"
@@ -169,8 +172,65 @@ function NewUser({ id }) {
               )}
             </Formik>
           ) : (
-            <CircularProgress color="inherit" />
+            <CircularProgress />
           )}
+            </>
+          ) : (
+            <Formik
+              initialValues={initialValues}
+              validationSchema={currentValidation}
+              onSubmit={handleSubmit}
+            >
+              {({ values, errors, touched, isSubmitting, setFieldValue }) => (
+                <Form id={formId} autoComplete="off">
+                  <Card sx={{ height: "100%" }}>
+                    <Box mx={2}>
+                      <Typography variant="h4" align="center">
+                        {id ? "Edição de usuários" : "Criação de Usuários"}
+                      </Typography>
+                    </Box>
+                    <Box p={3}>
+                      <Box>
+                        {getStepContent(activeStep, {
+                          values,
+                          touched,
+                          formField,
+                          errors,
+                          setFieldValue,
+                        }, roleDB)}
+                        <Box
+                          mt={2}
+                          width="100%"
+                          display="flex"
+                          justifyContent="space-between"
+                        >
+                          {activeStep === 0 ? (
+                            <Box />
+                          ) : (
+                            <Button
+                              variant="gradient"
+                              color="light"
+                              onClick={handleBack}
+                            >
+                              back
+                            </Button>
+                          )}
+                          <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                          >
+                            {isLastStep ? "Enviar" : "Próximo"}
+                          </Button>
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Card>
+                </Form>
+              )}
+            </Formik>
+          )}
+          
         </Grid>
       </Grid>
     </Box>
