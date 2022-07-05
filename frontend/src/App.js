@@ -20,6 +20,7 @@ import Template from "./Views/SuperAdmin/Template";
 import MenuDefault from "./Layout/MenuDefault";
 import NewUser from "./Views/users/new-users";
 import Sidebar from "./Views/Painel/Sidebar/Sidebar";
+import Cookies from "js-cookie";
 
 function App() {
   const location = useLocation();
@@ -145,6 +146,8 @@ function App() {
       }
     }
   }
+
+  const token = Cookies.get("token");
   return (
     <>
       <ToastContainer
@@ -172,36 +175,40 @@ function App() {
           }}
         >
           <Routes>
-            <Route
-              path="/painel"
-              element={
-                <Home
-                  sendXML={sendXML}
-                  buscar={buscar}
-                  setText={setText}
-                  text={text}
-                  setSelectedFile={setSelectedFile}
-                  dados={dados}
-                  e={e}
-                  aplicar={aplicar}
-                  apagar={apagar}
-                  download={download}
-                  downloadImage={downloadImage}
-                  selectedFile={selectedFile}
-                  selectedXML={selectedXML}
-                  setSelectedXML={setSelectedXML}
-                  linkXML={linkXML}
-                  setLinkXML={setLinkXML}
-                />
-              }
-            ></Route>
             <Route path="/" element={<Login />}></Route>
-            <Route path="/admin" element={<Template />}></Route>
             <Route path="/admin/create" element={<CreateUser />}></Route>
-            <Route path="/admin/edit/:id" element={<EditUser />}></Route>
-            <Route path="/painel/usuario" element={<Header />}></Route>
-            <Route path="/admin/criacao" element={<NewUser />}></Route>
           </Routes>
+          {token && (
+            <Routes>
+              <Route path="/admin/edit/:id" element={<EditUser />}></Route>
+              <Route path="/painel/usuario" element={<Header />}></Route>
+              <Route path="/admin/criacao" element={<NewUser />}></Route>
+              <Route path="/admin" element={<Template />}></Route>
+              <Route
+                path="/painel"
+                element={
+                  <Home
+                    sendXML={sendXML}
+                    buscar={buscar}
+                    setText={setText}
+                    text={text}
+                    setSelectedFile={setSelectedFile}
+                    dados={dados}
+                    e={e}
+                    aplicar={aplicar}
+                    apagar={apagar}
+                    download={download}
+                    downloadImage={downloadImage}
+                    selectedFile={selectedFile}
+                    selectedXML={selectedXML}
+                    setSelectedXML={setSelectedXML}
+                    linkXML={linkXML}
+                    setLinkXML={setLinkXML}
+                  />
+                }
+              ></Route>
+            </Routes>
+          )}
         </span>
       </div>
     </>
