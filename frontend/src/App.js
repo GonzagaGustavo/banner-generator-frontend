@@ -56,7 +56,7 @@ function App() {
         toast.success(res.data);
       });
 
-      api.post("/createBanner", dados).then((res) => {
+      await api.post("/createBanner", dados).then((res) => {
         a(res.data);
         setDownload(res.data);
       });
