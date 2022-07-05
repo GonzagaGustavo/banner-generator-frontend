@@ -107,7 +107,7 @@ function NewUser({ id, roleDB }) {
   };
 
   return (
-    <Box py={3} mb={20} sx={{ background: "#ddd", minHeight: "100vh" }}>
+    <Box py={3} sx={{ background: "#ddd", minHeight: "100vh" }}>
       <Grid
         container
         justifyContent="center"
