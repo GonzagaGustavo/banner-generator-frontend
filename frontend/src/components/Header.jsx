@@ -21,7 +21,7 @@ function Header({ setSelectedFile, buscar, setText, text }) {
         </label>
         <input
           type="file"
-          onChange={(e) => setSelectedFile(e.target.files[0])}
+          onChange={(e) => setSelectedFile(e.target.files)}
           className="input-file"
           name="file"
           id="file"
