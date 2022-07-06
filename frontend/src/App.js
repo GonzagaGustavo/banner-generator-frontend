@@ -178,8 +178,8 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<Login />}></Route>
-            <Route path="/signup" element={<CreateUser />}></Route>
-            <Route path="/signup2" element={<CreateAccount />}></Route>
+            {/* <Route path="/signup" element={<CreateUser />}></Route> Rota para excluir */}
+            <Route path="/signup" element={<CreateAccount />}></Route>
           </Routes>
           {token ? (
             <Routes>

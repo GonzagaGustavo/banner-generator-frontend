@@ -14,30 +14,30 @@ Coded by www.creative-tim.com
 */
 
 const formC = {
-    formIdC: "new-form",
-    formFieldC: {
+    formId: "new-form",
+    formField: {
       nome: {
-        name: "nomeC",
+        name: "nome",
         label: "Nome",
         type: "text",
         errorMsg: "Nome é obrigatório!",
       },
       email: {
-        name: "emailC",
+        name: "email",
         label: "Email",
         type: "email",
         errorMsg: "Email é obrigatório!",
         invalidMsg: "Seu email é invalido!",
       },
       password: {
-        name: "passwordC",
+        name: "password",
         label: "Senha",
         type: "password",
         errorMsg: "Senha é obrigatória!",
         invalidMsg: "Sua senha deve conter mais de 6 caracteres",
       },
       repeatPassword: {
-        name: "repeatPasswordC",
+        name: "repeatPassword",
         label: "Repeat Password",
         type: "password",
         errorMsg: "Senha é obrigatória!",

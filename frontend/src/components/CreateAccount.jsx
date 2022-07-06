@@ -1,9 +1,9 @@
 import React from 'react'
-import NewUser from '../Views/users/new-users'
+import CreateAccoun from '../Views/CreateAccount'
 
 function CreateAccount() {
   return (
-    <NewUser/>
+    <CreateAccoun />
   )
 }
 

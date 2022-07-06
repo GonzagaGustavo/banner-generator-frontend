@@ -1,19 +1,19 @@
 import checkout from "./formC";
 
 const {
-    formFieldC: {
-      nomeC,
-      emailC,
-      passwordC,
-      repeatPasswordC
+    formField: {
+      nome,
+      email,
+      password,
+      repeatPassword
     },
   } = checkout;
   
   const initialValuesC = {
-    [nomeC.name]: "",
-    [emailC.name]: "",
-    [passwordC.name]: "",
-    [repeatPasswordC.name]: "",
+    [nome.name]: "",
+    [email.name]: "",
+    [password.name]: "",
+    [repeatPassword.name]: "",
   };
   
   export default initialValuesC;
