@@ -24,22 +24,20 @@ function Home({
   setLinkXML,
   sendXML,
 }) {
-const [can_create, setCan_create] = useState(null)
+  const [can_create, setCan_create] = useState(null);
 
-useEffect(() => {
-  const token = Cookies.get("token")
-  if(token) {
-    
-    api.post("/users/checkRole", { token: token }).then(res => {
-      if(res.data == 1) {
-        
-        api.post("/users/getCan_Create", { token: token }).then(res => {
-          setCan_create(res.data[0].can_create)
-        })
-      }
-    })
-  }
-}, [])
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) {
+      api.post("/users/checkRole", { token: token }).then((res) => {
+        if (res.data == 1) {
+          api.post("/users/getCan_Create", { token: token }).then((res) => {
+            setCan_create(res.data[0].can_create);
+          });
+        }
+      });
+    }
+  }, []);
 
   return (
     <div>
@@ -57,7 +55,7 @@ useEffect(() => {
             type="text"
             placeholder="Link do seu xml"
             className="inputInfo"
-            style={{ marginBottom: "5%" }}
+            style={{ marginBottom: "5%", height: "60px" }}
             value={linkXML}
             onChange={(e) => setLinkXML(e.target.value)}
           />

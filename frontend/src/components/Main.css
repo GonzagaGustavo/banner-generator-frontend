@@ -101,3 +101,10 @@
   color: #171923;
   
 }
+
+.carregarXml {
+  color: #171923;
+  cursor: pointer;
+  font: 700 16px/16px "Roboto", sans-serif;
+}
+

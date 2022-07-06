@@ -1,9 +1,11 @@
 .container-login {
   width: 540px;
-  margin: 0 auto;
+  margin: auto;
+  margin-left: 33%;
   display: flex;
   align-items: center;
   height: 100vh;
+  
 }
 
 input::placeholder {
@@ -15,7 +17,7 @@ input::placeholder {
   cursor: pointer;
   font: 700 16px/16px "Roboto", sans-serif;
   color: #fff;
-  background-color: #0095ff;
+  background-color: #171923;
   border-radius: 6px;
   border: none;
   width: 100%;
@@ -26,6 +28,11 @@ input::placeholder {
   box-shadow: 0px 2px 3px #aaddff;
   text-transform: uppercase;
   letter-spacing: 0.04rem;
+}
+
+.button:hover{
+  background-color: #aaddff;
+  color: #171923;
 }
 
 .criar-conta {
