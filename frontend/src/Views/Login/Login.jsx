@@ -69,7 +69,7 @@ useEffect(() => {
         </button>
         <span className="criar-conta">
           Ainda não possui uma conta?{" "}
-          <a href="/admin/create" clas>
+          <a href="/signup">
             Cadastrar
           </a>
         </span>

@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,6 +13,7 @@ import Template from "./Views/SuperAdmin/Template";
 import NewUser from "./Views/users/new-users";
 import Sidebar from "./Views/Painel/Sidebar/Sidebar";
 import Cookies from "js-cookie";
+import CreateAccount from "./components/CreateAccount";
 
 function App() {
   const location = useLocation();
@@ -37,7 +34,7 @@ function App() {
   function a(p) {
     document.querySelector(".preview").src = p;
   }
-  async function aplicar() { 
+  async function aplicar() {
     const formData = new FormData();
     formData.append("image", selectedFile[0]);
     const headers = {
@@ -54,18 +51,20 @@ function App() {
     if (extensao) {
       await api.post("/upload", formData, headers).then((res) => {
         toast.success(res.data);
+        api.post("/createBanner", dados).then((ress) => {
+          //Não executa esse callback!
+          console.log(ress.status);
+          if (ress.status == 400) {
+            toast.warn(ress.data);
+          } else {
+            document.querySelector(".preview").src = ress.data;
+            setDownload(ress.data);
+          }
+        });
       });
       for (const value of formData.values()) {
         console.log(value);
       }
-      await api.post("/createBanner", dados).then((res) => {
-        if(res.status === 400) {
-          toast.warn(res.data)
-        } else {
-          document.querySelector(".preview").src = res.data
-        setDownload(res.data);
-        }
-      });
     } else {
       toast.warn("Formato de imagem não aceito!");
     }
@@ -95,7 +94,7 @@ function App() {
       } else {
         console.log(index);
         api.post("/", { id: text, link: linkXML }).then((res) => {
-          console.log(res.data);
+          console.log(res.status);
           setDados(res.data);
           setE(true);
         });
@@ -164,7 +163,7 @@ function App() {
         theme="colored"
       />
       <div className="container-painel">
-        {location.pathname !== "/" && location.pathname !== "/admin/create" ? (
+        {location.pathname !== "/" && location.pathname !== "/signup" ? (
           <>
             {token ? <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} /> : <></>}
           </>
@@ -179,12 +178,13 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<Login />}></Route>
-            <Route path="/admin/create" element={<CreateUser />}></Route>
+            <Route path="/signup" element={<CreateUser />}></Route>
+            <Route path="/signup2" element={<CreateAccount />}></Route>
           </Routes>
           {token ? (
             <Routes>
               <Route path="/admin/edit/:id" element={<EditUser />}></Route>
-              <Route path="/painel/usuario" element={<Header />}></Route>
+              {/* <Route path="/painel/usuario" element={<Header />}></Route> Rota para exluir */}
               <Route path="/admin/criacao" element={<NewUser />}></Route>
               <Route path="/admin" element={<Template />}></Route>
               <Route
