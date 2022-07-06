@@ -3,15 +3,15 @@
   height: 430px;
   max-width: 1000px;
   width: 100%;
-  max-width: 1000px;
-  background-color: #999;
-  border-radius: 0.2rem;
+  background-color: #1d1d1d;
+  border-radius: 0.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
   font-size: 1.3rem;
   font-weight: 400;
+  margin: auto;
 
   /* margin-bottom: 60px; */
 }

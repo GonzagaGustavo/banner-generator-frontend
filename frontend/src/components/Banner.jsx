@@ -7,7 +7,9 @@ function Banner({ selectedFile }) {
       {selectedFile ? (
         <img className="preview" src={URL.createObjectURL(selectedFile[0])} alt="" />
       ) : (
-        <p style={{fontSize: '35px', color: '#333', fontWeight: 'bold'}}>Carrega a imagem de fundo</p>
+        <p style={{ fontSize: "35px", color: "white", fontWeight: "bold" }}>
+          Carrega a imagem de fundo
+        </p>
       )}
     </div>
   );

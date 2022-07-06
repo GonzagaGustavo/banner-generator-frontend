@@ -31,7 +31,7 @@ function CreateUser() {
   return (
     <div className="container-createuser">
       <div className="contentText">
-        <h1>Crie banners em alguns cliques!</h1>
+        <h1>Crie banners em apenas alguns cliques!</h1>
       </div>
       <form onSubmit={(e) => create(e)}>
         <div>
