@@ -55,7 +55,7 @@ function Home({
             type="text"
             placeholder="Link do seu xml"
             className="inputInfo"
-            style={{ marginBottom: "5%" }}
+            style={{ marginBottom: "5%", height: "60px" }}
             value={linkXML}
             onChange={(e) => setLinkXML(e.target.value)}
           />

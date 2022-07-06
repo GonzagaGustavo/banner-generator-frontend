@@ -37,9 +37,9 @@ function App() {
   function a(p) {
     document.querySelector(".preview").src = p;
   }
-  async function aplicar() {
+  async function aplicar() { 
     const formData = new FormData();
-    formData.append("image", selectedFile);
+    formData.append("image", selectedFile[0]);
     const headers = {
       headers: {
         "Content-Type": "application/json",
@@ -50,15 +50,21 @@ function App() {
       "image/jpg",
       "image/jpeg",
       "image/webp",
-    ].find((formatoAceito) => formatoAceito === selectedFile.type);
+    ].find((formatoAceito) => formatoAceito === selectedFile[0].type);
     if (extensao) {
       await api.post("/upload", formData, headers).then((res) => {
         toast.success(res.data);
       });
-
+      for (const value of formData.values()) {
+        console.log(value);
+      }
       await api.post("/createBanner", dados).then((res) => {
-        a(res.data);
+        if(res.status === 400) {
+          toast.warn(res.data)
+        } else {
+          document.querySelector(".preview").src = res.data
         setDownload(res.data);
+        }
       });
     } else {
       toast.warn("Formato de imagem não aceito!");

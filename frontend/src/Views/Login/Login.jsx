@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import api from "../../services/api";
 import "./Login.css";
 import { toast } from "react-toastify";
@@ -12,6 +12,11 @@ function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate()
+useEffect(() => {
+  if(Cookies.get("id") && Cookies.get("token")) {
+    navigate("/painel")
+  }
+}, [])
 
   function buscar(e) {
     e.preventDefault();
