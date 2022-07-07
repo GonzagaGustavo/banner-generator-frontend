@@ -188,7 +188,7 @@ function App() {
               <Route path="/admin/criacao" element={<NewUser />}></Route>
               <Route path="/admin" element={<Template />}></Route>
               <Route
-                path="/painel"
+                path="/Banners"
                 element={
                   <Home
                     sendXML={sendXML}
