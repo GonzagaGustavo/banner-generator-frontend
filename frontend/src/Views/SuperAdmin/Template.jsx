@@ -5,14 +5,14 @@ import MUIDataTable from "mui-datatables";
 import api from "../../services/api";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import { MdDelete, MdEdit } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
 
 function Template() {
   const [data, setData] = useState([]);
   const [permition, setPermition] = useState(false);
-
+  const token = Cookies.get("token");
   useEffect(() => {
-    const token = Cookies.get("token");
+    
     if (token) {
       api.post("/users/", { token: token }).then((res) => {
         if (res.data === false) {
@@ -87,7 +87,7 @@ function edit(dataIndex, rowIndex) {
     filterType: "checkbox",
     onRowsDelete: (rowsDeleted, dataRows) => {
       const ids = rowsDeleted.data.map(d => data[d.dataIndex].id)
-      api.post("/users/delete", {ids: ids}).then(res => {
+      api.post("/users/delete", {ids: ids, token: token}).then(res => {
         toast.success(res.data)
       })
     }

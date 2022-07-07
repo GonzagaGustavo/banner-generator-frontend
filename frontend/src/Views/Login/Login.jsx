@@ -14,7 +14,7 @@ function Login() {
   const navigate = useNavigate()
 useEffect(() => {
   if(Cookies.get("id") && Cookies.get("token")) {
-    navigate("/painel")
+    navigate("/Banners")
   }
 }, [])
 
@@ -31,7 +31,7 @@ useEffect(() => {
         } else {
           Cookies.set("token", res.data.token);
           Cookies.set("id", res.data.id);
-          navigate("/painel")
+          navigate("/Banners")
         }
       });
   }

@@ -29,12 +29,12 @@ import Card from "@mui/material/Card";
 
 // NewUser layout schemas for form and form feilds
 
-import { Box, Button, CircularProgress, Typography } from "@mui/material";
-import { toast } from 'react-toastify'
+import { Box, Button, Typography } from "@mui/material";
 import initialValuesC from "../users/new-users/schemas/initialValuesC";
 import validationsC from "../users/new-users/schemas/validationC";
 import formC from "../users/new-users/schemas/formC";
 import UserInfo from "./Components/UserInfoC";
+import api from "../../services/api";
 
 function getSteps() {
   return ["Informações do usuário"];
@@ -64,7 +64,12 @@ function CreateAccoun() {
 
   const submitForm = async (values, actions) => {
     await sleep(1000);
-alert(JSON.stringify(values))
+    //Criando usuário
+    api
+      .post("/users/create", { nome: values.nome, email: values.email, senha: values.password })
+      .then((res) => {
+        window.location.href = "/";
+      });
 
     actions.setSubmitting(false);
     actions.resetForm();

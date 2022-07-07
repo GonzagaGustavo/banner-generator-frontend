@@ -212,7 +212,13 @@ function App() {
               ></Route>
             </Routes>
           ) : (
+            <>
+            {location.pathname !== "/" && location.pathname !== "/signup" ? (
             <div>Você não tem permição para acessar esta pagina!</div>
+            ) : (
+              <></>
+            )}
+          </>
           )}
         </span>
       </div>
