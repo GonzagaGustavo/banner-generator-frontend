@@ -14,36 +14,36 @@ Coded by www.creative-tim.com
 */
 
 const formC = {
-    formId: "new-form",
-    formField: {
-      nome: {
-        name: "nome",
-        label: "Nome",
-        type: "text",
-        errorMsg: "Nome é obrigatório!",
-      },
-      email: {
-        name: "email",
-        label: "Email",
-        type: "email",
-        errorMsg: "Email é obrigatório!",
-        invalidMsg: "Seu email é invalido!",
-      },
-      password: {
-        name: "password",
-        label: "Senha",
-        type: "password",
-        errorMsg: "Senha é obrigatória!",
-        invalidMsg: "Sua senha deve conter mais de 6 caracteres",
-      },
-      repeatPassword: {
-        name: "repeatPassword",
-        label: "Repeat Password",
-        type: "password",
-        errorMsg: "Senha é obrigatória!",
-        invalidMsg: "As senhas não são iguais",
-      }
+  formId: "new-form",
+  formField: {
+    nome: {
+      name: "nome",
+      label: "Nome",
+      type: "text",
+      errorMsg: "Nome é obrigatório!",
     },
-  };
-  
-  export default formC;
+    email: {
+      name: "email",
+      label: "Email",
+      type: "email",
+      errorMsg: "Email é obrigatório!",
+      invalidMsg: "Seu email é invalido!",
+    },
+    password: {
+      name: "password",
+      label: "Senha",
+      type: "password",
+      errorMsg: "Senha é obrigatória!",
+      invalidMsg: "Sua senha deve conter mais de 6 caracteres",
+    },
+    repeatPassword: {
+      name: "repeatPassword",
+      label: "Repita a senha",
+      type: "password",
+      errorMsg: "Senha é obrigatória!",
+      invalidMsg: "As senhas não são iguais",
+    },
+  },
+};
+
+export default formC;

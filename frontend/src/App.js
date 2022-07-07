@@ -168,59 +168,59 @@ function App() {
             {token ? <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} /> : <></>}
           </>
         ) : null}
-        <span
+        {/* <span
           style={{
             padding: "20px",
             width: "100%",
             marginLeft: isOpen ? "20vw" : "5vw",
             transition: "all 0.5s",
           }}
-        >
+        > */}
+        <Routes>
+          <Route path="/" element={<Login />}></Route>
+          {/* <Route path="/signup" element={<CreateUser />}></Route> Rota para excluir */}
+          <Route path="/signup" element={<CreateAccount />}></Route>
+        </Routes>
+        {token ? (
           <Routes>
-            <Route path="/" element={<Login />}></Route>
-            {/* <Route path="/signup" element={<CreateUser />}></Route> Rota para excluir */}
-            <Route path="/signup" element={<CreateAccount />}></Route>
+            <Route path="/admin/edit/:id" element={<EditUser />}></Route>
+            {/* <Route path="/painel/usuario" element={<Header />}></Route> Rota para exluir */}
+            <Route path="/admin/criacao" element={<NewUser />}></Route>
+            <Route path="/admin" element={<Template />}></Route>
+            <Route
+              path="/Banners"
+              element={
+                <Home
+                  sendXML={sendXML}
+                  buscar={buscar}
+                  setText={setText}
+                  text={text}
+                  setSelectedFile={setSelectedFile}
+                  dados={dados}
+                  e={e}
+                  aplicar={aplicar}
+                  apagar={apagar}
+                  download={download}
+                  downloadImage={downloadImage}
+                  selectedFile={selectedFile}
+                  selectedXML={selectedXML}
+                  setSelectedXML={setSelectedXML}
+                  linkXML={linkXML}
+                  setLinkXML={setLinkXML}
+                />
+              }
+            ></Route>
           </Routes>
-          {token ? (
-            <Routes>
-              <Route path="/admin/edit/:id" element={<EditUser />}></Route>
-              {/* <Route path="/painel/usuario" element={<Header />}></Route> Rota para exluir */}
-              <Route path="/admin/criacao" element={<NewUser />}></Route>
-              <Route path="/admin" element={<Template />}></Route>
-              <Route
-                path="/Banners"
-                element={
-                  <Home
-                    sendXML={sendXML}
-                    buscar={buscar}
-                    setText={setText}
-                    text={text}
-                    setSelectedFile={setSelectedFile}
-                    dados={dados}
-                    e={e}
-                    aplicar={aplicar}
-                    apagar={apagar}
-                    download={download}
-                    downloadImage={downloadImage}
-                    selectedFile={selectedFile}
-                    selectedXML={selectedXML}
-                    setSelectedXML={setSelectedXML}
-                    linkXML={linkXML}
-                    setLinkXML={setLinkXML}
-                  />
-                }
-              ></Route>
-            </Routes>
-          ) : (
-            <>
+        ) : (
+          <>
             {location.pathname !== "/" && location.pathname !== "/signup" ? (
-            <div>Você não tem permição para acessar esta pagina!</div>
+              <div>Você não tem permição para acessar esta pagina!</div>
             ) : (
               <></>
             )}
           </>
-          )}
-        </span>
+        )}
+        {/* </span> */}
       </div>
     </>
   );

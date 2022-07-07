@@ -16,7 +16,7 @@ function Sidebar({ isOpen, setIsOpen }) {
   const [admin, setAdmin] = React.useState();
   const menuItem = [
     {
-      path: "/painel",
+      path: "/banners",
       icon: <FiImage />,
       name: "Criar Banners",
     },
@@ -39,7 +39,7 @@ function Sidebar({ isOpen, setIsOpen }) {
           const items = [
             {
               path: "/admin",
-              icon: <FiImage />,
+              icon: <FiUser />,
               name: "Admin",
             },
             ...menuItem,
