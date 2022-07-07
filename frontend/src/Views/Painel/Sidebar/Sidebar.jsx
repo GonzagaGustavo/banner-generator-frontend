@@ -16,7 +16,7 @@ function Sidebar({ isOpen, setIsOpen }) {
   const [admin, setAdmin] = React.useState();
   const menuItem = [
     {
-      path: "/banners",
+      path: "/Banners",
       icon: <FiImage />,
       name: "Criar Banners",
     },
