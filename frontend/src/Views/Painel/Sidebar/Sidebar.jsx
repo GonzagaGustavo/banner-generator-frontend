@@ -4,20 +4,22 @@ import {
   FiAlignRight,
   FiAlignJustify,
   FiLogOut,
+  FiUser,
 } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 import Cookies from "js-cookie";
+import api from "../../../services/api";
 
 function Sidebar({ isOpen, setIsOpen }) {
   const toggle = () => setIsOpen(!isOpen);
+  const [admin, setAdmin] = React.useState();
   const menuItem = [
     {
-      path: "/Banners",
+      path: "/painel",
       icon: <FiImage />,
-      name: "Banners",
+      name: "Criar Banners",
     },
-    // admin,
     {
       path: "",
       icon: <FiLogOut />,
@@ -28,6 +30,25 @@ function Sidebar({ isOpen, setIsOpen }) {
       },
     },
   ];
+  console.log(admin);
+  React.useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) {
+      api.post("/users/checkRole", { token: token }).then((res) => {
+        if (res.data > 2) {
+          const items = [
+            {
+              path: "/admin",
+              icon: <FiImage />,
+              name: "Admin",
+            },
+            ...menuItem,
+          ];
+          setAdmin(items);
+        }
+      });
+    }
+  }, []);
 
   return (
     <div
@@ -52,23 +73,41 @@ function Sidebar({ isOpen, setIsOpen }) {
           )}
         </div>
       </div>
-      {menuItem.map((item, index) => (
-        <NavLink
-          style={{ justifyContent: isOpen ? "start" : "center" }}
-          className="link"
-          to={item.path}
-          key={index}
-          onClick={item.onclick ? item.onclick : null}
-        >
-          <div className="icon">{item.icon}</div>
-          <div
-            className="link-text"
-            style={{ display: isOpen ? "block" : "none" }}
-          >
-            {item.name}
-          </div>
-        </NavLink>
-      ))}
+      {admin
+        ? admin.map((item, index) => (
+            <NavLink
+              style={{ justifyContent: isOpen ? "start" : "center" }}
+              className="link"
+              to={item.path}
+              key={index}
+              onClick={item.onclick ? item.onclick : null}
+            >
+              <div className="icon">{item.icon}</div>
+              <div
+                className="link-text"
+                style={{ display: isOpen ? "block" : "none" }}
+              >
+                {item.name}
+              </div>
+            </NavLink>
+          ))
+        : menuItem.map((item, index) => (
+            <NavLink
+              style={{ justifyContent: isOpen ? "start" : "center" }}
+              className="link"
+              to={item.path}
+              key={index}
+              onClick={item.onclick ? item.onclick : null}
+            >
+              <div className="icon">{item.icon}</div>
+              <div
+                className="link-text"
+                style={{ display: isOpen ? "block" : "none" }}
+              >
+                {item.name}
+              </div>
+            </NavLink>
+          ))}
     </div>
   );
 }
