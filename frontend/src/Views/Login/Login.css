@@ -1,11 +1,10 @@
 .container-login {
-  width: 540px;
-  margin: auto;
-  margin-left: 33%;
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100vh;
-  
+  height: 100vh;
+  width: 100%;
 }
 
 input::placeholder {
@@ -30,7 +29,7 @@ input::placeholder {
   letter-spacing: 0.04rem;
 }
 
-.button:hover{
+.button:hover {
   background-color: #aaddff;
   color: #171923;
 }
