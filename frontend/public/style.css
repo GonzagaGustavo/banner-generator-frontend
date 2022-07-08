@@ -17,6 +17,7 @@ html {
   --color-dark: #018;
   --radius: 0.2rem;
   --font-w: 400;
+  font-size: 1.3rem;
 }
 
 input,
