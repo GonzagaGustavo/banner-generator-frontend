@@ -39,7 +39,7 @@ const form = {
       name: "can_create",
       label: "Pode criar",
       type: "number",
-      errorMsg: "Pode criar",
+      errorMsg: "Pode criar é obrigatório",
     }
   },
 };

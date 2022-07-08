@@ -30,7 +30,7 @@ const validations = [
     [nome.name]: Yup.string().required(nome.errorMsg),
     [role.name]: Yup.string().required(role.errorMsg),
     [email.name]: Yup.string().required(email.errorMsg).email(email.invalidMsg),
-    [can_create.name]: Yup.number().required(can_create.errorMsg),
+    [can_create.name]: Yup.number().min(0, "Este usuário vai ficar devendo banners? Pera quê?").max(1000, "Maximo é 1000 de banners").required(can_create.errorMsg),
   }),
 ];
 

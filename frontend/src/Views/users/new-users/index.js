@@ -72,8 +72,6 @@ function NewUser({ id, roleDB }) {
     };
     a();
   }, []);
-  console.log(userData);
-  console.log(initialValues);
   const sleep = (ms) =>
     new Promise((resolve) => {
       setTimeout(resolve, ms);
@@ -91,7 +89,6 @@ function NewUser({ id, roleDB }) {
     }
 
     actions.setSubmitting(false);
-    actions.resetForm();
 
     setActiveStep(0);
   };
