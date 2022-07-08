@@ -5,6 +5,7 @@ import api from "../services/api";
 import Banner from "./Banner";
 import Header from "./Header";
 import Main from "./Main";
+import { FiDownloadCloud } from "react-icons/fi";
 
 function Home({
   buscar,
@@ -70,6 +71,16 @@ function Home({
             Carregar XML
           </label>
         )}
+        <button className="modelo-xml">
+          <a
+            className="baixar=modelo"
+            href="."
+            download="../../xmlFile/modelo.xml"
+          >
+            Baixar Modelo
+            <FiDownloadCloud />
+          </a>
+        </button>
         {linkXML ? (
           <input
             type="file"
