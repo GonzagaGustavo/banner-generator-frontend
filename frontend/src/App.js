@@ -108,6 +108,7 @@ function App() {
     api.get("/apagar").then((res) => {
       setSelectedXML(null);
       setIndex(null);
+      setUrl(null)
       toast.success(res.data);
     });
   }
