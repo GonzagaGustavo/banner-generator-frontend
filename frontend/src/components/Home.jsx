@@ -73,11 +73,7 @@ function Home({
           </label>
         )}
         <button className="modelo-xml">
-          <a
-            className="baixar=modelo"
-            href="https://commondatastorage.googleapis.com/newfeedspec/example_feed_xml_rss.xml.zip"
-            download
-          >
+          <a className="baixar-modelo" href="../../modelo.xml" download>
             Baixar Modelo XML
             <FiDownloadCloud />
           </a>

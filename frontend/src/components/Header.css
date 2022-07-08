@@ -14,7 +14,6 @@
   height: 50px;
 }
 
-
 .inputSku {
   border-radius: 0.2rem;
   border: 1px solid #ccc;
@@ -29,7 +28,7 @@
   margin-top: 5%;
 }
 
-.ib button{
+.ib button {
   background-color: #171923;
   display: flex;
   font-size: 15px;
@@ -48,11 +47,10 @@
   letter-spacing: 0.04rem;
   padding: 10%;
 }
-.ib button:hover{
+.ib button:hover {
   background-color: #5d8aa8;
   color: #171923;
 }
-
 
 .carregarImg {
   font-size: 15px;
@@ -65,7 +63,7 @@
   color: #fff;
   border-radius: 6px;
   border: none;
-  width: 100%;
+  max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,18 +72,15 @@
   text-transform: uppercase;
   letter-spacing: 0.04rem;
   padding: 1%;
-  
 }
 
 .carregarImg:hover {
   color: #171923;
   background-color: #5d8aa8;
-  
 }
 
 /* Upload */
 
 input[type="file"] {
   display: none;
-  
 }
