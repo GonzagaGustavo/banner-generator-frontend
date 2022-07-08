@@ -163,7 +163,12 @@ function App() {
         pauseOnHover
         theme="colored"
       />
-      <div className="container-painel">
+      <div
+        className="container-painel"
+        style={
+          location.pathname === "/signup" ? { justifyContent: "center" } : null
+        }
+      >
         {location.pathname !== "/" && location.pathname !== "/signup" ? (
           <>
             {token ? <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} /> : <></>}
