@@ -24,7 +24,7 @@ function Home({
   linkXML,
   setLinkXML,
   sendXML,
-  url
+  url,
 }) {
   const [can_create, setCan_create] = useState(null);
 
@@ -75,10 +75,10 @@ function Home({
         <button className="modelo-xml">
           <a
             className="baixar=modelo"
-            href="."
-            download="../../xmlFile/modelo.xml"
+            href="https://commondatastorage.googleapis.com/newfeedspec/example_feed_xml_rss.xml.zip"
+            download
           >
-            Baixar Modelo
+            Baixar Modelo XML
             <FiDownloadCloud />
           </a>
         </button>
