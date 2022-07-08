@@ -24,6 +24,7 @@ function Home({
   linkXML,
   setLinkXML,
   sendXML,
+  url
 }) {
   const [can_create, setCan_create] = useState(null);
 
@@ -118,7 +119,7 @@ function Home({
         downloadImage={downloadImage}
         can_create={can_create}
       />
-      <Banner selectedFile={selectedFile} />
+      <Banner selectedFile={selectedFile} url={url} />
     </div>
   );
 }
