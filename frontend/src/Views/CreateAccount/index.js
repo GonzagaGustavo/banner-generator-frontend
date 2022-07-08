@@ -35,6 +35,7 @@ import validationsC from "../users/new-users/schemas/validationC";
 import formC from "../users/new-users/schemas/formC";
 import UserInfo from "./Components/UserInfoC";
 import api from "../../services/api";
+import { toast } from "react-toastify";
 
 function getSteps() {
   return ["Informações do usuário"];
@@ -68,7 +69,11 @@ function CreateAccoun() {
     api
       .post("/users/create", { nome: values.nome, email: values.email, senha: values.password })
       .then((res) => {
-        window.location.href = "/";
+        if(res.data === true) {
+          window.location.href="/"
+        } else {
+          toast.warn(res.data)
+        }
       });
 
     actions.setSubmitting(false);

@@ -12,10 +12,10 @@ const {
 
   const validationsC = [
     Yup.object().shape({
-      [nome.name]: Yup.string().required(nome.errorMsg),
-      [email.name]: Yup.string().required(email.errorMsg).email(email.invalidMsg),
-      [password.name]: Yup.string().required(password.errorMsg).min(6, password.invalidMsg),
-      [password.name]: Yup.string().required(password.errorMsg).min(6, password.invalidMsg),
+      [nome.name]: Yup.string().max(60, "Maximo 60 digitos").required(nome.errorMsg),
+      [email.name]: Yup.string().max(60, "Maximo 60 digitos").required(email.errorMsg).email(email.invalidMsg),
+      [password.name]: Yup.string().max(60).required(password.errorMsg).min(6, password.invalidMsg),
+      [password.name]: Yup.string().max(60).required(password.errorMsg).min(6, password.invalidMsg),
       [repeatPassword.name]: Yup.string()
         .required(repeatPassword.errorMsg)
         .oneOf([Yup.ref("password"), null], repeatPassword.invalidMsg),
