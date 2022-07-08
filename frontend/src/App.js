@@ -26,6 +26,7 @@ function App() {
   const [e, setE] = useState(false);
   const [download, setDownload] = React.useState(null);
   const [linkXML, setLinkXML] = useState(null);
+  const [url, setUrl] = useState(null)
   console.log(text);
 
   //Funções
@@ -57,7 +58,7 @@ function App() {
           if (ress.status == 400) {
             toast.warn(ress.data);
           } else {
-            document.querySelector(".preview").src = ress.data;
+            setUrl(ress.data)
             setDownload(ress.data);
           }
         });
@@ -208,6 +209,7 @@ function App() {
                     setSelectedXML={setSelectedXML}
                     linkXML={linkXML}
                     setLinkXML={setLinkXML}
+                    url={url}
                   />
                 }
               ></Route>
