@@ -27,6 +27,7 @@ import Grid from "@mui/material/Grid";
 import FormField from "../FormField/index";
 import {
   Box,
+  Checkbox,
   FormControl,
   FormControlLabel,
   FormLabel,
@@ -34,16 +35,17 @@ import {
   RadioGroup,
   Typography,
 } from "@mui/material";
+import { ErrorMessage } from "formik";
 
 function UserInfo({ formData }) {
   const { formField, values, errors, touched, setFieldValue } = formData;
-  const { nome, email, password, repeatPassword } =
-    formField;
+  const { nome, email, password, repeatPassword, checked } = formField;
   const {
     nome: nomeV,
     email: emailV,
     password: passwordV,
-    repeatPassword: repeatPasswordV
+    repeatPassword: repeatPasswordV,
+    checked: checkedV,
   } = values;
 
   return (
@@ -61,7 +63,7 @@ function UserInfo({ formData }) {
               value={nomeV}
               placeholder={nome.placeholder}
               error={errors.nome && touched.nome}
-              
+
               //success={firstNameV.length > 0 && !errors.firstName}
             />
           </Grid>
@@ -99,6 +101,21 @@ function UserInfo({ formData }) {
               success={repeatPasswordV.length > 0 && !errors.repeatPassword}
               inputProps={{ autoComplete: "" }}
             />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Checkbox
+              onChange={(e) => setFieldValue(checked.name, e.target.checked)}
+            />
+            <Box mt={0.75}>
+              <Typography
+                component="div"
+                variant="caption"
+                color="error"
+                fontWeight="regular"
+              >
+                <ErrorMessage name={checked.name} />
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
       </Box>

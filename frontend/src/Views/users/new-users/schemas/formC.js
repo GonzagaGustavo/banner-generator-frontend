@@ -43,6 +43,13 @@ const formC = {
       errorMsg: "Senha é obrigatória!",
       invalidMsg: "As senhas não são iguais",
     },
+    checked: {
+      name: "checked",
+      label: "",
+      type: "checkbox",
+      errorMsg: "Aceitar é obrigatório!",
+      invalidMsg: "Aceite os termos para continuar.",
+    }
   },
 };
 

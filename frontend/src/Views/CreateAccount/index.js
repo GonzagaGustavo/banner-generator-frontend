@@ -65,16 +65,17 @@ function CreateAccoun() {
 
   const submitForm = async (values, actions) => {
     await sleep(1000);
+    alert(JSON.stringify(values))
     //Criando usuário
-    api
-      .post("/users/create", { nome: values.nome, email: values.email, senha: values.password })
-      .then((res) => {
-        if(res.data === true) {
-          window.location.href="/"
-        } else {
-          toast.warn(res.data)
-        }
-      });
+    // api
+    //   .post("/users/create", { nome: values.nome, email: values.email, senha: values.password })
+    //   .then((res) => {
+    //     if(res.data === true) {
+    //       window.location.href="/"
+    //     } else {
+    //       toast.warn(res.data)
+    //     }
+    //   });
 
     actions.setSubmitting(false);
     actions.resetForm();

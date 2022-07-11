@@ -6,7 +6,8 @@ const {
       nome,
       email,
       password,
-      repeatPassword
+      repeatPassword,
+      checked
     },
   } = checkout;
 
@@ -19,6 +20,7 @@ const {
       [repeatPassword.name]: Yup.string()
         .required(repeatPassword.errorMsg)
         .oneOf([Yup.ref("password"), null], repeatPassword.invalidMsg),
+        [checked.name]: Yup.boolean().required(checked.errorMsg).isTrue(checked.invalidMsg)
     })
   ];
   
