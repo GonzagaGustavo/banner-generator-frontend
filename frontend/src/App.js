@@ -26,7 +26,7 @@ function App() {
   const [e, setE] = useState(false);
   const [download, setDownload] = React.useState(null);
   const [linkXML, setLinkXML] = useState(null);
-  const [url, setUrl] = useState(null)
+  const [url, setUrl] = useState(null);
   console.log(text);
 
   //Funções
@@ -36,7 +36,10 @@ function App() {
     document.querySelector(".preview").src = p;
   }
   async function aplicar() {
-    const formData = new FormData();
+    const token = Cookies.get("token")
+    api.post("/users/getCan_Create", { token: token}).then(res => {
+      if(res.data[0].can_create > 0) {
+        const formData = new FormData();
     formData.append("image", selectedFile[0]);
     const headers = {
       headers: {
@@ -50,18 +53,21 @@ function App() {
       "image/webp",
     ].find((formatoAceito) => formatoAceito === selectedFile[0].type);
     if (extensao) {
-      await api.post("/upload", formData, headers).then((res) => {
+      api.post("/upload", formData, headers).then((res) => {
         toast.success(res.data);
-        api.post("/createBanner", dados).then((ress) => {
-          //Não executa esse callback!
-          console.log(ress.status);
-          if (ress.status == 400) {
-            toast.warn(ress.data);
-          } else {
-            setUrl(ress.data)
-            setDownload(ress.data);
-          }
-        });
+        api
+          .post("/createBanner", dados)
+          .then((ress) => {
+            //Não executa esse callback!
+            console.log(ress.status);
+            if (ress.status == 400) {
+              toast.warn(ress.data);
+            } else {
+                setUrl(ress.data);
+                setDownload(ress.data);
+                api.post("/users/downCan_create", { token: token})
+            }
+          });
       });
       for (const value of formData.values()) {
         console.log(value);
@@ -69,6 +75,11 @@ function App() {
     } else {
       toast.warn("Formato de imagem não aceito!");
     }
+      } else {
+        toast.warn("Você não pode criar mais banners!");
+      }
+    })
+    
   }
 
   async function downloadImage(imageSrc) {
@@ -108,7 +119,7 @@ function App() {
     api.get("/apagar").then((res) => {
       setSelectedXML(null);
       setIndex(null);
-      setUrl(null)
+      setUrl(null);
       toast.success(res.data);
     });
   }
@@ -224,7 +235,7 @@ function App() {
         ) : (
           <>
             {location.pathname !== "/" && location.pathname !== "/signup" ? (
-              <div>Você não tem permição para acessar esta pagina!</div>
+              <div>Você não tem permissão para acessar esta pagina!</div>
             ) : (
               <></>
             )}

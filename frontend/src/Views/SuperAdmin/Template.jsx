@@ -119,7 +119,7 @@ function edit(dataIndex, rowIndex) {
           </Box>
         </div>
       ) : (
-        <div>Você não tem permição para acessar esta pagina!</div>
+        <div>Você não tem permissão para acessar esta pagina!</div>
       )}
     </>
   );
