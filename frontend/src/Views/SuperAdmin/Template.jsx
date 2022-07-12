@@ -84,6 +84,39 @@ function edit(dataIndex, rowIndex) {
     },
   ];
   const options = {
+    textLabels: {
+      body: {
+          noMatch: "Nenhum registro encontrado",
+          toolTip: "Classificar",
+      },
+      pagination: {
+          next: "Próxima página",
+          previous: "Página anterior",
+          rowsPerPage: "Linhas or página:",
+          displayRows: "de",
+      },
+      toolbar: {
+          search: "Busca",
+          downloadCsv: "Download CSV",
+          print: "Imprimir",
+          viewColumns: "Filtrar Colunas",
+          filterTable: "Filtrar Tabelas",
+      },
+      filter: {
+          all: "Todos",
+          title: "FILTROS",
+          reset: "LIMPAR",
+      },
+      viewColumns: {
+          title: "Ver Colunas",
+          titleAria: "Ver/Esconder Colunas da Tabela",
+      },
+      selectedRows: {
+          text: "registros(s) selecionados",
+          delete: "Excluir",
+          deleteAria: "Excluir registros selecionados",
+      },
+  },
     filterType: "checkbox",
     onRowsDelete: (rowsDeleted, dataRows) => {
       const ids = rowsDeleted.data.map(d => data[d.dataIndex].id)
