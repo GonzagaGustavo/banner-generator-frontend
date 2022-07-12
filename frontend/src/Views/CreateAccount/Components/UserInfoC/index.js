@@ -86,7 +86,6 @@ function UserInfo({ formData }) {
               label={email.label}
               name={email.name}
               value={emailV}
-              onChange={handleChange("password")}
               placeholder={email.placeholder}
               error={errors.email && touched.email}
               //success={emailV.length > 0 && !errors.email}
