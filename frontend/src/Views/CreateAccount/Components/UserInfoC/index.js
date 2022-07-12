@@ -1,23 +1,9 @@
-/**
-=========================================================
-* Material Dashboard 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // prop-type is a library for typechecking of props
 import PropTypes from "prop-types";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
+import React from "react";
 
 // Material Dashboard 2 PRO React components
 
@@ -33,8 +19,15 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
+  IconButton,
   Typography,
+  InputAdornment,
+  Input,
 } from "@mui/material";
+
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
 import { ErrorMessage } from "formik";
 
 function UserInfo({ formData }) {
@@ -47,6 +40,26 @@ function UserInfo({ formData }) {
     repeatPassword: repeatPasswordV,
     checked: checkedV,
   } = values;
+
+  const [valuesInput, setValuesInput] = React.useState({
+    amount: "",
+    password: "",
+    weight: "",
+    weightRange: "",
+    type: false,
+  });
+  const handleChange = (prop) => (event) => {
+    setValuesInput({ ...valuesInput, [prop]: event.target.value });
+  };
+  const handleClickShowPassword = () => {
+    setValuesInput({
+      ...valuesInput,
+      type: !valuesInput.type,
+    });
+  };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <Box>
@@ -73,26 +86,33 @@ function UserInfo({ formData }) {
               label={email.label}
               name={email.name}
               value={emailV}
+              onChange={handleChange("password")}
               placeholder={email.placeholder}
               error={errors.email && touched.email}
               //success={emailV.length > 0 && !errors.email}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <FormField
-              type={password.type}
-              label={password.label}
-              name={password.name}
-              value={passwordV}
-              placeholder={password.placeholder}
-              error={errors.password && touched.password}
-              success={passwordV.length > 0 && !errors.password}
-              inputProps={{ autoComplete: "" }}
-            />
+            <FormControl>
+              <FormField
+                type={valuesInput.type ? "text" : "password"}
+                label={password.label}
+                name={password.name}
+                value={passwordV}
+                placeholder={password.placeholder}
+                error={errors.password && touched.password}
+                success={passwordV.length > 0 && !errors.password}
+                inputProps={{ autoComplete: "" }}
+                endadornment={true}
+                valuesInput={valuesInput}
+                handleClickShowPassword={handleClickShowPassword}
+                handleMouseDownPassword={handleMouseDownPassword}
+              />
+            </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
-              type={repeatPassword.type}
+              type={valuesInput.type ? "text" : "password"}
               label={repeatPassword.label}
               name={repeatPassword.name}
               value={repeatPasswordV}
@@ -100,6 +120,10 @@ function UserInfo({ formData }) {
               error={errors.repeatPassword && touched.repeatPassword}
               success={repeatPasswordV.length > 0 && !errors.repeatPassword}
               inputProps={{ autoComplete: "" }}
+              endadornment={true}
+              valuesInput={valuesInput}
+              handleClickShowPassword={handleClickShowPassword}
+              handleMouseDownPassword={handleMouseDownPassword}
             />
           </Grid>
           <Grid item xs={12} sm={6}>

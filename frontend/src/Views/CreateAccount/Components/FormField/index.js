@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // prop-type is a library for typechecking of props
 import PropTypes from "prop-types";
 
@@ -23,11 +8,48 @@ import { ErrorMessage, Field } from "formik";
 // import MDBox from "../../../../../../components/MDBox/index";
 // import MDTypography from "../../../../../../components/MDTypography/index";
 // import MDInput from "../../../../../../components/MDInput/index";
-import { Box, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Input,
+  InputAdornment,
+  InputLabel,
+  TextField,
+  Typography,
+} from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-function FormField({ label, name, ...rest }) {
+function FormField({
+  valuesInput,
+  handleClickShowPassword,
+  handleMouseDownPassword,
+  label,
+  name,
+  endadornment,
+  ...rest
+}) {
   return (
-    <Box mb={1.5}>
+    <Box mb={1.5} style={{ position: "relative" }}>
+      {endadornment ? (
+        <InputAdornment position="end">
+          <IconButton
+            style={{
+              position: "absolute",
+              zIndex: 5,
+              right: "0",
+              marginTop: "60px",
+            }}
+            aria-label="toggle password visibility"
+            onClick={handleClickShowPassword}
+            onMouseDown={handleMouseDownPassword}
+          >
+            {valuesInput.type ? <VisibilityOff /> : <Visibility />}
+          </IconButton>
+        </InputAdornment>
+      ) : (
+        <></>
+      )}
       <Field
         {...rest}
         name={name}
@@ -36,6 +58,7 @@ function FormField({ label, name, ...rest }) {
         label={label}
         fullWidth
       />
+
       <Box mt={0.75}>
         <Typography
           component="div"
