@@ -20,17 +20,7 @@ function Sidebar({ isOpen, setIsOpen }) {
       icon: <FiImage />,
       name: "Criar Banners",
     },
-    {
-      path: "",
-      icon: <FiLogOut />,
-      name: "Sair",
-      onclick: () => {
-        Cookies.remove("token");
-        Cookies.remove("id");
-      },
-    },
   ];
-  console.log(admin);
   React.useEffect(() => {
     const token = Cookies.get("token");
     if (token) {
@@ -65,6 +55,7 @@ function Sidebar({ isOpen, setIsOpen }) {
         <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">
           <div></div>
         </h1>
+
         <div className="icons">
           {isOpen ? (
             <FiAlignRight onClick={toggle} />
@@ -73,41 +64,71 @@ function Sidebar({ isOpen, setIsOpen }) {
           )}
         </div>
       </div>
-      {admin
-        ? admin.map((item, index) => (
-            <NavLink
-              style={{ justifyContent: isOpen ? "start" : "center" }}
-              className="link"
-              to={item.path}
-              key={index}
-              onClick={item.onclick ? item.onclick : null}
+      <div
+        className="container-icone"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexDirection: "column",
+          height: "100%",
+        }}
+      >
+        <div>
+          {admin
+            ? admin.map((item, index) => (
+                <NavLink
+                  style={{ justifyContent: isOpen ? "start" : "center" }}
+                  className="link"
+                  to={item.path}
+                  key={index}
+                  onClick={item.onclick ? item.onclick : null}
+                >
+                  <div className="icon">{item.icon}</div>
+                  <div
+                    className="link-text"
+                    style={{ display: isOpen ? "block" : "none" }}
+                  >
+                    {item.name}
+                  </div>
+                </NavLink>
+              ))
+            : menuItem.map((item, index) => (
+                <NavLink
+                  style={{ justifyContent: isOpen ? "start" : "center" }}
+                  className="link"
+                  to={item.path}
+                  key={index}
+                  onClick={item.onclick ? item.onclick : null}
+                >
+                  <div className="icon">{item.icon}</div>
+                  <div
+                    className="link-text"
+                    style={{ display: isOpen ? "block" : "none" }}
+                  >
+                    {item.name}
+                  </div>
+                </NavLink>
+              ))}
+        </div>
+        <div>
+          <NavLink
+            style={{ justifyContent: isOpen ? "start" : "center" }}
+            className="link"
+            to="/"
+            onClick={(() => Cookies.remove("token"), Cookies.remove("id"))}
+          >
+            <div className="icon">
+              <FiLogOut />
+            </div>
+            <div
+              className="link-text"
+              style={{ display: isOpen ? "block" : "none" }}
             >
-              <div className="icon">{item.icon}</div>
-              <div
-                className="link-text"
-                style={{ display: isOpen ? "block" : "none" }}
-              >
-                {item.name}
-              </div>
-            </NavLink>
-          ))
-        : menuItem.map((item, index) => (
-            <NavLink
-              style={{ justifyContent: isOpen ? "start" : "center" }}
-              className="link"
-              to={item.path}
-              key={index}
-              onClick={item.onclick ? item.onclick : null}
-            >
-              <div className="icon">{item.icon}</div>
-              <div
-                className="link-text"
-                style={{ display: isOpen ? "block" : "none" }}
-              >
-                {item.name}
-              </div>
-            </NavLink>
-          ))}
+              Sair
+            </div>
+          </NavLink>
+        </div>
+      </div>
     </div>
   );
 }
