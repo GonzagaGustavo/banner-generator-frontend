@@ -40,6 +40,14 @@ function Sidebar({ isOpen, setIsOpen }) {
     }
   }, []);
 
+  function handleLogOut() {
+    let msgSair = "Tem certeza que deseja sair?";
+    if (window.confirm(msgSair) === true) {
+      Cookies.remove("token");
+      Cookies.remove("id");
+    }
+  }
+
   return (
     <div
       style={{
@@ -115,7 +123,7 @@ function Sidebar({ isOpen, setIsOpen }) {
             style={{ justifyContent: isOpen ? "start" : "center" }}
             className="link"
             to="/"
-            onClick={(() => Cookies.remove("token"), Cookies.remove("id"))}
+            onClick={handleLogOut}
           >
             <div className="icon">
               <FiLogOut />
