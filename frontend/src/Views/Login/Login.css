@@ -35,6 +35,7 @@ input::placeholder {
 }
 
 .criar-conta {
+  text-align: right;
   display: block;
   color: #252525;
   padding-top: 20px;
