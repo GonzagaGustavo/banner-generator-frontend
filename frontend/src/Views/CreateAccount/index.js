@@ -67,12 +67,16 @@ function CreateAccoun() {
     await sleep(1000);
     //Criando usuário
     api
-      .post("/users/create", { nome: values.nome, email: values.email, senha: values.password })
+      .post("/users/create", {
+        nome: values.nome,
+        email: values.email,
+        senha: values.password,
+      })
       .then((res) => {
-        if(res.data === true) {
-          window.location.href="/"
+        if (res.data === true) {
+          window.location.href = "/";
         } else {
-          toast.warn(res.data)
+          toast.warn(res.data);
         }
       });
 
@@ -93,7 +97,7 @@ function CreateAccoun() {
   };
 
   return (
-    <Box py={3} sx={{ background: "#ddd", minHeight: "100vh" }}>
+    <Box py={3} sx={{ minHeight: "100vh" }}>
       <Grid
         container
         justifyContent="center"
@@ -101,59 +105,59 @@ function CreateAccoun() {
         sx={{ height: "100%", mt: 8 }}
       >
         <Grid item xs={12} lg={8}>
-            <Formik
-              initialValues={initialValuesC}
-              validationSchema={currentValidation}
-              onSubmit={handleSubmit}
-            >
-              {({ values, errors, touched, isSubmitting, setFieldValue }) => (
-                <Form id={formId} autoComplete="off">
-                  <Card sx={{ height: "100%" }}>
-                    <Box mx={2}>
-                      <Typography variant="h4" align="center">
-                        Criação de Usuários
-                      </Typography>
-                    </Box>
-                    <Box p={3}>
-                      <Box>
-                        {getStepContent(activeStep, {
-                          values,
-                          touched,
-                          formField,
-                          errors,
-                          setFieldValue,
-                        })}
-                        <Box
-                          mt={2}
-                          width="100%"
-                          display="flex"
-                          justifyContent="space-between"
-                        >
-                          {activeStep === 0 ? (
-                            <Box />
-                          ) : (
-                            <Button
-                              variant="gradient"
-                              color="light"
-                              onClick={handleBack}
-                            >
-                              back
-                            </Button>
-                          )}
+          <Formik
+            initialValues={initialValuesC}
+            validationSchema={currentValidation}
+            onSubmit={handleSubmit}
+          >
+            {({ values, errors, touched, isSubmitting, setFieldValue }) => (
+              <Form id={formId} autoComplete="off">
+                <Card sx={{ height: "100%" }}>
+                  <Box mx={2}>
+                    <Typography variant="h4" align="center">
+                      Criação de Usuários
+                    </Typography>
+                  </Box>
+                  <Box p={3}>
+                    <Box>
+                      {getStepContent(activeStep, {
+                        values,
+                        touched,
+                        formField,
+                        errors,
+                        setFieldValue,
+                      })}
+                      <Box
+                        mt={2}
+                        width="100%"
+                        display="flex"
+                        justifyContent="space-between"
+                      >
+                        {activeStep === 0 ? (
+                          <Box />
+                        ) : (
                           <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
+                            variant="gradient"
+                            color="light"
+                            onClick={handleBack}
                           >
-                            {isLastStep ? "Enviar" : "Próximo"}
+                            back
                           </Button>
-                        </Box>
+                        )}
+                        <Button
+                          type="submit"
+                          variant="contained"
+                          color="primary"
+                        >
+                          {isLastStep ? "Enviar" : "Próximo"}
+                        </Button>
                       </Box>
                     </Box>
-                  </Card>
-                </Form>
-              )}
-            </Formik>
+                  </Box>
+                </Card>
+              </Form>
+            )}
+          </Formik>
         </Grid>
       </Grid>
     </Box>

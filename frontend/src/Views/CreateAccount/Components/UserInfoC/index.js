@@ -48,15 +48,29 @@ function UserInfo({ formData }) {
     weightRange: "",
     type: false,
   });
-  const handleChange = (prop) => (event) => {
-    setValuesInput({ ...valuesInput, [prop]: event.target.value });
-  };
+
+  const [valuesInputRepeat, setValuesInputRepeat] = React.useState({
+    amount: "",
+    password: "",
+    weight: "",
+    weightRange: "",
+    type: false,
+  });
+
   const handleClickShowPassword = () => {
     setValuesInput({
       ...valuesInput,
       type: !valuesInput.type,
     });
   };
+
+  const handleClickShowPasswordRepeat = () => {
+    setValuesInputRepeat({
+      ...valuesInputRepeat,
+      type: !valuesInputRepeat.type,
+    });
+  };
+
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -111,7 +125,7 @@ function UserInfo({ formData }) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
-              type={valuesInput.type ? "text" : "password"}
+              type={valuesInputRepeat.type ? "text" : "password"}
               label={repeatPassword.label}
               name={repeatPassword.name}
               value={repeatPasswordV}
@@ -120,8 +134,8 @@ function UserInfo({ formData }) {
               success={repeatPasswordV.length > 0 && !errors.repeatPassword}
               inputProps={{ autoComplete: "" }}
               endadornment={true}
-              valuesInput={valuesInput}
-              handleClickShowPassword={handleClickShowPassword}
+              valuesInput={valuesInputRepeat}
+              handleClickShowPassword={handleClickShowPasswordRepeat}
               handleMouseDownPassword={handleMouseDownPassword}
             />
           </Grid>
