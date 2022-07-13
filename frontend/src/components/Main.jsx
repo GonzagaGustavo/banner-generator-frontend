@@ -1,7 +1,14 @@
 import React from "react";
+import { useEffect } from "react";
 import "./Main.css";
 
-function Main({ dados, e, aplicar, apagar, downloadImage, download, can_create }) {
+function Main({ dados, e, aplicar, apagar, downloadImage, download, can_create, setCan_create }) {
+  useEffect(() => {
+    if(can_create === 0) {
+    setCan_create("0")
+  }
+  }, [can_create, setCan_create])
+  
   return (
     <div className="main">
       <div className="infos">

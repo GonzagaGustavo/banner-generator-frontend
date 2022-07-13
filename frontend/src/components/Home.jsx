@@ -31,15 +31,11 @@ function Home({
   useEffect(() => {
     const token = Cookies.get("token");
     if (token) {
-      api.post("/users/checkRole", { token: token }).then((res) => {
-        if (res.data == 1) {
-          api.post("/users/getCan_Create", { token: token }).then((res) => {
-            setCan_create(res.data[0].can_create);
-          });
-        }
+      api.post("/users/getCan_Create", { token: token }).then((res) => {
+        setCan_create(res.data[0].can_create);
       });
     }
-  }, []);
+  }, [aplicar]);
 
   return (
     <div>
@@ -114,6 +110,7 @@ function Home({
         download={download}
         downloadImage={downloadImage}
         can_create={can_create}
+        setCan_create={setCan_create}
       />
       <Banner selectedFile={selectedFile} url={url} />
     </div>

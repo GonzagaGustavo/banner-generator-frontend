@@ -36,50 +36,77 @@ function App() {
     document.querySelector(".preview").src = p;
   }
   async function aplicar() {
-    const token = Cookies.get("token")
-    api.post("/users/getCan_Create", { token: token}).then(res => {
-      if(res.data[0].can_create > 0) {
+    const token = Cookies.get("token");
+    api.post("/users/getCan_Create", { token: token }).then((res) => {
+      if (res.data === true) {
         const formData = new FormData();
-    formData.append("image", selectedFile[0]);
-    const headers = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const extensao = [
-      "image/png",
-      "image/jpg",
-      "image/jpeg",
-      "image/webp",
-    ].find((formatoAceito) => formatoAceito === selectedFile[0].type);
-    if (extensao) {
-      api.post("/upload", formData, headers).then((res) => {
-        toast.success(res.data);
-        api
-          .post("/createBanner", dados)
-          .then((ress) => {
-            //Não executa esse callback!
-            console.log(ress.status);
-            if (ress.status == 400) {
-              toast.warn(ress.data);
-            } else {
+        formData.append("image", selectedFile[0]);
+        const headers = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const extensao = [
+          "image/png",
+          "image/jpg",
+          "image/jpeg",
+          "image/webp",
+        ].find((formatoAceito) => formatoAceito === selectedFile[0].type);
+        if (extensao) {
+          api.post("/upload", formData, headers).then((res) => {
+            toast.success(res.data);
+            api.post("/createBanner", dados).then((ress) => {
+              //Não executa esse callback!
+              console.log(ress.status);
+              if (ress.status == 400) {
+                toast.warn(ress.data);
+              } else {
                 setUrl(ress.data);
                 setDownload(ress.data);
-                api.post("/users/downCan_create", { token: token})
-            }
+              }
+            });
           });
-      });
-      for (const value of formData.values()) {
-        console.log(value);
-      }
-    } else {
-      toast.warn("Formato de imagem não aceito!");
-    }
+        } else {
+          toast.warn("Formato de imagem não aceito!");
+        }
       } else {
-        toast.warn("Você não pode criar mais banners!");
+        if (res.data[0].can_create > 0) {
+          const formData = new FormData();
+          formData.append("image", selectedFile[0]);
+          const headers = {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+          const extensao = [
+            "image/png",
+            "image/jpg",
+            "image/jpeg",
+            "image/webp",
+          ].find((formatoAceito) => formatoAceito === selectedFile[0].type);
+          if (extensao) {
+            api.post("/upload", formData, headers).then((res) => {
+              toast.success(res.data);
+              api.post("/createBanner", dados).then((ress) => {
+                //Não executa esse callback!
+                console.log(ress.status);
+                if (ress.status == 400) {
+                  toast.warn(ress.data);
+                } else {
+                  api.post("/users/downCan_create", {token: token})
+                  setUrl(ress.data);
+                  setDownload(ress.data);
+                }
+              });
+            });
+          } else {
+            toast.warn("Formato de imagem não aceito!");
+          }
+        } else {
+          toast.warn("Você não pode criar mais banners!");
+        }
       }
-    })
-    
+    });
   }
 
   async function downloadImage(imageSrc) {
