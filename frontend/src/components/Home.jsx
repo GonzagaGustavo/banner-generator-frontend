@@ -6,6 +6,7 @@ import Banner from "./Banner";
 import Header from "./Header";
 import Main from "./Main";
 import { FiDownloadCloud } from "react-icons/fi";
+import CustomText from "./CustomBanner/CustomText";
 
 function Home({
   buscar,
@@ -102,6 +103,7 @@ function Home({
         text={text}
         setSelectedFile={setSelectedFile}
       />
+      <CustomText />
       <Main
         dados={dados}
         e={e}

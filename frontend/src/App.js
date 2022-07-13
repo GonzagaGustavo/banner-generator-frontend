@@ -14,6 +14,8 @@ import NewUser from "./Views/users/new-users";
 import Sidebar from "./Views/Painel/Sidebar/Sidebar";
 import Cookies from "js-cookie";
 import CreateAccount from "./components/CreateAccount";
+import Banner from "./components/Banner";
+import Painel from "./Views/Banner/Painel";
 
 function App() {
   const location = useLocation();
@@ -233,6 +235,7 @@ function App() {
               {/* <Route path="/painel/usuario" element={<Header />}></Route> Rota para exluir */}
               <Route path="/admin/criacao" element={<NewUser />}></Route>
               <Route path="/admin" element={<Template />}></Route>
+              <Route path="/teste" element={<Painel />}></Route>
               <Route
                 path="/banners"
                 element={
