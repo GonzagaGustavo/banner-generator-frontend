@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 // @mui material components
 import Grid from "@mui/material/Grid";
 import React from "react";
-
+import { Link } from 'react-router-dom'
 // Material Dashboard 2 PRO React components
 
 //import MDTypography from "../../../../../../components/MDTypography/index";
@@ -124,10 +124,12 @@ function UserInfo({ formData }) {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Checkbox
-              value={checkedV}
-              onChange={(e) => setFieldValue(checked.name, e.target.checked)}
-            />
+            <Box style={{display: 'flex', alignItems: 'center'}}>
+              <Checkbox
+                value={checkedV}
+                onChange={(e) => setFieldValue(checked.name, e.target.checked)}
+              /><Link to={"/"}>Termos de usuário</Link>
+            </Box>
             <Box mt={0.75}>
               <Typography
                 width={400}
