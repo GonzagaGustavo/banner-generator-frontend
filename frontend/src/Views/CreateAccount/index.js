@@ -97,7 +97,7 @@ function CreateAccoun() {
   };
 
   return (
-    <Box py={3} sx={{ minHeight: "100vh" }}>
+    <Box py={3} mb={20} height="65vh">
       <Grid
         container
         justifyContent="center"

@@ -5,7 +5,8 @@ const {
       nome,
       email,
       password,
-      repeatPassword
+      repeatPassword,
+      checked
     },
   } = checkout;
   
@@ -14,6 +15,7 @@ const {
     [email.name]: "",
     [password.name]: "",
     [repeatPassword.name]: "",
+    [checked.name]: false
   };
   
   export default initialValuesC;

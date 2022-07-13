@@ -11,22 +11,7 @@ import React from "react";
 
 // NewUser page components
 import FormField from "../FormField/index";
-import {
-  Box,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  IconButton,
-  Typography,
-  InputAdornment,
-  Input,
-} from "@mui/material";
-
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { Box, Checkbox, Typography } from "@mui/material";
 
 import { ErrorMessage } from "formik";
 
@@ -105,23 +90,22 @@ function UserInfo({ formData }) {
               //success={emailV.length > 0 && !errors.email}
             />
           </Grid>
+
           <Grid item xs={12} sm={6}>
-            <FormControl>
-              <FormField
-                type={valuesInput.type ? "text" : "password"}
-                label={password.label}
-                name={password.name}
-                value={passwordV}
-                placeholder={password.placeholder}
-                error={errors.password && touched.password}
-                success={passwordV.length > 0 && !errors.password}
-                inputProps={{ autoComplete: "" }}
-                endadornment={true}
-                valuesInput={valuesInput}
-                handleClickShowPassword={handleClickShowPassword}
-                handleMouseDownPassword={handleMouseDownPassword}
-              />
-            </FormControl>
+            <FormField
+              type={valuesInput.type ? "text" : "password"}
+              label={password.label}
+              name={password.name}
+              value={passwordV}
+              placeholder={password.placeholder}
+              error={errors.password && touched.password}
+              success={passwordV.length > 0 && !errors.password}
+              inputProps={{ autoComplete: "" }}
+              endadornment={true}
+              valuesInput={valuesInput}
+              handleClickShowPassword={handleClickShowPassword}
+              handleMouseDownPassword={handleMouseDownPassword}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
@@ -141,10 +125,12 @@ function UserInfo({ formData }) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <Checkbox
+              value={checkedV}
               onChange={(e) => setFieldValue(checked.name, e.target.checked)}
             />
             <Box mt={0.75}>
               <Typography
+                width={400}
                 component="div"
                 variant="caption"
                 color="error"
