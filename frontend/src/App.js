@@ -95,7 +95,7 @@ function App() {
                 if (ress.status == 400) {
                   toast.warn(ress.data);
                 } else {
-                  api.post("/users/downCan_create", {token: token})
+                  api.post("/users/downCan_create", { token: token });
                   setUrl(ress.data);
                   setDownload(ress.data);
                 }
@@ -235,7 +235,30 @@ function App() {
               {/* <Route path="/painel/usuario" element={<Header />}></Route> Rota para exluir */}
               <Route path="/admin/criacao" element={<NewUser />}></Route>
               <Route path="/admin" element={<Template />}></Route>
-              <Route path="/teste" element={<Painel />}></Route>
+              <Route
+                path="/teste"
+                element={
+                  <Painel
+                    sendXML={sendXML}
+                    buscar={buscar}
+                    setText={setText}
+                    text={text}
+                    setSelectedFile={setSelectedFile}
+                    dados={dados}
+                    e={e}
+                    aplicar={aplicar}
+                    apagar={apagar}
+                    download={download}
+                    downloadImage={downloadImage}
+                    selectedFile={selectedFile}
+                    selectedXML={selectedXML}
+                    setSelectedXML={setSelectedXML}
+                    linkXML={linkXML}
+                    setLinkXML={setLinkXML}
+                    url={url}
+                  />
+                }
+              ></Route>
               <Route
                 path="/banners"
                 element={
