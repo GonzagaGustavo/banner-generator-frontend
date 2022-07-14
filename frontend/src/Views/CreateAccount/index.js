@@ -102,7 +102,7 @@ function CreateAccoun() {
         container
         justifyContent="center"
         alignItems="center"
-        sx={{ height: "100%", mt: 8 }}
+        sx={{ height: "100%", mt: 5 }}
       >
         <Grid item xs={12} lg={8}>
           <Formik
