@@ -59,9 +59,9 @@ function Header({ setSelectedFile, buscar, setText, text, setSelectedXML, sendXM
             className="input-file"
           />
         )}
-        <button className="button-adicionar" onClick={sendXML}>
+        {/* <button className="button-adicionar" onClick={sendXML}>
           Adicionar
-        </button>
+        </button> */}
       </div>
 
       <div className="header">
@@ -73,23 +73,7 @@ function Header({ setSelectedFile, buscar, setText, text, setSelectedXML, sendXM
             onChange={(e) => setText(e.target.value)}
             value={text}
           />
-          <Button onclick={buscar}>Buscar</Button>
-        </div>
-        <div className="files" style={{ marginTop: "5%" }}>
-          <label
-            className="carregarImg"
-            htmlFor="file"
-            style={{ marginTop: "0px", textAlign: "center" }}
-          >
-            Carregar Imagem
-          </label>
-          <input
-            type="file"
-            onChange={(e) => setSelectedFile(e.target.files)}
-            className="input-file"
-            name="file"
-            id="file"
-          />
+          {/* <Button onclick={buscar}>Buscar</Button> */}
         </div>
       </div>
     </>

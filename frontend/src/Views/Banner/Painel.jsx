@@ -4,21 +4,18 @@ import {
   Card,
   Grid,
   Step,
-  StepConnector,
-  stepConnectorClasses,
   StepLabel,
   Stepper,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { styled } from "@mui/material/styles";
 import Banner from "../../components/Banner";
 import Header from "../../components/Header";
 import Main from "../../components/Main";
-import PropTypes from "prop-types";
-import { AiOutlineCheck } from "react-icons/ai";
 import Cookies from "js-cookie";
 import api from "../../services/api";
+import PText from "./components/PText";
+import { toast } from "react-toastify";
 
 function getSteps() {
   return [
@@ -47,6 +44,11 @@ function Painel({
   setLinkXML,
   sendXML,
   url,
+  activeStep,
+  setActiveStep,
+  setDados,
+  personalization,
+  setPersonalization
 }) {
   const [can_create, setCan_create] = useState(null);
 
@@ -76,7 +78,14 @@ function Painel({
           />
         );
       case 1:
-        return <h1>Olá</h1>;
+        return (
+          <PText
+            dados={dados}
+            setDados={setDados}
+            setSelectedFile={setSelectedFile}
+            selectedFile={selectedFile}
+          />
+        );
       case 2:
         return (
           <Main
@@ -88,6 +97,8 @@ function Painel({
             downloadImage={downloadImage}
             can_create={can_create}
             setCan_create={setCan_create}
+            personalization={personalization}
+            setPersonalization={setPersonalization}
           />
         );
       case 3:
@@ -96,18 +107,38 @@ function Painel({
         return null;
     }
   }
-  const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
   const isLastStep = activeStep === steps.length - 1;
 
-  const handleNext = () => setActiveStep(activeStep + 1);
+  const handleNext = async () => {
+    if (activeStep === 0) {
+      await sendXML();
+    }
+    if (activeStep === 1) {
+      if (selectedFile) {
+        const extensao = [
+          "image/png",
+          "image/jpg",
+          "image/jpeg",
+          "image/webp",
+        ].find((formatoAceito) => formatoAceito === selectedFile[0].type);
+        if (extensao) {
+          setActiveStep(activeStep + 1);
+        } else {
+          toast.warn("Formato de imagem não aceito.");
+        }
+      } else {
+        toast.warn("Adicione uma imagem.");
+      }
+    }
+  };
   const handleBack = () => setActiveStep(activeStep - 1);
 
   return (
     <Box mt={5} mb={9}>
       <Grid container justifyContent="center">
-        <Grid item xs={12} lg={8}>
-          <Box mt={6} mb={8} textAlign="center">
+        <Grid item xs={12} lg={11}>
+          <Box mb={8} textAlign="center">
             <Box mb={1}>
               <Typography variant="h3" fontWeight="bold">
                 Crie um Banner
@@ -116,9 +147,10 @@ function Painel({
             <Typography variant="h5" fontWeight="regular" color="seagreen">
               Configurando Banner
             </Typography>
+            {can_create ? <Typography variant="subtitle1">Quantidade de banner que ainda pode criar: <span style={{fontWeight: 'bold'}}>{can_create}</span></Typography> : <></>}
           </Box>
           <Card>
-            <Box sx={{ width: "100%" }} pt={2}>
+            <Box sx={{ width: "100%" }} pt={5}>
               <Stepper activeStep={activeStep} alternativeLabel>
                 {steps.map((label) => (
                   <Step key={label}>
@@ -135,6 +167,7 @@ function Painel({
                   width="100%"
                   display="flex"
                   justifyContent="space-between"
+                  pb={1}
                 >
                   {activeStep === 0 ? (
                     <Box />
@@ -152,7 +185,7 @@ function Painel({
                     color="primary"
                     onClick={!isLastStep ? handleNext : undefined}
                   >
-                    {isLastStep ? "send" : "Próximo"}
+                    {isLastStep ? "Baixar" : "Próximo"}
                   </Button>
                 </Box>
               </Box>

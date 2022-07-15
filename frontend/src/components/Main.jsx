@@ -1,73 +1,49 @@
+import { Autocomplete, TextField } from "@mui/material";
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import "./Main.css";
 
-function Main({ dados, e, aplicar, apagar, downloadImage, download, can_create, setCan_create }) {
+function Main({
+  dados,
+  e,
+  aplicar,
+  apagar,
+  downloadImage,
+  download,
+  can_create,
+  setCan_create,
+  personalization,
+  setPersonalization
+}) {
+const [fonts, setFonts] = useState([])
+
   useEffect(() => {
-    if(can_create === 0) {
-    setCan_create("0")
-  }
-  }, [can_create, setCan_create])
-  
+    axios.get("https://www.googleapis.com/webfonts/v1/webfonts?sort=POPULARITY&key=AIzaSyD4iU66DIkViOOkDZUejDVfS-Du6sM4fxc").then(res => {
+      const font = []
+      for (let i = 0; i < 50; i++) {
+        font.push(res.data.items[i].family)
+      }
+      setFonts(font)
+    })
+  }, []);
+  useEffect(() => {
+    if (can_create === 0) {
+      setCan_create("0");
+    }
+  }, [can_create, setCan_create]);
+
+
   return (
     <div className="main">
-      <div className="infos">
-        {e ? (
-          <>
-            {dados.map((i) => (
-              <>
-                <ul>
-                  <li id="name">{i.name}</li>
-                  <li>
-                    <span>Preço:</span> {i.price}
-                  </li>
-                  <li>
-                    <span>Parcela:</span> {i.p_mounth}
-                  </li>
-                  <li>
-                    <span>Valor da parcela:</span> {i.p_value}
-                  </li>
-                </ul>
-                <div className="imgProduto">
-                  <img src={i.img} alt="" />
-                </div>
-                <div className="buttons-banner">
-                  {download ? (
-                    <button
-                      onClick={() => downloadImage(download)}
-                      className="button-baixar"
-                    >
-                      Baixar
-                    </button>
-                  ) : (
-                    <button
-                      disabled
-                      onClick={() => downloadImage(download)}
-                      className="button-baixar"
-                    >
-                      Baixar
-                    </button>
-                  )}
-
-                  <button onClick={aplicar} className="button-aplicar">
-                    Aplicar
-                  </button>
-                  <button onClick={apagar} className="button-apagar">
-                    Apagar
-                  </button>
-                </div>
-              </>
-            ))}
-          </>
-        ) : (
-          <></>
-        )}
-      </div>
-      {can_create ? (
-        <p style={{textAlign: 'center', margin: '0.7%'}}>Quantidade de banner que ainda pode criar: <span style={{fontWeight: 'bold'}}>{can_create}</span></p>
-      ) : (
-        <></>
-      )}
+      <input type="color" onChange={e => setPersonalization({ color: e.target.value, font: personalization.font})} />
+      <Autocomplete
+        disablePortal
+        options={fonts}
+        renderInput={(params) => <TextField {...params} label="Fonte" />}
+        onChange={e => console.log(e)}
+      />
     </div>
   );
 }

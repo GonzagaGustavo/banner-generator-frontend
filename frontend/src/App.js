@@ -6,15 +6,12 @@ import "react-toastify/dist/ReactToastify.css";
 import Home from "./components/Home";
 import Login from "./Views/Login/Login";
 import api from "./services/api";
-import CreateUser from "./Views/Registro/CreateUser";
 import EditUser from "./components/EditUser";
-import Header from "./Views/Painel/Header/index";
 import Template from "./Views/SuperAdmin/Template";
 import NewUser from "./Views/users/new-users";
 import Sidebar from "./Views/Painel/Sidebar/Sidebar";
 import Cookies from "js-cookie";
 import CreateAccount from "./components/CreateAccount";
-import Banner from "./components/Banner";
 import Painel from "./Views/Banner/Painel";
 
 function App() {
@@ -29,14 +26,14 @@ function App() {
   const [download, setDownload] = React.useState(null);
   const [linkXML, setLinkXML] = useState(null);
   const [url, setUrl] = useState(null);
-  console.log(text);
-
+  const [activeStep, setActiveStep] = useState(0);
+  const [personalization, setPersonalization] = useState({
+    color: 'rgb(0,0,0)',
+    font: 'Roboto'
+  })
   //Funções
   const [isOpen, setIsOpen] = React.useState(false);
 
-  function a(p) {
-    document.querySelector(".preview").src = p;
-  }
   async function aplicar() {
     const token = Cookies.get("token");
     api.post("/users/getCan_Create", { token: token }).then((res) => {
@@ -57,7 +54,7 @@ function App() {
         if (extensao) {
           api.post("/upload", formData, headers).then((res) => {
             toast.success(res.data);
-            api.post("/createBanner", dados).then((ress) => {
+            api.post("/createBanner", { dados: dados, personalization: personalization }).then((ress) => {
               //Não executa esse callback!
               console.log(ress.status);
               if (ress.status == 400) {
@@ -124,24 +121,34 @@ function App() {
     document.body.removeChild(link);
   }
 
-  function buscar() {
-    if (index) {
+  function buscar(xml) {
+    if (text) {
       if (selectedXML) {
-        api.post("/buscarAqv", { file: index, id: text }).then((res) => {
-          setDados(res.data);
+        api.post("/buscarAqv", { file: xml, id: text }).then((res) => {
+          setActiveStep(activeStep + 1)
+          setDados({
+            name: res.data[0].name,
+            price: res.data[0].price,
+            adiconalText: `${res.data[0].p_mounth}x de ${res.data[0].p_value}`,
+            img: res.data[0].img
+          });
           setE(true);
-          console.log(res.data);
         });
       } else {
-        console.log(index);
-        api.post("/", { id: text, link: linkXML }).then((res) => {
-          console.log(res.status);
-          setDados(res.data);
+        api.post("/", { id: text, link: xml }).then((res) => {
+          console.log(res.data);
+          setActiveStep(activeStep + 1)
+          setDados({
+            name: res.data[0].name,
+            price: res.data[0].price,
+            adiconalText: `${res.data[0].p_mounth}x de ${res.data[0].p_value}`,
+            img: res.data[0].img
+          });
           setE(true);
         });
       }
     } else {
-      toast.info("Adicione um XML");
+      toast.warning("Digite um SKU");
     }
   }
   function apagar() {
@@ -168,9 +175,9 @@ function App() {
         await api
           .post("/baixarXML", formXml, headers)
           .then((res) => {
-            console.log(res.data);
             setIndex(res.data);
             toast.success("XML adicionado!");
+            buscar(res.data);
           })
           .catch((err) => {
             console.log(err);
@@ -183,6 +190,7 @@ function App() {
       if (linkXML) {
         setIndex(linkXML);
         toast.success("XML adicionado!");
+        buscar(linkXML);
       } else {
         toast.info("Adicione um XML");
       }
@@ -256,6 +264,11 @@ function App() {
                     linkXML={linkXML}
                     setLinkXML={setLinkXML}
                     url={url}
+                    activeStep={activeStep}
+                    setActiveStep={setActiveStep}
+                    setDados={setDados}
+                    personalization={personalization}
+                    setPersonalization={setPersonalization}
                   />
                 }
               ></Route>
