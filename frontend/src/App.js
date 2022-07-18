@@ -29,7 +29,10 @@ function App() {
   const [activeStep, setActiveStep] = useState(0);
   const [personalization, setPersonalization] = useState({
     color: 'rgb(0,0,0)',
-    font: 'Roboto'
+    font: 'Roboto',
+    size1: 40,
+    size2: 30,
+    size3: 20
   })
   //Funções
   const [isOpen, setIsOpen] = React.useState(false);
@@ -52,7 +55,12 @@ function App() {
           "image/webp",
         ].find((formatoAceito) => formatoAceito === selectedFile[0].type);
         if (extensao) {
-          api.post("/upload", formData, headers).then((res) => {
+          api.post("/upload", formData, headers, { onUploadProgress: (e) => {
+            let progress = Number = Math.round(
+              (e.loaded * 100) / e.total
+            )
+            console.log(progress)
+          }}).then((res) => {
             toast.success(res.data);
             api.post("/createBanner", { dados: dados, personalization: personalization }).then((ress) => {
               //Não executa esse callback!

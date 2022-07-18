@@ -56,7 +56,11 @@ function Painel({
     const token = Cookies.get("token");
     if (token) {
       api.post("/users/getCan_Create", { token: token }).then((res) => {
-        setCan_create(res.data[0].can_create);
+        if(res.data === true) {
+
+        } else {
+          setCan_create(res.data[0].can_create);
+        }
       });
     }
   }, [aplicar]);
@@ -84,6 +88,8 @@ function Painel({
             setDados={setDados}
             setSelectedFile={setSelectedFile}
             selectedFile={selectedFile}
+            setPersonalization={setPersonalization}
+            personalization={personalization}
           />
         );
       case 2:
@@ -130,6 +136,10 @@ function Painel({
       } else {
         toast.warn("Adicione uma imagem.");
       }
+    }
+    if(activeStep === 2) {
+      aplicar()
+      setActiveStep(activeStep + 1)
     }
   };
   const handleBack = () => setActiveStep(activeStep - 1);

@@ -34,7 +34,6 @@ const [fonts, setFonts] = useState([])
     }
   }, [can_create, setCan_create]);
 
-
   return (
     <div className="main">
       <input type="color" onChange={e => setPersonalization({ color: e.target.value, font: personalization.font})} />
@@ -42,7 +41,7 @@ const [fonts, setFonts] = useState([])
         disablePortal
         options={fonts}
         renderInput={(params) => <TextField {...params} label="Fonte" />}
-        onChange={e => console.log(e)}
+        onChange={e => setPersonalization({ color: personalization.color, font: `${e.target.innerText}`.replace(" ", "+")})}
       />
     </div>
   );
