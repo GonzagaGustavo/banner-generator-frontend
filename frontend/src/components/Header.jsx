@@ -1,26 +1,26 @@
 import React from "react";
-import Button from "./Button";
 import "./Header.css";
 import { FiDownloadCloud } from "react-icons/fi";
+import { Button, TextField } from "@mui/material";
 
 function Header({ setSelectedFile, buscar, setText, text, setSelectedXML, sendXML, linkXML, selectedXML, setLinkXML }) {
   return (
     <>
-      <div>
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '20%', margin: '3%'}}>
         {selectedXML ? (
-          <input
+          <TextField
+            variant="outlined"
             type="text"
-            placeholder="Link do seu xml"
-            className="inputInfo"
-            style={{ marginBottom: "5%" }}
+            label="Link do seu xml"
+            value={linkXML}
+            onChange={(e) => setLinkXML(e.target.value)}
             disabled
           />
         ) : (
-          <input
+          <TextField
+          variant="outlined"
             type="text"
-            placeholder="Link do seu xml"
-            className="inputInfo"
-            style={{ marginBottom: "5%", height: "60px" }}
+            label="Link do seu xml"
             value={linkXML}
             onChange={(e) => setLinkXML(e.target.value)}
           />
@@ -35,12 +35,12 @@ function Header({ setSelectedFile, buscar, setText, text, setSelectedXML, sendXM
             Carregar XML
           </label>
         )}
-        <button className="modelo-xml">
+        <Button variant="contained" className="modelo-xml">
           <a className="baixar-modelo" href="../../modelo.xml" download>
             Baixar Modelo XML
             <FiDownloadCloud />
           </a>
-        </button>
+        </Button>
         {linkXML ? (
           <input
             type="file"
@@ -65,16 +65,15 @@ function Header({ setSelectedFile, buscar, setText, text, setSelectedXML, sendXM
       </div>
 
       <div className="header">
-        <div className="ib">
-          <input
+          <TextField
+          style={{height: '100%', width: '20%', margin: '2%'}}
             type="number"
-            className="inputSku"
-            placeholder="Digite o SKU"
+            variant="standard"
+            label="Digite o SKU"
             onChange={(e) => setText(e.target.value)}
             value={text}
           />
           {/* <Button onclick={buscar}>Buscar</Button> */}
-        </div>
       </div>
     </>
   );

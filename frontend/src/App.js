@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "./App.css";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.min.css";
 import Home from "./components/Home";
 import Login from "./Views/Login/Login";
 import api from "./services/api";

@@ -45,13 +45,11 @@ header {
 }
 
 .modelo-xml {
-  border: none;
-  background-color: #171923;
   display: inline-flex;
   padding: 10px 20px;
   border-radius: 6px;
-  cursor: pointer;
-  margin-left: 32px;
+
+  margin-left: 3%;
 }
 
 .modelo-xml a {
@@ -61,4 +59,8 @@ header {
   display: flex;
   gap: 8px;
   align-items: center;
+}
+.center {
+  display: grid;
+  place-items: center;
 }

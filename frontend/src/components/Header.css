@@ -1,7 +1,6 @@
 .header {
-  /* margin: 20px 0; */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -20,36 +19,6 @@
   background: #eee;
   transition: 0.2s;
   padding: 5px 10px;
-}
-
-.ib {
-  display: flex;
-  gap: 10px;
-  margin-top: 5%;
-}
-
-.ib button {
-  background-color: #171923;
-  display: flex;
-  font-size: 15px;
-  width: 100px;
-  cursor: pointer;
-  font: 700 16px/16px "Roboto", sans-serif;
-  color: #fff;
-  border-radius: 6px;
-  border: none;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-  text-transform: uppercase;
-  letter-spacing: 0.04rem;
-  padding: 10%;
-}
-.ib button:hover {
-  background-color: #5d8aa8;
-  color: #171923;
 }
 
 .carregarImg {
@@ -83,4 +52,10 @@
 
 input[type="file"] {
   display: none;
+}
+.baixar-modelo {
+  text-decoration: none;
+  color: white;
+  height: 100%;
+  width: 100%;
 }
