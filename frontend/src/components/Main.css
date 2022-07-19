@@ -38,13 +38,16 @@
   border-bottom: 0px;
 }
 
-.infos img {
-  height: 150px;
+.imgProduto img {
+  height: 100%;
+  width: 100%;
 }
 
 .imgProduto {
   box-shadow: 0 2px 6px 1px rgb(0 0 0 / 14%);
-  padding: 14px 40px;
+  /* padding: 14px 40px; */
+  width: 20%;
+  height: 20%;
   border-radius: 4px;
 }
 
