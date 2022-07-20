@@ -252,7 +252,7 @@ function App() {
               <Route path="/admin/criacao" element={<NewUser />}></Route>
               <Route path="/admin" element={<Template />}></Route>
               <Route
-                path="/teste"
+                path="/banners"
                 element={
                   <Painel
                     sendXML={sendXML}
@@ -280,7 +280,7 @@ function App() {
                   />
                 }
               ></Route>
-              <Route
+              {/* <Route
                 path="/banners"
                 element={
                   <Home
@@ -303,7 +303,9 @@ function App() {
                     url={url}
                   />
                 }
-              ></Route>
+              ></Route>  
+              Componente para excluir
+              */}
             </Routes>
           </span>
         ) : (

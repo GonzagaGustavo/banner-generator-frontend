@@ -36,7 +36,9 @@ const [fonts, setFonts] = useState([])
 
   return (
     <div className="main">
+      <div className="centerFlex">
       <input type="color" onChange={e => setPersonalization({ color: e.target.value, font: personalization.font})} />
+      </div>
       <Autocomplete
         disablePortal
         options={fonts}

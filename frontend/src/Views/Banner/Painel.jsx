@@ -193,7 +193,7 @@ function Painel({
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={!isLastStep ? handleNext : undefined}
+                    onClick={!isLastStep ? handleNext : () => downloadImage(url)}
                   >
                     {isLastStep ? "Baixar" : "Próximo"}
                   </Button>
