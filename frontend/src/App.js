@@ -41,6 +41,7 @@ function App() {
     const token = Cookies.get("token");
     api.post("/users/getCan_Create", { token: token }).then((res) => {
       if (res.data === true) {
+        setUrl(null)
         const formData = new FormData();
         formData.append("image", selectedFile[0]);
         const headers = {
@@ -78,6 +79,7 @@ function App() {
         }
       } else {
         if (res.data[0].can_create > 0) {
+          setUrl(null)
           const formData = new FormData();
           formData.append("image", selectedFile[0]);
           const headers = {
