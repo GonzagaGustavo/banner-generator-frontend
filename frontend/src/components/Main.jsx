@@ -15,18 +15,22 @@ function Main({
   can_create,
   setCan_create,
   personalization,
-  setPersonalization
+  setPersonalization,
 }) {
-const [fonts, setFonts] = useState([])
+  const [fonts, setFonts] = useState([]);
 
   useEffect(() => {
-    axios.get("https://www.googleapis.com/webfonts/v1/webfonts?sort=POPULARITY&key=AIzaSyD4iU66DIkViOOkDZUejDVfS-Du6sM4fxc").then(res => {
-      const font = []
-      for (let i = 0; i < 50; i++) {
-        font.push(res.data.items[i].family)
-      }
-      setFonts(font)
-    })
+    axios
+      .get(
+        "https://www.googleapis.com/webfonts/v1/webfonts?sort=POPULARITY&key=AIzaSyD4iU66DIkViOOkDZUejDVfS-Du6sM4fxc"
+      )
+      .then((res) => {
+        const font = [];
+        for (let i = 0; i < 50; i++) {
+          font.push(res.data.items[i].family);
+        }
+        setFonts(font);
+      });
   }, []);
   useEffect(() => {
     if (can_create === 0) {
@@ -37,13 +41,32 @@ const [fonts, setFonts] = useState([])
   return (
     <div className="main">
       <div className="centerFlex">
-      <input type="color" onChange={e => setPersonalization({ color: e.target.value, font: personalization.font})} />
+        <input
+          type="color"
+          onChange={(e) =>
+            setPersonalization({
+              color: e.target.value,
+              font: personalization.font,
+              size1: personalization.size1,
+              size2: personalization.size2,
+              size3: personalization.size3,
+            })
+          }
+        />
       </div>
       <Autocomplete
         disablePortal
         options={fonts}
         renderInput={(params) => <TextField {...params} label="Fonte" />}
-        onChange={e => setPersonalization({ color: personalization.color, font: `${e.target.innerText}`.replace(" ", "+")})}
+        onChange={(e) =>
+          setPersonalization({
+            color: personalization.color,
+            font: `${e.target.innerText}`.replace(" ", "+"),
+            size1: personalization.size1,
+            size2: personalization.size2,
+            size3: personalization.size3,
+          })
+        }
       />
     </div>
   );

@@ -123,7 +123,7 @@ function App() {
 
     const link = document.createElement("a");
     link.href = imageURL;
-    link.download = imageSrc;
+    link.download = "Banner";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
