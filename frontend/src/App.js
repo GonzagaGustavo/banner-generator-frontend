@@ -3,8 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.min.css";
-import Home from "./components/Home";
-import Login from "./Views/Login/Login";
+// import Home from "./components/Home";
 import api from "./services/api";
 import EditUser from "./components/EditUser";
 import Template from "./Views/SuperAdmin/Template";
@@ -13,6 +12,7 @@ import Sidebar from "./Views/Painel/Sidebar/Sidebar";
 import Cookies from "js-cookie";
 import CreateAccount from "./components/CreateAccount";
 import Painel from "./Views/Banner/Painel";
+import NovoLogin from "./Views/Login/NovoLogin";
 
 function App() {
   const location = useLocation();
@@ -28,12 +28,12 @@ function App() {
   const [url, setUrl] = useState(null);
   const [activeStep, setActiveStep] = useState(0);
   const [personalization, setPersonalization] = useState({
-    color: 'rgb(0,0,0)',
-    font: 'Roboto',
+    color: "rgb(0,0,0)",
+    font: "Roboto",
     size1: 40,
     size2: 30,
-    size3: 20
-  })
+    size3: 20,
+  });
   //Funções
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -56,24 +56,33 @@ function App() {
           "image/webp",
         ].find((formatoAceito) => formatoAceito === selectedFile[0].type);
         if (extensao) {
-          api.post("/upload", formData, headers, { onUploadProgress: (e) => {
-            let progress = Number = Math.round(
-              (e.loaded * 100) / e.total
-            )
-            console.log(progress)
-          }}).then((res) => {
-            toast.success(res.data);
-            api.post("/createBanner", { dados: dados, personalization: personalization }).then((ress) => {
-              //Não executa esse callback!
-              console.log(ress.status);
-              if (ress.status == 400) {
-                toast.warn(ress.data);
-              } else {
-                setUrl(ress.data);
-                setDownload(ress.data);
-              }
+          api
+            .post("/upload", formData, headers, {
+              onUploadProgress: (e) => {
+                let progress = (Number = Math.round(
+                  (e.loaded * 100) / e.total
+                ));
+                console.log(progress);
+              },
+            })
+            .then((res) => {
+              toast.success(res.data);
+              api
+                .post("/createBanner", {
+                  dados: dados,
+                  personalization: personalization,
+                })
+                .then((ress) => {
+                  //Não executa esse callback!
+                  console.log(ress.status);
+                  if (ress.status == 400) {
+                    toast.warn(ress.data);
+                  } else {
+                    setUrl(ress.data);
+                    setDownload(ress.data);
+                  }
+                });
             });
-          });
         } else {
           toast.warn("Formato de imagem não aceito!");
         }
@@ -135,24 +144,24 @@ function App() {
     if (text) {
       if (selectedXML) {
         api.post("/buscarAqv", { file: xml, id: text }).then((res) => {
-          setActiveStep(activeStep + 1)
+          setActiveStep(activeStep + 1);
           setDados({
             name: res.data[0].name,
             price: res.data[0].price,
             adiconalText: `${res.data[0].p_mounth}x de ${res.data[0].p_value}`,
-            img: res.data[0].img
+            img: res.data[0].img,
           });
           setE(true);
         });
       } else {
         api.post("/", { id: text, link: xml }).then((res) => {
           console.log(res.data);
-          setActiveStep(activeStep + 1)
+          setActiveStep(activeStep + 1);
           setDados({
             name: res.data[0].name,
             price: res.data[0].price,
             adiconalText: `${res.data[0].p_mounth}x de ${res.data[0].p_value}`,
-            img: res.data[0].img
+            img: res.data[0].img,
           });
           setE(true);
         });
@@ -225,7 +234,7 @@ function App() {
       <div
         className="container-painel"
         style={
-          location.pathname === "/signup" ? { justifyContent: "center" } : null
+          location.pathname === "/" ? { justifyContent: "center", height: "100vh", alignItems: "center" } : null
         }
       >
         {location.pathname !== "/" && location.pathname !== "/signup" ? (
@@ -234,7 +243,7 @@ function App() {
           </>
         ) : null}
         <Routes>
-          <Route path="/" element={<Login />}></Route>
+          <Route path="/" element={<NovoLogin />}></Route>
           {/* <Route path="/signup" element={<CreateUser />}></Route> Rota para excluir */}
           <Route path="/signup" element={<CreateAccount />}></Route>
         </Routes>

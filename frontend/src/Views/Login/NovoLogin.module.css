@@ -1,0 +1,17 @@
+.containerForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 560px;
+
+  flex-direction: column;
+}
+
+
+.criarConta {
+  margin-top: 30px;
+  font-size: 0.875rem;
+}
+
+
+

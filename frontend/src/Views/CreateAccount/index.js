@@ -14,6 +14,7 @@ Coded by www.creative-tim.com
 */
 
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 // formik components
 import { Formik, Form } from "formik";
 
@@ -112,7 +113,7 @@ function CreateAccoun() {
           >
             {({ values, errors, touched, isSubmitting, setFieldValue }) => (
               <Form id={formId} autoComplete="off">
-                <Card sx={{ height: "100%" }}>
+                <Box sx={{ height: "100%" }}>
                   <Box mx={2}>
                     <Typography variant="h4" align="center">
                       Criação de Usuários
@@ -154,7 +155,10 @@ function CreateAccoun() {
                       </Box>
                     </Box>
                   </Box>
-                </Card>
+                </Box>
+                <Grid align="right" sx={{ mt: 3}}>
+                <span>Já tem uma conta?{" "}</span><Link to="/">Voltar</Link>
+                </Grid>
               </Form>
             )}
           </Formik>
