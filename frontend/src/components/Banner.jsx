@@ -1,10 +1,15 @@
 import React from "react";
 import "./Banner.css";
 
-function Banner({ selectedFile, url }) {
+function Banner({ selectedFile, url, loading }) {
   return (
     <div className="banner">
-      {selectedFile ? (
+      {url ? (
+        <img className="preview" src={url} alt="" />
+      ) : (
+        <div>{loading}</div>
+      )}
+      {/* {selectedFile ? (
         <>
           {url ? (
             <img className="preview" src={url} alt="" />
@@ -20,7 +25,7 @@ function Banner({ selectedFile, url }) {
         <p style={{ fontSize: "35px", color: "white", fontWeight: "bold" }}>
           Carrega a imagem de fundo
         </p>
-      )}
+      )} */}
     </div>
   );
 }

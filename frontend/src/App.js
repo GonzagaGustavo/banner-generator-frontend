@@ -34,6 +34,7 @@ function App() {
     size2: 30,
     size3: 20,
   });
+const [loading, setLoading] = useState(0)
   //Funções
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -103,7 +104,11 @@ function App() {
             "image/webp",
           ].find((formatoAceito) => formatoAceito === selectedFile[0].type);
           if (extensao) {
-            api.post("/upload", formData, headers).then((res) => {
+            api.post("/upload", formData, headers, { onUploadProgress: e => {
+              console.log("oi")
+              const progress = parseInt(Math.round(e.loaded * 100 / e.total))
+              setLoading(progress)
+            }}).then((res) => {
               toast.success(res.data);
               api.post("/createBanner", dados).then((ress) => {
                 //Não executa esse callback!
@@ -288,6 +293,7 @@ function App() {
                     setDados={setDados}
                     personalization={personalization}
                     setPersonalization={setPersonalization}
+                    loading={loading}
                   />
                 }
               ></Route>

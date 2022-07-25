@@ -48,7 +48,8 @@ function Painel({
   setActiveStep,
   setDados,
   personalization,
-  setPersonalization
+  setPersonalization,
+  loading
 }) {
   const [can_create, setCan_create] = useState(null);
 
@@ -108,7 +109,7 @@ function Painel({
           />
         );
       case 3:
-        return <Banner selectedFile={selectedFile} url={url} />;
+        return <Banner selectedFile={selectedFile} url={url} loading={loading} />;
       default:
         return null;
     }
