@@ -45,11 +45,6 @@ const [loading, setLoading] = useState(0)
         setUrl(null)
         const formData = new FormData();
         formData.append("image", selectedFile[0]);
-        const headers = {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
         const extensao = [
           "image/png",
           "image/jpg",
@@ -58,12 +53,10 @@ const [loading, setLoading] = useState(0)
         ].find((formatoAceito) => formatoAceito === selectedFile[0].type);
         if (extensao) {
           api
-            .post("/upload", formData, headers, {
-              onUploadProgress: (e) => {
-                let progress = (Number = Math.round(
-                  (e.loaded * 100) / e.total
-                ));
-                console.log(progress);
+            .post("/upload", formData, {
+              onUploadProgress: progressEvent => {
+                const progress = parseInt(Math.round(progressEvent.loaded * 100 / progressEvent.total))
+                setLoading(progress)
               },
             })
             .then((res) => {
@@ -80,6 +73,7 @@ const [loading, setLoading] = useState(0)
                     toast.warn(ress.data);
                   } else {
                     setUrl(ress.data);
+                    setLoading(0)
                     setDownload(ress.data);
                   }
                 });
@@ -92,11 +86,6 @@ const [loading, setLoading] = useState(0)
           setUrl(null)
           const formData = new FormData();
           formData.append("image", selectedFile[0]);
-          const headers = {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          };
           const extensao = [
             "image/png",
             "image/jpg",
@@ -104,9 +93,10 @@ const [loading, setLoading] = useState(0)
             "image/webp",
           ].find((formatoAceito) => formatoAceito === selectedFile[0].type);
           if (extensao) {
-            api.post("/upload", formData, headers, { onUploadProgress: e => {
+            api.post("/upload", formData, { onUploadProgress: progressEvent => {
               console.log("oi")
-              const progress = parseInt(Math.round(e.loaded * 100 / e.total))
+              console.log(progressEvent)
+              const progress = parseInt(Math.round(progressEvent.loaded * 100 / progressEvent.total))
               setLoading(progress)
             }}).then((res) => {
               toast.success(res.data);

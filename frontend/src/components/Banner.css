@@ -12,12 +12,15 @@
   font-size: 1.3rem;
   font-weight: 400;
   margin: auto;
-
+  user-select: none;
+  -webkit-user-select: none;
   /* margin-bottom: 60px; */
 }
 .preview {
   height: 100%;
   width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .button-adicionar {
