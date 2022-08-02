@@ -49,7 +49,9 @@ function Painel({
   setDados,
   personalization,
   setPersonalization,
-  loading
+  loading,
+  setPosition,
+  position
 }) {
   const [can_create, setCan_create] = useState(null);
 
@@ -109,7 +111,7 @@ function Painel({
           />
         );
       case 3:
-        return <Banner selectedFile={selectedFile} url={url} loading={loading} />;
+        return <Banner selectedFile={selectedFile} url={url} loading={loading} setPosition={setPosition} position={position} />;
       default:
         return null;
     }

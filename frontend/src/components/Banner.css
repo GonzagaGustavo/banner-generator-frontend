@@ -45,6 +45,17 @@
   color: #171923;
 }
 
+.mudarTextoImagem{
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 10%;
+  margin: 5%;
+}
+
+.MudarTextoImagem{
+  font-family: "Roboto", sans-serif;
+}
+
 
 
 

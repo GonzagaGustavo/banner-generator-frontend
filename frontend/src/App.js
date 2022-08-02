@@ -35,6 +35,12 @@ function App() {
     size3: 20,
   });
 const [loading, setLoading] = useState(0)
+const [position, setPosition] = useState({
+  topImg: 10,
+  leftImg: 25,
+  topText: 0,
+  leftText: 0
+})
   //Funções
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -284,6 +290,8 @@ const [loading, setLoading] = useState(0)
                     personalization={personalization}
                     setPersonalization={setPersonalization}
                     loading={loading}
+                    setPosition={setPosition}
+                    position={position}
                   />
                 }
               ></Route>
