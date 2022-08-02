@@ -48,7 +48,7 @@ const [position, setPosition] = useState({
     const token = Cookies.get("token");
     api.post("/users/getCan_Create", { token: token }).then((res) => {
       if (res.data === true) {
-        setUrl(null)
+        setUrl(null);
         const formData = new FormData();
         formData.append("image", selectedFile[0]);
         const extensao = [
@@ -60,9 +60,11 @@ const [position, setPosition] = useState({
         if (extensao) {
           api
             .post("/upload", formData, {
-              onUploadProgress: progressEvent => {
-                const progress = parseInt(Math.round(progressEvent.loaded * 100 / progressEvent.total))
-                setLoading(progress)
+              onUploadProgress: (progressEvent) => {
+                const progress = parseInt(
+                  Math.round((progressEvent.loaded * 100) / progressEvent.total)
+                );
+                setLoading(progress);
               },
             })
             .then((res) => {
@@ -79,7 +81,7 @@ const [position, setPosition] = useState({
                     toast.warn(ress.data);
                   } else {
                     setUrl(ress.data);
-                    setLoading(0)
+                    setLoading(0);
                     setDownload(ress.data);
                   }
                 });
@@ -89,7 +91,7 @@ const [position, setPosition] = useState({
         }
       } else {
         if (res.data[0].can_create > 0) {
-          setUrl(null)
+          setUrl(null);
           const formData = new FormData();
           formData.append("image", selectedFile[0]);
           const extensao = [
@@ -99,25 +101,33 @@ const [position, setPosition] = useState({
             "image/webp",
           ].find((formatoAceito) => formatoAceito === selectedFile[0].type);
           if (extensao) {
-            api.post("/upload", formData, { onUploadProgress: progressEvent => {
-              console.log("oi")
-              console.log(progressEvent)
-              const progress = parseInt(Math.round(progressEvent.loaded * 100 / progressEvent.total))
-              setLoading(progress)
-            }}).then((res) => {
-              toast.success(res.data);
-              api.post("/createBanner", dados).then((ress) => {
-                //Não executa esse callback!
-                console.log(ress.status);
-                if (ress.status == 400) {
-                  toast.warn(ress.data);
-                } else {
-                  api.post("/users/downCan_create", { token: token });
-                  setUrl(ress.data);
-                  setDownload(ress.data);
-                }
+            api
+              .post("/upload", formData, {
+                onUploadProgress: (progressEvent) => {
+                  console.log("oi");
+                  console.log(progressEvent);
+                  const progress = parseInt(
+                    Math.round(
+                      (progressEvent.loaded * 100) / progressEvent.total
+                    )
+                  );
+                  setLoading(progress);
+                },
+              })
+              .then((res) => {
+                toast.success(res.data);
+                api.post("/createBanner", dados).then((ress) => {
+                  //Não executa esse callback!
+                  console.log(ress.status);
+                  if (ress.status == 400) {
+                    toast.warn(ress.data);
+                  } else {
+                    api.post("/users/downCan_create", { token: token });
+                    setUrl(ress.data);
+                    setDownload(ress.data);
+                  }
+                });
               });
-            });
           } else {
             toast.warn("Formato de imagem não aceito!");
           }
@@ -216,6 +226,12 @@ const [position, setPosition] = useState({
       }
     }
   }
+  function attBanner() {
+    setUrl(null)
+    api.post("/attBanner", position).then(res => {
+      setUrl(res.data)
+    })
+  }
 
   const token = Cookies.get("token");
   return (
@@ -235,7 +251,13 @@ const [position, setPosition] = useState({
       <div
         className="container-painel"
         style={
-          location.pathname === "/" ? { justifyContent: "center", height: "100vh", alignItems: "center" } : null
+          location.pathname === "/"
+            ? {
+                justifyContent: "center",
+                height: "100vh",
+                alignItems: "center",
+              }
+            : null
         }
       >
         {location.pathname !== "/" && location.pathname !== "/signup" ? (
@@ -292,6 +314,7 @@ const [position, setPosition] = useState({
                     loading={loading}
                     setPosition={setPosition}
                     position={position}
+                    attBanner={attBanner}
                   />
                 }
               ></Route>

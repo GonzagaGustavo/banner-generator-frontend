@@ -51,7 +51,8 @@ function Painel({
   setPersonalization,
   loading,
   setPosition,
-  position
+  position,
+  attBanner
 }) {
   const [can_create, setCan_create] = useState(null);
 
@@ -111,7 +112,7 @@ function Painel({
           />
         );
       case 3:
-        return <Banner selectedFile={selectedFile} url={url} loading={loading} setPosition={setPosition} position={position} />;
+        return <Banner selectedFile={selectedFile} url={url} loading={loading} setPosition={setPosition} position={position} attBanner={attBanner} />;
       default:
         return null;
     }

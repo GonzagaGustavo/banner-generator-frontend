@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Banner.css";
 import { HiArrowNarrowDown, HiArrowNarrowLeft, HiArrowNarrowRight, HiArrowNarrowUp } from "react-icons/hi"
 
 
-function Banner({ selectedFile, url, loading, setPosition, position }) {
+function Banner({ selectedFile, url, loading, setPosition, position, attBanner }) {
+useEffect(() => {
+  attBanner()
+}, [position])
+
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -12,20 +16,20 @@ function Banner({ selectedFile, url, loading, setPosition, position }) {
 
           <button className="mudarTextoImagem" onClick={() => setPosition({
             topImg: position.topImg,
-            leftImg: position.leftImg +1,
+            leftImg: position.leftImg -10,
             topText:position.topText,
             leftText:position.leftText
           })}><HiArrowNarrowLeft/></button>
 
           <button className="mudarTextoImagem"  onClick={() => setPosition({
-            topImg: position.topImg +1,
+            topImg: position.topImg -10,
             leftImg: position.leftImg,
             topText:position.topText,
             leftText:position.leftText
           })} ><HiArrowNarrowUp/></button>
 
           <button className="mudarTextoImagem" onClick={() => setPosition({
-            topImg: position.topImg -1,
+            topImg: position.topImg +10,
             leftImg: position.leftImg ,
             topText:position.topText,
             leftText:position.leftText
@@ -33,7 +37,7 @@ function Banner({ selectedFile, url, loading, setPosition, position }) {
 
           <button className="mudarTextoImagem"  onClick={() => setPosition({
             topImg: position.topImg,
-            leftImg: position.leftImg -1,
+            leftImg: position.leftImg +10,
             topText:position.topText,
             leftText:position.leftText
           })}><HiArrowNarrowRight/></button>
@@ -45,20 +49,20 @@ function Banner({ selectedFile, url, loading, setPosition, position }) {
             topImg: position.topImg,
             leftImg: position.leftImg,
             topText:position.topText,
-            leftText:position.leftText +1
+            leftText:position.leftText -10
           })} ><HiArrowNarrowLeft /></button>
 
           <button className="mudarTextoImagem" onClick={() => setPosition({
             topImg: position.topImg,
             leftImg: position.leftImg,
-            topText:position.topText +1,
+            topText:position.topText -10,
             leftText:position.leftText
           })}><HiArrowNarrowUp /></button>
 
           <button className="mudarTextoImagem" onClick={() => setPosition({
             topImg: position.topImg,
             leftImg: position.leftImg,
-            topText:position.topText -1,
+            topText:position.topText +10,
             leftText:position.leftText 
           })}><HiArrowNarrowDown/></button>
 
@@ -66,7 +70,7 @@ function Banner({ selectedFile, url, loading, setPosition, position }) {
             topImg: position.topImg,
             leftImg: position.leftImg,
             topText:position.topText,
-            leftText:position.leftText -1
+            leftText:position.leftText +10
           })}><HiArrowNarrowRight /></button>
           
         </div>
@@ -81,11 +85,7 @@ function Banner({ selectedFile, url, loading, setPosition, position }) {
                 </div>
               </>
             ) : (
-              <img
-                className="preview"
-                src={URL.createObjectURL(selectedFile[0])}
-                alt=""
-              />
+              <p>Aguarde...</p>
             )}
           </>
         ) : (
